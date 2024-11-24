@@ -131,6 +131,8 @@ public class PreferencesData {
 				OS.getBundledJVMBits() == OS.BIT64 ? 2048 : 1500;
 
 		@PreferencesEntry public boolean offline = false;
+
+		@PreferencesEntry public boolean mirror = false;
 	}
 
 	public static class HiddenPreferences {

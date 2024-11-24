@@ -1,0 +1,42 @@
+allprojects{
+	project.ext.set("loom_resources_base", "https://bmclapi2.bangbang93.com/assets/")
+    repositories {
+        def ALIYUN_REPOSITORY_URL = 'https://maven.aliyun.com/repository/public'
+        def ALIYUN_GRADLE_PLUGIN_URL = 'https://maven.aliyun.com/repository/gradle-plugin'
+        all { ArtifactRepository repo ->
+            if(repo instanceof MavenArtifactRepository){
+                def url = repo.url.toString()
+                if (url.startsWith('https://repo1.maven.org/maven2/')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL."
+                    remove repo
+                }
+                if (url.startsWith('https://plugins.gradle.org/m2/')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRADLE_PLUGIN_URL."
+                    remove repo
+                }
+				if (url.startsWith('https://libraries.minecraft.net/')) {
+                    remove repo
+                }
+				if (url.startsWith('https://files.minecraftforge.net/maven')) {
+                    remove repo
+                }
+				if (url.startsWith('https://maven.minecraftforge.net/')) {
+                    remove repo
+                }
+				if (url.startsWith('https://maven.fabricmc.net')) {
+                    remove repo
+                }
+				if (url.startsWith('https://maven.neoforged.net/releases')) {
+                    remove repo
+                }
+				if (url.startsWith('https://maven.quiltmc.org/repository/release')) {
+                    remove repo
+                }
+            }
+        }
+        maven { url ALIYUN_REPOSITORY_URL }
+        maven { url ALIYUN_GRADLE_PLUGIN_URL }
+		maven { url "https://bmclapi2.bangbang93.com/maven" }
+		maven { url "https://repository.hanbings.io/proxy" } // fallback
+    }
+}

@@ -79,3 +79,4 @@ tasks.withType(net.fabricmc.loom.task.RunGameTask).configureEach {
 	javaLauncher.set(javaToolchains.launcherFor(java.toolchain))
 }
 
+apply from : "mcreator.gradle"

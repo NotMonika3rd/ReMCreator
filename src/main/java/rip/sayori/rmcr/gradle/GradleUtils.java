@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.gradle;
 
+import rip.sayori.rmcr.Launcher;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.minecraft.api.ModAPI;
 import rip.sayori.rmcr.minecraft.api.ModAPIManager;
@@ -47,8 +48,22 @@ import org.gradle.tooling.BuildLauncher;
 import org.gradle.tooling.ProjectConnection;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import static rip.sayori.rmcr.io.UserFolderManager.getGradleHome;
 
 public class GradleUtils {
+
+	public static void setupInitGradleFile() throws IOException {
+		try(var fos = new FileOutputStream(new File(getGradleHome(),"init.gradle"))){
+			try(var igjif=Launcher.class.getResourceAsStream("sbthings/init.gradle")) {
+                if (igjif != null) {
+                    fos.write(igjif.readAllBytes());
+                }
+            }
+		}
+	}
 
 	private static ProjectConnection getGradleProjectConnection(Workspace workspace) {
 		updateMCreatorBuildFile(workspace);
@@ -96,13 +111,25 @@ public class GradleUtils {
 		if (workspace != null) {
 			StringBuilder mcreatorGradleConfBuilder = new StringBuilder();
 
-			if (workspace.getWorkspaceSettings() != null
-					&& workspace.getWorkspaceSettings().getMCreatorDependencies() != null) {
-				for (String dep : workspace.getWorkspaceSettings().getMCreatorDependencies()) {
-					ModAPI.Implementation implementation = ModAPIManager.getModAPIForNameAndGenerator(dep,
-							workspace.getGenerator().getGeneratorName());
-					if (implementation != null) {
-						mcreatorGradleConfBuilder.append(implementation.gradle).append("\n\n");
+            if (workspace.getWorkspaceSettings() != null) {
+				if(PreferencesManager.PREFERENCES.gradle.mirror) {
+					try (var igjif = Launcher.class.getResourceAsStream("/sbthings/init.gradle")) {
+						//System.out.println(igjif);
+						if (igjif != null) {
+							mcreatorGradleConfBuilder.append(new String(igjif.readAllBytes()));
+							mcreatorGradleConfBuilder.append('\n');
+						}
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
+				}
+                if (workspace.getWorkspaceSettings().getMCreatorDependencies() != null) {
+					for (String dep : workspace.getWorkspaceSettings().getMCreatorDependencies()) {
+						ModAPI.Implementation implementation = ModAPIManager.getModAPIForNameAndGenerator(dep,
+								workspace.getGenerator().getGeneratorName());
+						if (implementation != null) {
+							mcreatorGradleConfBuilder.append(implementation.gradle).append("\n\n");
+						}
 					}
 				}
 			}
