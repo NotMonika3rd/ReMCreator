@@ -1,5 +1,5 @@
 plugins {
-	id "com.crystaelix.loom" version "0a007f07"
+	id "com.crystaelix.loom" version "f1b53da0"
 	id "eclipse"
 }
 
@@ -67,9 +67,6 @@ loom {
 }
 
 dependencies {
-	// Use an updated version of log4j
-	implementation "org.apache.logging.log4j:log4j-core:2.24.1"
-
 	minecraft "com.mojang:minecraft:1.12.2"
 	mappings "de.oceanlabs.mcp:mcp_snapshot:20171003-1.12"
 	cleanroom "com.cleanroommc:cleanroom:${generator.getGeneratorBuildFileVersion()}"

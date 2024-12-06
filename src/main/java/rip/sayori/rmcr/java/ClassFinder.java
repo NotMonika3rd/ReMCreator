@@ -55,11 +55,19 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class ClassFinder {
+	public static final String[] BLACKLIST = {
+			"org.lwjgl.test"
+	};
 
 	private static final Logger LOG = LogManager.getLogger("Class Finder");
 
 	public static DeclarationFinder.InClassPosition fqdnToInClassPosition(Workspace workspace, String classIn,
 			String packagefqdn, JarManager jarManager) {
+		for(var blacklistedFqdn : BLACKLIST){
+			if(packagefqdn.startsWith(blacklistedFqdn)){
+				return null;
+			}
+		}
 		DeclarationFinder.InClassPosition position = new DeclarationFinder.InClassPosition();
 		String classFQDN;
 
@@ -106,6 +114,11 @@ public class ClassFinder {
 
 	private static DeclarationFinder.InClassPosition sourceLocationToInClassPosition(SourceLocation sourceLocation,
 			String classfqdn) {
+		for(var blacklistedFqdn : BLACKLIST){
+			if(classfqdn.startsWith(blacklistedFqdn)){
+				return null;
+			}
+		}
 		if (sourceLocation != null) {
 			if (sourceLocation instanceof ZipSourceLocation) {
 				try (ZipFile zipFile = new ZipFile(new File(sourceLocation.getLocationAsString()))) {

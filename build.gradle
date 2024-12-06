@@ -10,9 +10,8 @@ repositories {
     maven{ url 'https://maven.aliyun.com/repository/public'}
     maven{ url 'https://maven.aliyun.com/repository/google'}
     maven{ url 'https://maven.cleanroommc.com' }
-    maven {
-        url "https://repo.gradle.org/gradle/libs-releases-local/"
-    }
+    maven{ url "https://repo.gradle.org/gradle/libs-releases-local/"}
+    //maven{ url "https://kkgithub.com/javaterminal/terminalfx/raw/master/releases"}
     flatDir { dirs 'lib' }
 }
 
@@ -78,6 +77,7 @@ dependencies {
 
     implementation group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.2'
     implementation 'zone.rong:imaginebreaker:2.1'
+    //implementation("com.kodedu.terminalfx:terminalfx:1.2.0")
 
     // for annotations
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.1'

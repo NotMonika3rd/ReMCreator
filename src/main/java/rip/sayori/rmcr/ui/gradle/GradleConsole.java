@@ -104,6 +104,22 @@ public class GradleConsole extends JPanel {
 	private boolean gradleSetupTaskRunning = false;
 	private CancellationTokenSource cancellationSource = GradleConnector.newCancellationTokenSource();
 	private Color textAccent = null;
+	private static final Pattern ANSI_REMOVER = Pattern.compile("\u001B\\[[;\\d]*m");
+
+	private static final Color COLOR_TASK_START = new Color(0xBBD9D0);
+	private static final Color COLOR_TASK_COMPLETE = new Color(0xbbe86c);
+	private static final Color COLOR_UNIMPORTANT = new Color(0x7B7B7B);
+	private static final Color COLOR_BRACKET = new Color(0xB0B0B0);
+	private static final Color COLOR_LOGLEVEL_TRACE = new Color(0x8abeb7);
+	private static final Color COLOR_LOGLEVEL_DEBUG = new Color(0xAABE92);
+	private static final Color COLOR_LOGLEVEL_INFO = new Color(0x94BD68);
+	private static final Color COLOR_LOGLEVEL_WARN = new Color(0xf0c674);
+	private static final Color COLOR_LOGLEVEL_ERROR = new Color(0xF98771);
+	private static final Color COLOR_LOGLEVEL_FATAL = new Color(0xcc6666);
+	private static final Color COLOR_MARKER_CLIENTSIDE = new Color(0x81BE8D);
+	private static final Color COLOR_MARKER_SERVERSIDE = new Color(0x8489A8);
+	private static final Color COLOR_MARKER_MAIN = new Color(0x9BB2C7);
+	private static final Color COLOR_STDERR = new Color(0x61D0AE);
 
 	public GradleConsole(MCreator ref) {
 		this.ref = ref;
@@ -301,7 +317,7 @@ public class GradleConsole extends JPanel {
 
 		SimpleAttributeSet keyWord = new SimpleAttributeSet();
 		StyleConstants.setFontSize(keyWord, 4);
-		pan.insertString("\n", keyWord);
+		insStr("\n", keyWord);
 
 		append("Executing Gradle task: " + command, new Color(0xBBD9D0));
 
@@ -547,6 +563,80 @@ public class GradleConsole extends JPanel {
 		pan.beginTransaction();
 
 		if (!text.isEmpty()) {
+			if (!text.endsWith("\n"))
+				text = text + "\n";
+
+			if (text.trim().startsWith("[")) {
+				String[] bracketsAndText = text.split("]: ", 2);
+				String[] data = (bracketsAndText[0] + "]: ").split("] \\[");
+
+				Color threadColorMarker = null;
+
+				for (int i = 0; i < data.length; i++) {
+					String bracketText = data[i];
+					if (i == 0)
+						bracketText = bracketText + "] ";
+					else if (i == data.length - 1)
+						bracketText = "[" + bracketText;
+					else
+						bracketText = "[" + bracketText + "] ";
+
+					Color bracketColor = (Color) UIManager.get("MCreatorLAF.BRIGHT_COLOR");
+
+					// default bracket color
+					if (bracketText.contains("]") && bracketText.contains("["))
+						bracketColor = COLOR_BRACKET;
+
+					// timestamp color
+					if (bracketText.contains(":") && !bracketText.contains("]: ")) {
+						bracketColor = COLOR_UNIMPORTANT;
+					} else if (threadColorMarker == null) { // handle log levels
+						if (bracketText.contains("/TRACE]"))
+							bracketColor = COLOR_LOGLEVEL_TRACE;
+						else if (bracketText.contains("/DEBUG]"))
+							bracketColor = COLOR_LOGLEVEL_DEBUG;
+						else if (bracketText.contains("/INFO]"))
+							bracketColor = COLOR_LOGLEVEL_INFO;
+						else if (bracketText.contains("/WARN]"))
+							bracketColor = COLOR_LOGLEVEL_WARN;
+						else if (bracketText.contains("/ERROR]") || bracketText.contains("STDERR]"))
+							bracketColor = COLOR_LOGLEVEL_ERROR;
+						else if (bracketText.contains("/FATAL]"))
+							bracketColor = COLOR_LOGLEVEL_FATAL;
+					} else {
+						bracketColor = threadColorMarker;
+						threadColorMarker = null;
+					}
+
+					// special bracket colors
+					if (bracketText.contains("Client") || bracketText.contains("Render"))
+						threadColorMarker = COLOR_MARKER_CLIENTSIDE;
+					else if (bracketText.contains("Server"))
+						threadColorMarker = COLOR_MARKER_SERVERSIDE;
+					else if (bracketText.contains("main/"))
+						threadColorMarker = COLOR_MARKER_MAIN;
+
+					SimpleAttributeSet keyWord = new SimpleAttributeSet();
+					StyleConstants.setForeground(keyWord, bracketColor);
+					StyleConstants.setBackground(keyWord, (Color) UIManager.get("MCreatorLAF.BLACK_ACCENT"));
+					insStr(bracketText, keyWord);
+				}
+
+				if (bracketsAndText.length > 1)
+					append(bracketsAndText[1], (Color) UIManager.get("MCreatorLAF.BRIGHT_COLOR"));
+			} else {
+				append(text, (Color) UIManager.get("MCreatorLAF.BRIGHT_COLOR"));
+			}
+		}
+
+		pan.endTransaction();
+
+		scrollToBottom();
+	}
+	/*private void appendAutoColor(String text) {
+		pan.beginTransaction();
+
+        if (!text.isEmpty()) {
 			Color c = (Color) UIManager.get("MCreatorLAF.BRIGHT_COLOR");
 
 			if (!text.endsWith("\n"))
@@ -626,9 +716,9 @@ public class GradleConsole extends JPanel {
 					StyleConstants.setBackground(keyWord, (Color) UIManager.get("MCreatorLAF.BLACK_ACCENT"));
 
 					if (bracketText.matches("\\[(\\w{2}\\.)+\\w+/\\w+]:")) {
-						pan.insertString(bracketText.replaceAll("(\\w{2}\\.)", ""), keyWord);
+						insStr(bracketText.replaceAll("(\\w{2}\\.)", ""), keyWord);
 					} else {
-						pan.insertString(bracketText, keyWord);
+						insStr(bracketText, keyWord);
 					}
 
 				}
@@ -642,7 +732,7 @@ public class GradleConsole extends JPanel {
 		pan.endTransaction();
 
 		scrollToBottom();
-	}
+	}*/
 
 	public void append(String text, Color c) {
 		Matcher compileError = cepattern.matcher(text);
@@ -686,12 +776,12 @@ public class GradleConsole extends JPanel {
 				StyleConstants.setFontSize(keyWord, 9);
 				StyleConstants.setForeground(keyWord, Color.white);
 				StyleConstants.setBackground(keyWord, (Color) UIManager.get("MCreatorLAF.BLACK_ACCENT"));
-				pan.insertString(text.split("\\(")[0] + "(", keyWord);
+				insStr(text.split("\\(")[0] + "(", keyWord);
 				StyleConstants.setForeground(keyWord, new Color(0xE0F3A9));
 				pan.insertLink(packageName + "." + crashClassName + ":" + classLine,
 						text.split("\\(")[1].split("\\)")[0], "", keyWord);
 				StyleConstants.setForeground(keyWord, Color.white);
-				pan.insertString(")" + text.split("\\(")[1].split("\\)")[1], keyWord);
+				insStr(")" + text.split("\\(")[1].split("\\)")[1], keyWord);
 			} catch (Exception ignored) {  // workspace can be null or we can fail to parse error link
 				// if we fail to print styled, fallback to plaintext
 				append(text, Color.white, false);
@@ -709,9 +799,14 @@ public class GradleConsole extends JPanel {
 			StyleConstants.setItalic(keyWord, a);
 			StyleConstants.setForeground(keyWord, c);
 			StyleConstants.setBackground(keyWord, (Color) UIManager.get("MCreatorLAF.BLACK_ACCENT"));
-			pan.insertString(text, keyWord);
-		}
+            insStr((text), keyWord);
+        }
 		scrollToBottom();
 	}
 
+	private void insStr(String text, SimpleAttributeSet sas){
+        //String pattern = "[\u001B\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[a-zA-Z\\d]*)*)?\u0007)|(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))]";
+		text = text.replaceAll("\u001B\\[[;\\d]*m","");
+		pan.insertString(text,sas);
+	}
 }

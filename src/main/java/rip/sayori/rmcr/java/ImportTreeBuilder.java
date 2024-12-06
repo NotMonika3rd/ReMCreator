@@ -54,6 +54,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static rip.sayori.rmcr.java.ClassFinder.BLACKLIST;
+
 public class ImportTreeBuilder {
 
 	private static final Logger LOG = LogManager.getLogger("Import Tree Builder");
@@ -66,7 +68,7 @@ public class ImportTreeBuilder {
 			if (libraryFile.isFile() && ZipIO.checkIfZip(libraryFile)) {
 				try (ZipFile zipFile = new ZipFile(libraryFile)) {
 					Enumeration<? extends ZipEntry> entries = zipFile.entries();
-					while (entries.hasMoreElements()) {
+					loop1 : while (entries.hasMoreElements()) {
 						ZipEntry entry = entries.nextElement();
 						String entryName = entry.getName();
 
@@ -81,6 +83,14 @@ public class ImportTreeBuilder {
 						// skip Sun APIs
 						if (entryName.startsWith("sun/") || entryName.startsWith("com/sun/"))
 							continue;
+
+						// skip from blacklists
+
+						for(var blacklistedFqdn : BLACKLIST){
+							if(entryName.startsWith(blacklistedFqdn.replaceAll("\\Q.\\E","/")+"/")){
+								continue loop1;
+							}
+						}
 
 						// skip package and modules info entries
 						if (entryName.endsWith("package-info.class") || entryName.endsWith("module-info.class"))
