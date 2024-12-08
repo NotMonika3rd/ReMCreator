@@ -1,0 +1,3 @@
+[submodule "launcher"]
+	path = launcher
+	url = https://gitee.com/literature-club-mc/ReMCreatorLauncher.git

@@ -102,6 +102,15 @@ distributions {
             from("plugins"){
                 into("bin/plugins")
             }
+            from("launcher/launcher.exe"){
+                rename("launcher.exe","ReMCreator.exe")
+            }
+            from("launcher/launcher.sh"){
+                rename("launcher.sh","ReMCreator")
+                filePermissions {
+                    it.unix(0755)
+                }
+            }
         }
 
     }
