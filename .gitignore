@@ -1,6 +1,7 @@
 #FILES FOR INTELLIJ IDEA
 #=======================
 .idea/*
+!.idea/modules/**/*
 .vscode/
 /bin/*
 /bin/**/*
