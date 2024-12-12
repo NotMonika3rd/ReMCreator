@@ -1,24 +1,5 @@
 /*
  * MCreator (https://mcreator.net/)
- * Copyright (C) 2012-2020, Pylo
- * Copyright (C) 2020-2021, Pylo, opensource contributors
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-/*
- * MCreator (https://mcreator.net/)
  * Copyright (C) 2020 Pylo and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,13 +26,18 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.zip.*;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 public class ZipIO {
 
 	private static final Logger LOG = LogManager.getLogger("ZipIO");
+
 	public static ZipFile openZipFile(File zipFile) throws IOException {
 		try {
 			return new ZipFile(zipFile);
@@ -60,16 +46,52 @@ public class ZipIO {
 		}
 	}
 
-	public static void iterateZip(File zipFilePointer, IZipFileAction action) {
-		try (ZipFile zipFile = new ZipFile(zipFilePointer)) {
+	public static void unzip(String strZipFile, String dst) {
+		Path extractFolder = new File(dst).toPath();
+		try (ZipFile zipFile = openZipFile(new File(strZipFile))) {
+			Enumeration<? extends ZipEntry> entries = zipFile.entries();
+			while (entries.hasMoreElements()) {
+				ZipEntry entry = entries.nextElement();
+				Path toPath = extractFolder.resolve(entry.getName());
+				if (entry.isDirectory()) {
+					toPath.toFile().mkdirs();
+				} else {
+					toPath.toFile().getParentFile().mkdirs();
+					Files.copy(zipFile.getInputStream(entry), toPath, StandardCopyOption.REPLACE_EXISTING);
+				}
+			}
+		} catch (IOException e) {
+			reportError("Unzip file", strZipFile, e);
+		}
+	}
+
+	public static void iterateZip(File zipFilePointer, Consumer<ZipEntry> action, boolean sortByName) {
+		try (ZipFile zipFile = openZipFile(zipFilePointer)) {
+			List<? extends ZipEntry> entries = Collections.list(zipFile.entries());
+			if (sortByName)
+				entries.sort(Comparator.comparing(ZipEntry::getName));
+			entries.forEach(action);
+		} catch (IOException e) {
+			reportError("Iterate zip", zipFilePointer.getAbsolutePath(), e);
+		}
+	}
+
+	public static <T> T readFileInZip(File zipFilePointer, String path, BiFunction<ZipFile, ZipEntry, T> transformer) {
+		if (path.startsWith("/"))
+			path = path.substring(1);
+
+		try (ZipFile zipFile = openZipFile(zipFilePointer)) {
 			Enumeration<? extends ZipEntry> entries = zipFile.entries();
 			while (entries.hasMoreElements()) {
 				ZipEntry zipEntry = entries.nextElement();
-				action.process(zipEntry);
+				if (zipEntry.toString().equals(path)) {
+					return transformer.apply(zipFile, zipEntry);
+				}
 			}
 		} catch (IOException e) {
-			LOG.error(e.getMessage(), e);
+			reportError("Read file in zip", zipFilePointer.getAbsolutePath(), e);
 		}
+		return null;
 	}
 
 	public static String entryToString(ZipFile file, ZipEntry entry) {
@@ -80,27 +102,13 @@ public class ZipIO {
 				sb.append(line).append("\n");
 			}
 		} catch (IOException e) {
-			LOG.error(e.getMessage(), e);
+			reportError("Read entry to string", entry.getName(), e);
 		}
 		return sb.toString();
 	}
 
 	public static String readCodeInZip(File zipFilePointer, String path) {
-		if (path.startsWith("/"))
-			path = path.substring(1);
-
-		try (ZipFile zipFile = new ZipFile(zipFilePointer)) {
-			Enumeration<? extends ZipEntry> entries = zipFile.entries();
-			while (entries.hasMoreElements()) {
-				ZipEntry zipEntry = entries.nextElement();
-				if (zipEntry.toString().startsWith(path)) {
-					return entryToString(zipFile, zipEntry);
-				}
-			}
-		} catch (IOException e) {
-			LOG.error(e.getMessage(), e);
-		}
-		return null;
+		return readFileInZip(zipFilePointer, path, ZipIO::entryToString);
 	}
 
 	public static void zipDir(String dirName, String nameZipFile, String... excludes) throws IOException {
@@ -177,31 +185,24 @@ public class ZipIO {
 		}
 	}
 
-	public static void unzip(String strZipFile, String dst) {
-		Path extractFolder = new File(dst).toPath();
-		try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(new File(strZipFile).toPath()))) {
-			ZipEntry entry;
-			while ((entry = zipInputStream.getNextEntry()) != null) {
-				Path toPath = extractFolder.resolve(entry.getName());
-				if (entry.isDirectory()) {
-					toPath.toFile().mkdirs();
-				} else {
-					toPath.toFile().getParentFile().mkdirs();
-					Files.copy(zipInputStream, toPath, StandardCopyOption.REPLACE_EXISTING);
-				}
-			}
-		} catch (IOException e) {
-			LOG.error(e.getMessage(), e);
-			LOG.info("Failed to extract zip file:{}", e.getMessage());
-		}
-	}
-
 	public static boolean checkIfZip(File zipfile) {
 		try (RandomAccessFile raf = new RandomAccessFile(zipfile, "r")) {
 			return raf.readInt() == 0x504B0304;
 		} catch (IOException e) {
 			return false;
 		}
+	}
+
+	public static boolean checkIfJMod(File zipfile) {
+		try (RandomAccessFile raf = new RandomAccessFile(zipfile, "r")) {
+			return raf.readInt() == 0x4A4D0100;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	private static void reportError(String action, String path, Throwable exception) {
+		LOG.error("{}: {} - for file: {}", action, exception.getMessage(), path, exception);
 	}
 
 }

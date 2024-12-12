@@ -5,7 +5,6 @@ plugins {
     id "org.openjfx.javafxplugin" version "0.1.0"
     id "application"
 }
-
 repositories {
     maven{ url 'https://maven.aliyun.com/repository/public'}
     maven{ url 'https://maven.aliyun.com/repository/google'}
