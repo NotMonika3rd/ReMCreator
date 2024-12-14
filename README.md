@@ -2,7 +2,4 @@
 
 # ReMCreator - Retro Extended MCreator
 
-## Note: You Need Corretto Java21 to run.
-
-## How 2 run?
-> use bin/ReMCreator(.bat)
+## Note: You Need Java21 to run.

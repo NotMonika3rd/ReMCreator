@@ -328,12 +328,6 @@ public class WorkspaceFileBrowser extends JPanel {
 					== GeneratorFlavor.BaseLanguage.JAVA)
 				loadExtSoruces(root);
 
-			if (mcreator.getGeneratorConfiguration().getGeneratorFlavor() == GeneratorFlavor.ADDON
-					&& MinecraftFolderUtils.getBedrockEditionFolder() != null) {
-				FilterTreeNode minecraft = new FilterTreeNode("Bedrock Edition");
-				addNodes(minecraft, MinecraftFolderUtils.getBedrockEditionFolder(), true);
-				root.add(minecraft);
-			}
 
 			mods.setRoot(root);
 
@@ -353,9 +347,9 @@ public class WorkspaceFileBrowser extends JPanel {
 			List<LibraryInfo> libraryInfos = mcreator.getGenerator().getProjectJarManager().getClassFileSources();
 			for (LibraryInfo libraryInfo : libraryInfos) {
 				File libraryFile = new File(libraryInfo.getLocationAsString());
-				if (libraryFile.isFile() && ZipIO.checkIfZip(libraryFile)) {
+				if (libraryFile.isFile() && (ZipIO.checkIfZip(libraryFile) || ZipIO.checkIfJMod(libraryFile))) {
 					String libName = FilenameUtils.removeExtension(libraryFile.getName());
-					if (libName.equals("rt"))
+					if (libName.contains("java.base"))
 						libName = "Java " + System.getProperty("java.version") + " SDK";
 					else
 						libName = "Gradle: " + libName;
