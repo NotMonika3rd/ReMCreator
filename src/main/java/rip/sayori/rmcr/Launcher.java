@@ -60,11 +60,8 @@ public class Launcher {
 
 	public static MCreatorVersionNumber version;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		List<String> arguments = Arrays.asList(args);
-		ImagineBreaker.wipeMethodFilters();
-		ImagineBreaker.wipeFieldFilters();
-		ImagineBreaker.openBootModules();
 
 		System.setProperty("log_directory", UserFolderManager.getFileFromUserFolder("").getAbsolutePath());
 		if (OS.getOS() == OS.WINDOWS && !System.getProperty("java.class.path").contains("idea_rt.jar")) {
@@ -108,51 +105,12 @@ public class Launcher {
 		System.setProperty("sun.java2d.d3d", "false");
 		System.setProperty("prism.lcdtext", "false");
 
-		// if the OS is macOS, we enable javafx single thread mode to avoid some deadlocks with JFXPanel
-		if (OS.getOS() == OS.MAC) {
-			System.setProperty("javafx.embed.singleThread", "true");
-		}
-
-		if ("true".equals(System.getProperty("javafx.embed.singleThread"))) {
-			LOG.warn(
-					"Running in javafx.embed.singleThread environment. This is just a note and should not cause any problems.");
-		}
-
-		// check if the user has JavaFX
-		try {
-			Launcher.class.getClassLoader().loadClass("javafx.embed.swing.JFXPanel");
-			// if we manage to load JavaFX, we set the listener to print to the sout js messages
-			com.sun.javafx.webkit.WebConsoleListener.setDefaultListener((webView, message, lineNumber, sourceId) -> {
-				String[] sidparsed = sourceId.split("/");
-				LOG.info("[JFX JS bridge] [{}: {}] {}", sidparsed[sidparsed.length - 1], lineNumber, message);
-			});
-		} catch (ClassNotFoundException e) {
-			LOG.info("MCreator was not able to load JavaFX");
-			String[] options = new String[] { "Close MCreator", "Proceed anyway" };
-			int option = JOptionPane.showOptionDialog(null, "<html><b>MCreator was not able to load JavaFX!</b><br><br>"
-							+ "MCreator can't work without JavaFX framework installed."
-							+ "<br>Please check how to install JavaFX for your platform and install it before using MCreator.<br>"
-							+ "<br>If you are using apt for package manager, you can install JavaFX by running:<br>"
-							+ "<pre>sudo apt-get install openjfx</pre><br>"
-							+ "Another option is to use Oracle JDK 8 which comes with JavaFX bundled.", "Failed to load JavaFX",
-					JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-			if (option == 0)
-				System.exit(-2);
-		}
-
-		// check if proper version of MCreator per architecture is used
-		if (OS.getBundledJVMBits() > OS.getSystemBits())
-			JOptionPane.showMessageDialog(null,
-					"<html><b>You are trying to run 64 bit MCreator on the 32 bit computer.<br>"
-							+ "This will not work!</b><br>" + "<br>Use 32 bit edition of MCreator instead.",
-					"MCreator error", JOptionPane.WARNING_MESSAGE);
-
-		if (OS.getSystemBits() > OS.getBundledJVMBits())
-			JOptionPane.showMessageDialog(null, "<html><b>You are using 32 bit MCreator on the 64 bit computer.</b>"
-							+ "<br>This is not recommended and can cause problems!"
-							+ "<br><br>If you get any errors and use this combination of versions, we can't offer you support."
-							+ "</b><br><br>Use 64 bit edition of MCreator instead.", "MCreator error",
-					JOptionPane.WARNING_MESSAGE);
+		Launcher.class.getClassLoader().loadClass("javafx.embed.swing.JFXPanel");
+		// if we manage to load JavaFX, we set the listener to print to the sout js messages
+		com.sun.javafx.webkit.WebConsoleListener.setDefaultListener((webView, message, lineNumber, sourceId) -> {
+			String[] sidparsed = sourceId.split("/");
+			LOG.info("[JFX JS bridge] [{}: {}] {}", sidparsed[sidparsed.length - 1], lineNumber, message);
+		});
 
 		LOG.info("Installation path: {}", System.getProperty("user.dir"));
 		LOG.info("User home of MCreator: {}", UserFolderManager.getFileFromUserFolder("/"));
@@ -168,4 +126,9 @@ public class Launcher {
 		MCreatorApplication.createApplication(arguments);
 	}
 
+	static {
+		ImagineBreaker.wipeMethodFilters();
+		ImagineBreaker.wipeFieldFilters();
+		ImagineBreaker.openBootModules();
+	}
 }

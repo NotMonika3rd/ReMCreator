@@ -3,7 +3,6 @@ plugins {
     id "idea"
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
     id "org.openjfx.javafxplugin" version "0.1.0"
-    id "application"
 }
 repositories {
     maven{ url 'https://maven.aliyun.com/repository/public'}
@@ -11,7 +10,9 @@ repositories {
     maven{ url 'https://maven.cleanroommc.com' }
     maven{ url "https://repo.gradle.org/gradle/libs-releases-local/"}
     //maven{ url "https://kkgithub.com/javaterminal/terminalfx/raw/master/releases"}
+    maven { url 'https://jitpack.io' }
     flatDir { dirs 'lib' }
+    mavenCentral()
 }
 
 project.ext.mcreatorconf = new Properties()
@@ -39,7 +40,11 @@ idea {
 }
 javafx {
     version = "11"
-    modules = ['javafx.base',"javafx.controls","javafx.fxml","javafx.graphics","javafx.media","javafx.swing","javafx.web"]
+    modules = ["javafx.swing","javafx.web"]
+}
+
+configurations {
+    javafx
 }
 dependencies {
     // from lib folder
@@ -55,8 +60,8 @@ dependencies {
     implementation group: 'org.jboss.forge.roaster', name: 'roaster-api', version: '2.22.2.Final'
     implementation group: 'org.jboss.forge.roaster', name: 'roaster-jdt', version: '2.22.2.Final'
     implementation group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.17'
-    implementation group: 'com.fifesoft', name: 'rsyntaxtextarea', version: '3.1.2'
-    implementation group: 'com.fifesoft', name: 'autocomplete', version: '3.1.1'
+    implementation group: 'com.fifesoft', name: 'rsyntaxtextarea', version: '3.5.3'
+    implementation group: 'com.fifesoft', name: 'autocomplete', version: '3.3.1'
     implementation(group: 'com.fifesoft', name: 'languagesupport', version: '3.3.0') { dep ->
         dep.exclude group: 'org.mozilla', module: 'rhino'
     }
@@ -78,6 +83,8 @@ dependencies {
     implementation 'zone.rong:imaginebreaker:2.1'
     //implementation("com.kodedu.terminalfx:terminalfx:1.2.0")
 
+    //implementation("org.apache.maven.resolver:maven-resolver-api:2.0.5")
+
     // for annotations
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
 
@@ -91,26 +98,8 @@ test {
     maxHeapSize = "1024m"
 }
 
-application {
+tasks.register('runMCreator', JavaExec) {
+    dependsOn jar
+    classpath += sourceSets.main.runtimeClasspath
     mainClass = "rip.sayori.rmcr.Launcher"
-}
-
-distributions {
-    main {
-        contents {
-            from("plugins"){
-                into("bin/plugins")
-            }
-            from("launcher/launcher.exe"){
-                rename("launcher.exe","ReMCreator.exe")
-            }
-            from("launcher/launcher.sh"){
-                rename("launcher.sh","ReMCreator")
-                filePermissions {
-                    it.unix(0755)
-                }
-            }
-        }
-
-    }
 }
