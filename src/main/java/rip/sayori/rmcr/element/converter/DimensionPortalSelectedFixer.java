@@ -35,44 +35,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv12;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.types.Biome;
-import rip.sayori.rmcr.util.StringUtils;
+import rip.sayori.rmcr.element.types.Dimension;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class BiomeDefaultFeaturesConverter implements IConverter {
-	private static final Logger LOG = LogManager.getLogger(BiomeDefaultFeaturesConverter.class);
+public class DimensionPortalSelectedFixer implements IConverter {
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Biome biome = (Biome) input;
-
-		try {
-			biome.defaultFeatures.add("Caves");
-			biome.defaultFeatures.add("MonsterRooms");
-			biome.defaultFeatures.add("Ores");
-
-			biome.foliageColor = biome.grassColor;
-			biome.waterFogColor = biome.waterColor;
-
-			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("generateLakes") != null) {
-				biome.defaultFeatures.add("Lakes");
-			}
-			biome.name = StringUtils.machineToReadableName(input.getModElement().getName());
-		} catch (Exception e) {
-			LOG.warn("Could not convert: " + biome.getModElement().getName());
-		}
-
-		return biome;
+		Dimension dimension = (Dimension) input;
+		input.getModElement().clearMetadata();
+		input.getModElement().putMetadata("ep", dimension.enablePortal);
+		input.getModElement().reinit();
+		return dimension;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 12;
+		return 15;
 	}
 }

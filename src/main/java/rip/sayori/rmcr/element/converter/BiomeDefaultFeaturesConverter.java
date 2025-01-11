@@ -35,35 +35,43 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv14;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.types.Dimension;
+import rip.sayori.rmcr.element.types.Biome;
+import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class DimensionLuminanceFixer implements IConverter {
-	private static final Logger LOG = LogManager.getLogger(DimensionLuminanceFixer.class);
+public class BiomeDefaultFeaturesConverter implements IConverter {
+	private static final Logger LOG = LogManager.getLogger(BiomeDefaultFeaturesConverter.class);
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Dimension dimension = (Dimension) input;
+		Biome biome = (Biome) input;
+
 		try {
-			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("portalLuminance") != null) {
-				double oldLuminance = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
-						.get("portalLuminance").getAsDouble();
-				dimension.portalLuminance = (int) Math.floor(oldLuminance * 15);
+			biome.defaultFeatures.add("Caves");
+			biome.defaultFeatures.add("MonsterRooms");
+			biome.defaultFeatures.add("Ores");
+
+			biome.foliageColor = biome.grassColor;
+			biome.waterFogColor = biome.waterColor;
+
+			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("generateLakes") != null) {
+				biome.defaultFeatures.add("Lakes");
 			}
+			biome.name = StringUtils.machineToReadableName(input.getModElement().getName());
 		} catch (Exception e) {
-			LOG.warn("Could not update luminance field of: " + dimension.getModElement().getName());
+			LOG.warn("Could not convert: " + biome.getModElement().getName());
 		}
-		return dimension;
+
+		return biome;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 14;
+		return 12;
 	}
 }

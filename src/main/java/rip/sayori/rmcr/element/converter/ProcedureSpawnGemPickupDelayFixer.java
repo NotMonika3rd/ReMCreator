@@ -35,11 +35,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv13;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
 import rip.sayori.rmcr.element.types.Procedure;
 import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;

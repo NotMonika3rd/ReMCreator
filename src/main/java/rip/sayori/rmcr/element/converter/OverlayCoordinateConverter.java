@@ -19,8 +19,7 @@
 
 /*
  * MCreator (https://mcreator.net/)
- * Copyright (C) 2012-2020, Pylo
- * Copyright (C) 2020-2021, Pylo, opensource contributors
+ * Copyright (C) 2020 Pylo and contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,27 +35,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv18;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.types.Biome;
+import rip.sayori.rmcr.element.parts.gui.GUIComponent;
+import rip.sayori.rmcr.element.types.Overlay;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class BiomeFrozenTopLayerConverter implements IConverter {
-	private static final Logger LOG = LogManager.getLogger(BiomeFrozenTopLayerConverter.class);
+public class OverlayCoordinateConverter implements IConverter {
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Biome biome = (Biome) input;
-		biome.defaultFeatures.add("FrozenTopLayer");
-		return biome;
+		Overlay gui = (Overlay) input;
+
+		for (GUIComponent component : gui.components) {
+			component.x = convert(component.getX());
+			component.y = convert(component.getY());
+		}
+
+		return gui;
+	}
+
+	private int convert(int original) {
+		return (int) Math.round(original / 2.0);
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 18;
+		return 11;
 	}
+
 }

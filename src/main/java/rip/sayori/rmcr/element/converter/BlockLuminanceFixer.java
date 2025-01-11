@@ -35,49 +35,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv16;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
 import rip.sayori.rmcr.element.types.Block;
-import rip.sayori.rmcr.element.types.interfaces.IBlockWithBoundingBox;
 import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BlockBoundingBoxFixer implements IConverter {
-	private static final Logger LOG = LogManager.getLogger(BlockBoundingBoxFixer.class);
+public class BlockLuminanceFixer implements IConverter {
+	private static final Logger LOG = LogManager.getLogger(BlockLuminanceFixer.class);
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
 		Block block = (Block) input;
 		try {
-			JsonObject blockDefinition = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject();
-			if (checkOldBoundingBox(blockDefinition)) {
-				IBlockWithBoundingBox.BoxEntry newBB = new IBlockWithBoundingBox.BoxEntry();
-				newBB.mx = blockDefinition.get("mx").getAsDouble() * 16;
-				newBB.my = blockDefinition.get("my").getAsDouble() * 16;
-				newBB.mz = blockDefinition.get("mz").getAsDouble() * 16;
-				newBB.Mx = blockDefinition.get("Mx").getAsDouble() * 16;
-				newBB.My = blockDefinition.get("My").getAsDouble() * 16;
-				newBB.Mz = blockDefinition.get("Mz").getAsDouble() * 16;
-				block.boundingBoxes.add(newBB);
+			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("luminance") != null) {
+				double oldLuminance = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
+						.get("luminance").getAsDouble();
+				block.luminance = (int) Math.floor(oldLuminance * 15);
 			}
 		} catch (Exception e) {
-			LOG.warn("Could not update bounding box of: " + block.getModElement().getName());
+			LOG.warn("Could not update luminance field of: " + block.getModElement().getName());
 		}
 		return block;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 16;
+		return 14;
 	}
-
-	private boolean checkOldBoundingBox(JsonObject blockDef) {
-		return blockDef.get("mx") != null && blockDef.get("my") != null && blockDef.get("mz") != null
-				&& blockDef.get("Mx") != null && blockDef.get("My") != null && blockDef.get("Mz") != null;
-	}
-
 }

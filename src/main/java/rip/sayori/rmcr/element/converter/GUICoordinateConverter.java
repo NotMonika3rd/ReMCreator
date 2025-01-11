@@ -35,24 +35,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv11;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
 import rip.sayori.rmcr.element.parts.gui.GUIComponent;
-import rip.sayori.rmcr.element.types.Overlay;
+import rip.sayori.rmcr.element.parts.gui.SizedComponent;
+import rip.sayori.rmcr.element.types.GUI;
 import rip.sayori.rmcr.workspace.Workspace;
 
-public class OverlayCoordinateConverter implements IConverter {
+public class GUICoordinateConverter implements IConverter {
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Overlay gui = (Overlay) input;
+		GUI gui = (GUI) input;
+
+		gui.width = convert(gui.width);
+		gui.height = convert(gui.height);
 
 		for (GUIComponent component : gui.components) {
 			component.x = convert(component.getX());
 			component.y = convert(component.getY());
+			if (component instanceof SizedComponent) {
+				((SizedComponent) component).width = convert(((SizedComponent) component).width);
+				((SizedComponent) component).height = convert(((SizedComponent) component).height);
+			}
 		}
 
 		return gui;

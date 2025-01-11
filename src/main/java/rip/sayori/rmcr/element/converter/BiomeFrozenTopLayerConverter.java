@@ -19,7 +19,8 @@
 
 /*
  * MCreator (https://mcreator.net/)
- * Copyright (C) 2020 Pylo and contributors
+ * Copyright (C) 2012-2020, Pylo
+ * Copyright (C) 2020-2021, Pylo, opensource contributors
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,41 +36,26 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv4;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.types.Recipe;
+import rip.sayori.rmcr.element.types.Biome;
 import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class RecipeTypeConverter implements IConverter {
-
-	private static final Logger LOG = LogManager.getLogger("RecipeTypeConverter");
+public class BiomeFrozenTopLayerConverter implements IConverter {
+	private static final Logger LOG = LogManager.getLogger(BiomeFrozenTopLayerConverter.class);
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Recipe recipe = (Recipe) input;
-		try {
-			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("recipeReturnStack") != null
-					&& !jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("recipeReturnStack")
-					.getAsJsonObject().get("value").getAsString().trim().equals("")) { // treat as crafting
-				recipe.recipeType = "Crafting";
-			} else { // treat as smelting
-				recipe.recipeType = "Smelting";
-			}
-		} catch (Exception e) {
-			LOG.warn("Could not determine recipe type for " + input.getModElement().getName()
-					+ ", falling back to crafting type.");
-			recipe.recipeType = "Crafting";
-		}
-		return recipe;
+		Biome biome = (Biome) input;
+		biome.defaultFeatures.add("FrozenTopLayer");
+		return biome;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 4;
+		return 18;
 	}
-
 }

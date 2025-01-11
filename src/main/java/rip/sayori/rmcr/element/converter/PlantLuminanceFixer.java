@@ -35,26 +35,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv15;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.types.Dimension;
+import rip.sayori.rmcr.element.types.Plant;
 import rip.sayori.rmcr.workspace.Workspace;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class DimensionPortalSelectedFixer implements IConverter {
+public class PlantLuminanceFixer implements IConverter {
+	private static final Logger LOG = LogManager.getLogger(PlantLuminanceFixer.class);
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Dimension dimension = (Dimension) input;
-		input.getModElement().clearMetadata();
-		input.getModElement().putMetadata("ep", dimension.enablePortal);
-		input.getModElement().reinit();
-		return dimension;
+		Plant plant = (Plant) input;
+		try {
+			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("luminance") != null) {
+				double oldLuminance = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
+						.get("luminance").getAsDouble();
+				plant.luminance = (int) Math.floor(oldLuminance * 15);
+			}
+		} catch (Exception e) {
+			LOG.warn("Could not update luminance field of: " + plant.getModElement().getName());
+		}
+		return plant;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 15;
+		return 14;
 	}
 }

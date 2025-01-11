@@ -35,35 +35,46 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv14;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
 import rip.sayori.rmcr.element.types.Block;
+import rip.sayori.rmcr.element.types.GUI;
 import rip.sayori.rmcr.workspace.Workspace;
+import rip.sayori.rmcr.workspace.elements.ModElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BlockLuminanceFixer implements IConverter {
-	private static final Logger LOG = LogManager.getLogger(BlockLuminanceFixer.class);
+public class GUIBindingInverter implements IConverter {
+
+	private static final Logger LOG = LogManager.getLogger("GUIBindingInverter");
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Block block = (Block) input;
+		GUI gui = (GUI) input;
 		try {
-			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("luminance") != null) {
-				double oldLuminance = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
-						.get("luminance").getAsDouble();
-				block.luminance = (int) Math.floor(oldLuminance * 15);
+			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("containerBlock")
+					!= null) { // treat as crafting
+				String containerBlock = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
+						.get("containerBlock").getAsString();
+				ModElement blockelement = workspace.getModElementByName(containerBlock);
+				if (blockelement != null) {
+					Block block = (Block) blockelement.getGeneratableElement();
+					if (block != null) {
+						block.guiBoundTo = input.getModElement().getName();
+						workspace.getModElementManager().storeModElement(block);
+					}
+				}
 			}
 		} catch (Exception e) {
-			LOG.warn("Could not update luminance field of: " + block.getModElement().getName());
+			LOG.warn("Could not get bound block for " + input.getModElement().getName());
 		}
-		return block;
+		return gui;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 14;
+		return 6;
 	}
+
 }

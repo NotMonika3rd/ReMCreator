@@ -35,47 +35,40 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv6;
+package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.types.Block;
-import rip.sayori.rmcr.element.types.GUI;
+import rip.sayori.rmcr.element.types.Recipe;
 import rip.sayori.rmcr.workspace.Workspace;
-import rip.sayori.rmcr.workspace.elements.ModElement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GUIBindingInverter implements IConverter {
+public class RecipeTypeConverter implements IConverter {
 
-	private static final Logger LOG = LogManager.getLogger("GUIBindingInverter");
+	private static final Logger LOG = LogManager.getLogger("RecipeTypeConverter");
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		GUI gui = (GUI) input;
+		Recipe recipe = (Recipe) input;
 		try {
-			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("containerBlock")
-					!= null) { // treat as crafting
-				String containerBlock = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
-						.get("containerBlock").getAsString();
-				ModElement blockelement = workspace.getModElementByName(containerBlock);
-				if (blockelement != null) {
-					Block block = (Block) blockelement.getGeneratableElement();
-					if (block != null) {
-						block.guiBoundTo = input.getModElement().getName();
-						workspace.getModElementManager().storeModElement(block);
-					}
-				}
+			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("recipeReturnStack") != null
+					&& !jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("recipeReturnStack")
+					.getAsJsonObject().get("value").getAsString().trim().equals("")) { // treat as crafting
+				recipe.recipeType = "Crafting";
+			} else { // treat as smelting
+				recipe.recipeType = "Smelting";
 			}
 		} catch (Exception e) {
-			LOG.warn("Could not get bound block for " + input.getModElement().getName());
+			LOG.warn("Could not determine recipe type for " + input.getModElement().getName()
+					+ ", falling back to crafting type.");
+			recipe.recipeType = "Crafting";
 		}
-		return gui;
+		return recipe;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 6;
+		return 4;
 	}
 
 }

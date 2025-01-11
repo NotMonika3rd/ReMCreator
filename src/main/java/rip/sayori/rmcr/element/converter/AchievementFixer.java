@@ -35,52 +35,27 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.element.converter.fv10;
+package rip.sayori.rmcr.element.converter;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import rip.sayori.rmcr.element.GeneratableElement;
-import rip.sayori.rmcr.element.converter.IConverter;
-import rip.sayori.rmcr.element.parts.EntityEntry;
-import rip.sayori.rmcr.element.types.Biome;
+import rip.sayori.rmcr.element.types.Achievement;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class BiomeSpawnListConverter implements IConverter {
-
-	private static final Logger LOG = LogManager.getLogger(BiomeSpawnListConverter.class);
+public class AchievementFixer implements IConverter {
 
 	@Override
 	public GeneratableElement convert(Workspace workspace, GeneratableElement input, JsonElement jsonElementInput) {
-		Biome biome = (Biome) input;
-
-		try {
-			if (jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject().get("spawnList") != null) {
-				JsonArray spawnList = jsonElementInput.getAsJsonObject().get("definition").getAsJsonObject()
-						.get("spawnList").getAsJsonArray();
-				for (JsonElement spawn : spawnList) {
-					String name = spawn.getAsJsonObject().get("value").getAsString();
-
-					Biome.SpawnEntry spawnEntry = new Biome.SpawnEntry();
-					spawnEntry.entity = new EntityEntry(workspace, name);
-					spawnEntry.spawnType = "creature";
-					spawnEntry.weight = 15;
-					spawnEntry.minGroup = 1;
-					spawnEntry.maxGroup = 15;
-
-					biome.spawnEntries.add(spawnEntry);
-				}
-			}
-		} catch (Exception e) {
-			LOG.warn("Failed to update biome spawn list to new format", e);
-		}
-
-		return biome;
+		Achievement achievement = (Achievement) input;
+		achievement.showPopup = true;
+		achievement.announceToChat = true;
+		achievement.triggerxml = "<xml><block type=\"custom_trigger\" x=\"40\" y=\"80\"><next>"
+				+ "<block type=\"advancement_trigger\" deletable=\"false\"/></next></block></xml>";
+		return achievement;
 	}
 
 	@Override public int getVersionConvertingTo() {
-		return 10;
+		return 5;
 	}
 
 }
