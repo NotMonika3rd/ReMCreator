@@ -35,12 +35,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.io;
+package rip.sayori.rmcr.util;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.util.Objects;
 
-public class UserFolderManager {
+public class FolderUtils {
 
 	private static File getUserFolder() {
 		return new File(System.getProperty("user.home") + "/.mcreator/");
@@ -63,4 +65,11 @@ public class UserFolderManager {
 		return getFileFromUserFolder("/gradle/");
 	}
 
+	public static File getFromCL(String path){
+        try {
+            return new File(Objects.requireNonNull(FolderUtils.class.getClassLoader().getResource(path)).toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

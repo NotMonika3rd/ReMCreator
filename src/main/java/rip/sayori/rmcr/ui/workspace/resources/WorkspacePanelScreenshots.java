@@ -38,7 +38,7 @@
 package rip.sayori.rmcr.ui.workspace.resources;
 
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.ui.component.JSelectableList;
 import rip.sayori.rmcr.ui.component.TransparentToolBar;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
@@ -132,7 +132,7 @@ class WorkspacePanelScreenshots extends JPanel implements IReloadableFilterable 
 
 	private void useSelectedAsBackgrounds() {
 		modelList.getSelectedValuesList().forEach(
-				f -> FileIO.copyFile(f, new File(UserFolderManager.getFileFromUserFolder("backgrounds"), f.getName())));
+				f -> FileIO.copyFile(f, new File(FolderUtils.getFileFromUserFolder("backgrounds"), f.getName())));
 		JOptionPane.showMessageDialog(workspacePanel.getMcreator(),
 				L10N.t("workspace.screenshots.use_background_message"), L10N.t("workspace.screenshots.action_complete"),
 				JOptionPane.INFORMATION_MESSAGE);

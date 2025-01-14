@@ -39,7 +39,7 @@ package rip.sayori.rmcr.ui.action.impl.gradle;
 
 import rip.sayori.rmcr.gradle.GradleDaemonUtils;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.action.ActionRegistry;
 import rip.sayori.rmcr.ui.action.impl.workspace.RegenerateCodeAction;
@@ -93,9 +93,9 @@ public class ClearAllGradleCachesAction extends GradleAction {
 			}
 
 			if (entireGradleFolder)
-				FileIO.deleteDir(UserFolderManager.getGradleHome());
+				FileIO.deleteDir(FolderUtils.getGradleHome());
 			else
-				FileIO.deleteDir(new File(UserFolderManager.getGradleHome(), "caches"));
+				FileIO.deleteDir(new File(FolderUtils.getGradleHome(), "caches"));
 
 			p2.ok();
 			progressDialog.refreshDisplay();

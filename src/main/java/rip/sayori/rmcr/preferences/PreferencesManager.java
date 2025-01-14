@@ -40,7 +40,7 @@ package rip.sayori.rmcr.preferences;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,11 +50,11 @@ public class PreferencesManager {
 
 	private static final Logger LOG = LogManager.getLogger("Preferences Manager");
 	private static final Gson gson = new GsonBuilder().setPrettyPrinting().setLenient().create();
-	private static final File preferencesFile = UserFolderManager.getFileFromUserFolder("preferences");
+	private static final File preferencesFile = FolderUtils.getFileFromUserFolder("preferences");
 	public static PreferencesData PREFERENCES = new PreferencesData();
 
 	public static void loadPreferences() {
-		if (!UserFolderManager.getFileFromUserFolder("preferences").isFile()) {
+		if (!FolderUtils.getFileFromUserFolder("preferences").isFile()) {
 			storePreferences(new PreferencesData());
 			LOG.info("Preferences not created yet. Loading defaults.");
 		} else {

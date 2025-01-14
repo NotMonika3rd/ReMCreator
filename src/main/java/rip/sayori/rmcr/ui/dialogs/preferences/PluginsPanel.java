@@ -38,7 +38,7 @@
 package rip.sayori.rmcr.ui.dialogs.preferences;
 
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.plugin.Plugin;
 import rip.sayori.rmcr.plugin.PluginLoader;
 import rip.sayori.rmcr.ui.MCreatorApplication;
@@ -83,7 +83,7 @@ class PluginsPanel {
 			File[] files = FileDialogs.getMultiOpenDialog(preferencesDialog, new String[] { ".zip" });
 			if (files != null && files.length > 0) {
 				Arrays.stream(files).forEach(f -> FileIO.copyFile(f,
-						new File(UserFolderManager.getFileFromUserFolder("plugins"), f.getName())));
+						new File(FolderUtils.getFileFromUserFolder("plugins"), f.getName())));
 				PluginLoader.initInstance(); // reload plugin loader
 				reloadPluginList();
 			}

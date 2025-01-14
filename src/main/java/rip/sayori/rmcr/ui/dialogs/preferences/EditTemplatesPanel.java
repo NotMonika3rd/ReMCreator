@@ -38,7 +38,7 @@
 package rip.sayori.rmcr.ui.dialogs.preferences;
 
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.ui.component.JEmptyBox;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
 import rip.sayori.rmcr.ui.dialogs.FileDialogs;
@@ -79,7 +79,7 @@ class EditTemplatesPanel {
 		JList<String> templates = new JList<>(tmodel);
 
 		remove.addActionListener(e -> templates.getSelectedValuesList().forEach(el -> {
-			new File(UserFolderManager.getFileFromUserFolder(templatesFolder), el).delete();
+			new File(FolderUtils.getFileFromUserFolder(templatesFolder), el).delete();
 			tmodel.removeElement(el);
 		}));
 
@@ -87,13 +87,13 @@ class EditTemplatesPanel {
 			File[] files = FileDialogs.getMultiOpenDialog(preferencesDialog, new String[] { templateExt });
 			if (files != null) {
 				Arrays.stream(files).forEach(f -> {
-					FileIO.copyFile(f, new File(UserFolderManager.getFileFromUserFolder(templatesFolder), f.getName()));
+					FileIO.copyFile(f, new File(FolderUtils.getFileFromUserFolder(templatesFolder), f.getName()));
 					tmodel.addElement(f.getName());
 				});
 			}
 		});
 
-		File[] files = UserFolderManager.getFileFromUserFolder(templatesFolder).listFiles();
+		File[] files = FolderUtils.getFileFromUserFolder(templatesFolder).listFiles();
 		if (files != null) {
 			Arrays.stream(files).forEach(f -> {
 				if (f.getName().toLowerCase(Locale.ENGLISH).endsWith(templateExt.toLowerCase(Locale.ENGLISH)))

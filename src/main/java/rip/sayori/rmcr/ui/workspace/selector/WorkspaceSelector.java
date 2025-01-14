@@ -59,7 +59,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import rip.sayori.rmcr.Launcher;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.ui.MCreatorApplication;
 import rip.sayori.rmcr.ui.action.impl.AboutAction;
 import rip.sayori.rmcr.ui.component.JEmptyBox;
@@ -319,15 +319,15 @@ public final class WorkspaceSelector extends JFrame implements DropTargetListene
 	private void saveRecentWorkspaces() {
 		String serialized = gson.toJson(recentWorkspaces);
 		if (serialized != null && !serialized.isEmpty()) {
-			FileIO.writeStringToFile(serialized, UserFolderManager.getFileFromUserFolder("recentworkspaces"));
+			FileIO.writeStringToFile(serialized, FolderUtils.getFileFromUserFolder("recentworkspaces"));
 		}
 	}
 
 	private void reloadRecents() {
-		if (UserFolderManager.getFileFromUserFolder("recentworkspaces").isFile()) {
+		if (FolderUtils.getFileFromUserFolder("recentworkspaces").isFile()) {
 			try {
 				recentWorkspaces = gson.fromJson(
-						FileIO.readFileToString(UserFolderManager.getFileFromUserFolder("recentworkspaces")),
+						FileIO.readFileToString(FolderUtils.getFileFromUserFolder("recentworkspaces")),
 						RecentWorkspaces.class);
 				if (recentWorkspaces != null) {
 					List<RecentWorkspaceEntry> recentWorkspacesFiltered = new ArrayList<>();

@@ -38,7 +38,7 @@
 package rip.sayori.rmcr;
 
 import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.ui.MCreatorApplication;
 import rip.sayori.rmcr.util.DefaultExceptionHandler;
@@ -63,7 +63,7 @@ public class Launcher {
 	public static void main(String[] args) throws Throwable {
 		List<String> arguments = Arrays.asList(args);
 
-		System.setProperty("log_directory", UserFolderManager.getFileFromUserFolder("").getAbsolutePath());
+		System.setProperty("log_directory", FolderUtils.getFileFromUserFolder("").getAbsolutePath());
 		if (OS.getOS() == OS.WINDOWS && !System.getProperty("java.class.path").contains("idea_rt.jar")) {
 			System.setProperty("log_disable_ansi", "true");
 		} else {
@@ -113,12 +113,12 @@ public class Launcher {
 		});
 
 		LOG.info("Installation path: {}", System.getProperty("user.dir"));
-		LOG.info("User home of MCreator: {}", UserFolderManager.getFileFromUserFolder("/"));
-		if (!UserFolderManager.createUserFolderIfNotExists()) {
+		LOG.info("User home of MCreator: {}", FolderUtils.getFileFromUserFolder("/"));
+		if (!FolderUtils.createUserFolderIfNotExists()) {
 			JOptionPane.showMessageDialog(null, "<html><b>MCreator failed to write to user directory!</b><br><br>"
 							+ "Please make sure that the user running MCreator has permissions to read and write to the directory<br>"
 							+ "in which MCreator tried to create user specific data storage. The path MCreator could not write to is:<br><br>"
-							+ UserFolderManager.getFileFromUserFolder("/") + "<br>", "MCreator file system error",
+							+ FolderUtils.getFileFromUserFolder("/") + "<br>", "MCreator file system error",
 					JOptionPane.WARNING_MESSAGE);
 			System.exit(-3);
 		}

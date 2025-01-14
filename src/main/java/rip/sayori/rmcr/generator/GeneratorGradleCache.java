@@ -38,7 +38,7 @@
 package rip.sayori.rmcr.generator;
 
 import rip.sayori.rmcr.gradle.GradleCacheImportFailedException;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.java.ImportTreeBuilder;
 import rip.sayori.rmcr.java.ProjectJarManager;
 import org.jetbrains.annotations.Nullable;
@@ -72,19 +72,19 @@ public class GeneratorGradleCache {
 		@Nullable private String src;
 
 		public ClasspathEntry(String lib, @Nullable String src) {
-			this.lib = lib.replace(UserFolderManager.getGradleHome().getAbsolutePath(), "<user.home.mcreator.gradle>");
+			this.lib = lib.replace(FolderUtils.getGradleHome().getAbsolutePath(), "<user.home.mcreator.gradle>");
 			if (src != null)
-				this.src = src.replace(UserFolderManager.getGradleHome().getAbsolutePath(),
+				this.src = src.replace(FolderUtils.getGradleHome().getAbsolutePath(),
 						"<user.home.mcreator.gradle>");
 		}
 
 		public String getLib() {
-			return lib.replace("<user.home.mcreator.gradle>", UserFolderManager.getGradleHome().getAbsolutePath());
+			return lib.replace("<user.home.mcreator.gradle>", FolderUtils.getGradleHome().getAbsolutePath());
 		}
 
 		@Nullable public String getSrc() {
 			if (src != null)
-				return src.replace("<user.home.mcreator.gradle>", UserFolderManager.getGradleHome().getAbsolutePath());
+				return src.replace("<user.home.mcreator.gradle>", FolderUtils.getGradleHome().getAbsolutePath());
 			else
 				return null;
 		}

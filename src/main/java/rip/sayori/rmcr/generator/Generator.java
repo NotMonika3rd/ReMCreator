@@ -47,7 +47,7 @@ import rip.sayori.rmcr.generator.template.TemplateGenerator;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import rip.sayori.rmcr.gradle.GradleCacheImportFailedException;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.io.writer.ClassWriter;
 import rip.sayori.rmcr.io.writer.JSONWriter;
 import rip.sayori.rmcr.java.ProjectJarManager;
@@ -607,7 +607,7 @@ public class Generator implements IGenerator, Closeable {
 			try {
 				gradleProjectConnection = GradleConnector.newConnector()
 						.forProjectDirectory(workspace.getWorkspaceFolder())
-						.useGradleUserHomeDir(UserFolderManager.getGradleHome()).connect();
+						.useGradleUserHomeDir(FolderUtils.getGradleHome()).connect();
 			} catch (Exception e) {
 				LOG.warn("Failed to load Gradle project", e);
 			}

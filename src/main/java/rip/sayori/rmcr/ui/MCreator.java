@@ -43,7 +43,7 @@ import rip.sayori.rmcr.generator.setup.WorkspaceGeneratorSetup;
 import rip.sayori.rmcr.gradle.GradleStateListener;
 import rip.sayori.rmcr.gradle.GradleTaskResult;
 import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.ui.action.ActionRegistry;
 import rip.sayori.rmcr.ui.action.impl.workspace.RegenerateCodeAction;
@@ -171,10 +171,10 @@ public final class MCreator extends JFrame implements IWorkspaceProvider, IGener
 			setTitle(WindowTitleHelper.getWindowTitle(this));
 		});
 
-		UserFolderManager.getFileFromUserFolder("backgrounds").mkdirs();
+		FolderUtils.getFileFromUserFolder("backgrounds").mkdirs();
 
 		JPanel mpan;
-		File[] bgfiles = UserFolderManager.getFileFromUserFolder("backgrounds").listFiles();
+		File[] bgfiles = FolderUtils.getFileFromUserFolder("backgrounds").listFiles();
 		List<File> bgimages = new ArrayList<>();
 		if (bgfiles != null) {
 			bgimages = Arrays.stream(bgfiles).filter(e -> e.getName().endsWith(".png")).collect(Collectors.toList());

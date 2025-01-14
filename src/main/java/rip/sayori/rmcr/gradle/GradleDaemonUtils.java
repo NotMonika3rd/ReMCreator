@@ -38,7 +38,7 @@
 package rip.sayori.rmcr.gradle;
 
 import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class GradleDaemonUtils {
 		processBuilder.directory(workspace.getWorkspaceFolder());
 		Map<String, String> env = processBuilder.environment();
 		env.remove("_JAVA_OPTIONS"); // to avoid global overrides
-		env.put("GRADLE_USER_HOME", UserFolderManager.getGradleHome().getAbsolutePath());
+		env.put("GRADLE_USER_HOME", FolderUtils.getGradleHome().getAbsolutePath());
 		String java_home = GradleUtils.getJavaHome();
 		if (java_home != null) // make sure detected JAVA_HOME is not null
 			env.put("JAVA_HOME", java_home);

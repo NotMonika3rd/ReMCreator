@@ -39,7 +39,7 @@ package rip.sayori.rmcr.plugin;
 
 import com.google.gson.Gson;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.UserFolderManager;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.io.zip.ZipIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,6 +49,7 @@ import org.reflections.scanners.ResourcesScanner;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
@@ -68,11 +69,12 @@ public class PluginLoader extends URLClassLoader {
 
 		this.plugins = new ArrayList<>();
 
-		UserFolderManager.getFileFromUserFolder("plugins").mkdirs();
+		FolderUtils.getFileFromUserFolder("plugins").mkdirs();
 
 		List<Plugin> pluginsLoadList = new ArrayList<>();
 		pluginsLoadList.addAll(listPluginsFromFolder(new File("./plugins/"), true));
-		pluginsLoadList.addAll(listPluginsFromFolder(UserFolderManager.getFileFromUserFolder("plugins"), false));
+        pluginsLoadList.addAll(listPluginsFromFolder(FolderUtils.getFromCL("plugins"),true));
+        pluginsLoadList.addAll(listPluginsFromFolder(FolderUtils.getFileFromUserFolder("plugins"), false));
 
 		Collections.sort(pluginsLoadList);
 

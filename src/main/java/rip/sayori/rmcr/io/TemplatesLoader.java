@@ -40,6 +40,7 @@ package rip.sayori.rmcr.io;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.plugin.PluginLoader;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import java.io.File;
 import java.util.*;
@@ -60,9 +61,9 @@ public class TemplatesLoader {
 			List<ResourcePointer> templates = templatesSorted.stream().map(ResourcePointer::new)
 					.collect(Collectors.toList());
 
-			UserFolderManager.getFileFromUserFolder("/templates/" + templatePackage.replace(".", "/")).mkdirs();
+			FolderUtils.getFileFromUserFolder("/templates/" + templatePackage.replace(".", "/")).mkdirs();
 
-			File[] customTemplates = UserFolderManager.getFileFromUserFolder(
+			File[] customTemplates = FolderUtils.getFileFromUserFolder(
 					"/templates/" + templatePackage.replace(".", "/")).listFiles();
 			if (customTemplates != null) {
 				templates.addAll(Arrays.stream(customTemplates).map(ResourcePointer::new).collect(Collectors.toList()));

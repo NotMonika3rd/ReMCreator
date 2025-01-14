@@ -41,6 +41,7 @@ import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.util.EncryptUtils;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,8 +54,8 @@ public class PasswordVault {
 	private final Map<UUID, String> vault = new HashMap<>();
 
 	private static PasswordVault load() {
-		if (UserFolderManager.getFileFromUserFolder("vault").isFile()) {
-			String data = FileIO.readFileToString(UserFolderManager.getFileFromUserFolder("vault"));
+		if (FolderUtils.getFileFromUserFolder("vault").isFile()) {
+			String data = FileIO.readFileToString(FolderUtils.getFileFromUserFolder("vault"));
 			try {
 				String vaultplain = EncryptUtils.decrypt(data);
 				return new Gson().fromJson(vaultplain, PasswordVault.class);
@@ -75,7 +76,7 @@ public class PasswordVault {
 
 		try {
 			FileIO.writeStringToFile(EncryptUtils.encrypt(new Gson().toJson(this)),
-					UserFolderManager.getFileFromUserFolder("vault"));
+					FolderUtils.getFileFromUserFolder("vault"));
 		} catch (Exception e1) {
 			LOG.error(e1.getMessage(), e1);
 		}

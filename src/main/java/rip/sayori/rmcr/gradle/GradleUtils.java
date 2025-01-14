@@ -51,7 +51,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static rip.sayori.rmcr.io.UserFolderManager.getGradleHome;
+import static rip.sayori.rmcr.util.FolderUtils.getGradleHome;
 
 public class GradleUtils {
 

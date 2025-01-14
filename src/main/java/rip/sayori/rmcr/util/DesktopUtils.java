@@ -169,7 +169,7 @@ public class DesktopUtils {
 				return false;
 			}
 
-			LOG.info("Trying to use Desktop.getDesktop().browse() with " + uri.toString());
+            LOG.info("Trying to use Desktop.getDesktop().browse() with {}", uri.toString());
 			java.awt.Desktop.getDesktop().browse(uri);
 
 			return true;
