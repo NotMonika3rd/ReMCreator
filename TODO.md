@@ -1,2 +1,3 @@
+- ***Very High Level*** Remove JAVAFX
 - LSP Support by [Eclipse.JDT.ls](https://github.com/eclipse-jdtls/eclipse.jdt.ls)
 - Stable Diffusion Support by [SD4J](https://github.com/oracle/sd4j)

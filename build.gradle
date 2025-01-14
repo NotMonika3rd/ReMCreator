@@ -9,7 +9,6 @@ repositories {
     maven{ url 'https://maven.aliyun.com/repository/google'}
     maven{ url 'https://maven.cleanroommc.com' }
     maven{ url "https://repo.gradle.org/gradle/libs-releases-local/"}
-    //maven{ url "https://kkgithub.com/javaterminal/terminalfx/raw/master/releases"}
     maven { url 'https://jitpack.io' }
     flatDir { dirs 'lib' }
     mavenCentral()
@@ -24,9 +23,6 @@ javadoc.source = sourceSets.main.allJava
 compileJava.options.encoding = 'UTF-8'
 compileJava.options.debug
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
-
-// workaround for IDEA-265203
-System.setProperty("user.dir", projectDir.toString())
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 java.toolchain.vendor = JvmVendorSpec.AMAZON
@@ -81,21 +77,9 @@ dependencies {
 
     implementation group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.2'
     implementation 'zone.rong:imaginebreaker:2.1'
-    //implementation("com.kodedu.terminalfx:terminalfx:1.2.0")
-
-    //implementation("org.apache.maven.resolver:maven-resolver-api:2.0.5")
 
     // for annotations
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
-
-    // test dependencies
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-}
-
-test {
-    testLogging.showStandardStreams = true
-    testLogging.exceptionFormat = 'full'
-    maxHeapSize = "1024m"
 }
 
 tasks.register('runMCreator', JavaExec) {
