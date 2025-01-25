@@ -130,5 +130,10 @@ public class Launcher {
 		ImagineBreaker.wipeMethodFilters();
 		ImagineBreaker.wipeFieldFilters();
 		ImagineBreaker.openBootModules();
-	}
+		try {
+			Class.forName("javafx.scene.web.WebView");
+		} catch (ClassNotFoundException e) {
+			//TODO
+        }
+    }
 }

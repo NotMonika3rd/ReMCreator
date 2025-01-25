@@ -2,4 +2,5 @@
 
 # ReMCreator - Retro Extended MCreator
 
-## Note: You Need Java21 to run.
+## ~~Note: You Need Java21 to run.~~
+qnmd还是编译运行吧

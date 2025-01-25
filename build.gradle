@@ -87,3 +87,4 @@ tasks.register('runMCreator', JavaExec) {
     classpath += sourceSets.main.runtimeClasspath
     mainClass = "rip.sayori.rmcr.Launcher"
 }
+
