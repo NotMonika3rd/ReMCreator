@@ -2,7 +2,6 @@ plugins {
     id "java"
     id "idea"
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
-    id "org.openjfx.javafxplugin" version "0.1.0"
 }
 repositories {
     maven{ url 'https://maven.aliyun.com/repository/public'}
@@ -34,14 +33,7 @@ idea {
                        file("gradle"), file("jdk"), file("license"), file("logs")] as Set<File>
     }
 }
-javafx {
-    version = "11"
-    modules = ["javafx.swing","javafx.web"]
-}
 
-configurations {
-    javafx
-}
 dependencies {
     // from lib folder
     implementation fileTree(dir: 'lib', include: ['*.jar'])
@@ -78,6 +70,7 @@ dependencies {
     implementation group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.2'
     implementation 'zone.rong:imaginebreaker:2.1'
 
+    implementation(project(":javafx"))
     // for annotations
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
 }

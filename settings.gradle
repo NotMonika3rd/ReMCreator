@@ -10,4 +10,5 @@ plugins {
 
 
 rootProject.name = 'ReMCreator'
+include 'javafx'
 
