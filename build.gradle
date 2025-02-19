@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "idea"
+    id 'application'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
 }
 repositories {
@@ -75,9 +76,7 @@ dependencies {
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
 }
 
-tasks.register('runMCreator', JavaExec) {
-    dependsOn jar
-    classpath += sourceSets.main.runtimeClasspath
+application {
     mainClass = "rip.sayori.rmcr.Launcher"
 }
 
