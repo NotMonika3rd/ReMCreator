@@ -142,7 +142,7 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 			String key = JOptionPane.showInputDialog(workspacePanel.getMcreator(),
 					L10N.t("workspace.localization.key_name_message"), L10N.t("workspace.localization.key_name_title"),
 					JOptionPane.QUESTION_MESSAGE);
-			if (key != null && !key.equals("")) {
+			if (key != null && !key.isEmpty()) {
 				workspacePanel.getMcreator().getWorkspace().setLocalization(key, "");
 				reloadElements();
 			}
@@ -244,7 +244,7 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 			JLabel label = new JLabel(" " + entry.getKey() + " ");
 			ComponentUtils.deriveFont(label, 12);
 			try {
-				BufferedImage image = ImageIO.read(getClass().getResourceAsStream(flagpath));
+				BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(flagpath)));
 				label.setIcon(new ImageIcon(ImageUtils.crop(image, new Rectangle(1, 2, 14, 11))));
 			} catch (Exception ignored) { // flag not found, ignore
 			}
@@ -300,7 +300,7 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 						writer.writeRow(langs.getKey(), langs.getValue(), en_us.get(langs.getKey()));
 					writer.close();
 
-					FileIO.writeStringToFile("SEP=,\n" + csvResult.toString(), expFile);
+					FileIO.writeStringToFile("SEP=,\n" + csvResult, expFile);
 				}
 			});
 

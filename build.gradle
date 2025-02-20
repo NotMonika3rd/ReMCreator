@@ -71,7 +71,9 @@ dependencies {
     implementation group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.2'
     implementation 'zone.rong:imaginebreaker:2.1'
 
-    implementation(project(":javafx"))
+    implementation(project(":javafx")){
+        exclude(group: "org.openjfx")
+    }
     // for annotations
     compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.1'
 }
