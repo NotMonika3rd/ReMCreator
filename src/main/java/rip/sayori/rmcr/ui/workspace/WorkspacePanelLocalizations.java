@@ -37,14 +37,8 @@
 
 package rip.sayori.rmcr.ui.workspace;
 
-import com.univocity.parsers.csv.CsvParser;
-import com.univocity.parsers.csv.CsvParserSettings;
-import com.univocity.parsers.csv.CsvWriter;
-import com.univocity.parsers.csv.CsvWriterSettings;
-import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.ui.component.TransparentToolBar;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
-import rip.sayori.rmcr.ui.dialogs.FileDialogs;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.laf.SlickDarkScrollBarUI;
@@ -61,11 +55,6 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.nio.charset.Charset;
 import java.util.List;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -75,8 +64,6 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 	private final WorkspacePanel workspacePanel;
 	private final JTabbedPane pane;
 	private final JButton del;
-	private final JButton exp;
-	private final JButton imp;
 	private ArrayList<TableRowSorter<TableModel>> sorters = new ArrayList<>();
 	private ChangeListener changeListener;
 
@@ -122,19 +109,6 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 
 		bar.addSeparator();
 
-		exp = L10N.button("workspace.localization.export_to_csv");
-		exp.setIcon(UIRES.get("16px.ext.gif"));
-		exp.setOpaque(false);
-		exp.setContentAreaFilled(false);
-		exp.setBorder(BorderFactory.createEmptyBorder(0, 8, 0, 8));
-		bar.add(exp);
-
-		imp = L10N.button("workspace.localization.import_csv");
-		imp.setIcon(UIRES.get("16px.open.gif"));
-		imp.setOpaque(false);
-		imp.setContentAreaFilled(false);
-		imp.setBorder(BorderFactory.createEmptyBorder(0, 8, 0, 8));
-		bar.add(imp);
 
 		add("North", bar);
 
@@ -152,12 +126,6 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 	@Override public void reloadElements() {
 		for (ActionListener al : del.getActionListeners())
 			del.removeActionListener(al);
-
-		for (ActionListener al : imp.getActionListeners())
-			imp.removeActionListener(al);
-
-		for (ActionListener al : exp.getActionListeners())
-			exp.removeActionListener(al);
 
 		pane.removeAll();
 		sorters = new ArrayList<>();
@@ -270,77 +238,6 @@ class WorkspacePanelLocalizations extends JPanel implements IReloadableFilterabl
 						reloadElements();
 					}
 				}
-			});
-
-			exp.addActionListener(e -> {
-				if (pane.getSelectedIndex() != id)
-					return;
-
-				if (entry.getKey().equals("en_us")) {
-					JOptionPane.showMessageDialog(workspacePanel.getMcreator(),
-							L10N.t("workspace.localization.confirm_export"),
-							L10N.t("workspace.localization.export_translation"), JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-
-				File expFile = FileDialogs.getSaveDialog(workspacePanel.getMcreator(), new String[] { ".csv" });
-				if (expFile != null) {
-					Map<String, String> en_us = workspacePanel.getMcreator().getWorkspace().getLanguageMap()
-							.get("en_us");
-
-					ByteArrayOutputStream csvResult = new ByteArrayOutputStream();
-					Writer outputWriter = new OutputStreamWriter(csvResult);
-
-					CsvWriter writer = new CsvWriter(outputWriter, new CsvWriterSettings());
-					writer.writeHeaders("Translation key (DON'T EDIT!!!)",
-							"TRANSLATION IN " + entry.getKey() + " - EDIT THIS COLUMN",
-							"English text (DON'T EDIT - reference only)");
-					for (Map.Entry<String, String> langs : workspacePanel.getMcreator().getWorkspace().getLanguageMap()
-							.get(entry.getKey()).entrySet())
-						writer.writeRow(langs.getKey(), langs.getValue(), en_us.get(langs.getKey()));
-					writer.close();
-
-					FileIO.writeStringToFile("SEP=,\n" + csvResult, expFile);
-				}
-			});
-
-			imp.addActionListener(e -> {
-				if (pane.getSelectedIndex() != id)
-					return;
-
-				if (entry.getKey().equals("en_us")) {
-					JOptionPane.showMessageDialog(workspacePanel.getMcreator(),
-							L10N.t("workspace.localization.warning_export"),
-							L10N.t("workspace.localization.export_translation"), JOptionPane.WARNING_MESSAGE);
-					return;
-				}
-
-				File impFile = FileDialogs.getOpenDialog(workspacePanel.getMcreator(), new String[] { ".csv" });
-				if (impFile != null) {
-					ConcurrentHashMap<String, String> en_us = workspacePanel.getMcreator().getWorkspace()
-							.getLanguageMap().get("en_us");
-					CsvParserSettings settings = new CsvParserSettings();
-					settings.setDelimiterDetectionEnabled(true);
-					CsvParser parser = new CsvParser(settings);
-					List<String[]> rows = parser.parseAll(impFile, Charset.defaultCharset());
-
-					ConcurrentHashMap<String, String> keyValueMap = new ConcurrentHashMap<>();
-					for (String[] row : rows) {
-						if (row.length < 2)
-							continue;
-
-						String key = row[0];
-						String value = row[1];
-
-						if (en_us.containsKey(key) && value != null)
-							keyValueMap.put(key, value);
-					}
-
-					workspacePanel.getMcreator().getWorkspace().updateLanguage(entry.getKey(), keyValueMap);
-
-					SwingUtilities.invokeLater(this::reloadElements);
-				}
-
 			});
 		}
 

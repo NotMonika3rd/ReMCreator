@@ -52,7 +52,6 @@ import rip.sayori.rmcr.minecraft.api.ModAPIManager;
 import rip.sayori.rmcr.plugin.PluginLoader;
 import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.ui.action.impl.AboutAction;
-import rip.sayori.rmcr.ui.component.util.DiscordClient;
 import rip.sayori.rmcr.ui.component.util.MacOSUIUtil;
 import rip.sayori.rmcr.ui.dialogs.preferences.PreferencesDialog;
 import rip.sayori.rmcr.ui.help.HelpLoader;
@@ -88,7 +87,6 @@ public final class MCreatorApplication {
 
 	private final List<MCreator> openMCreators = new ArrayList<>();
 
-	private final DiscordClient discordClient;
 
 	private MCreatorApplication(List<String> launchArguments) {
 		final SplashScreen splashScreen = new SplashScreen();
@@ -170,12 +168,7 @@ public final class MCreatorApplication {
 			MacOSUIUtil.registerQuitHandler(this::closeApplication);
 		}
 
-		discordClient = new DiscordClient();
-
 		workspaceSelector = new WorkspaceSelector(this, this::openWorkspaceInMCreator);
-
-		discordClient.updatePresence(L10N.t("dialog.discord_rpc.just_opened"),
-				L10N.t("dialog.discord_rpc.version") + Launcher.version.getMajorString());
 
 		boolean directLaunch = false;
 		if (!launchArguments.isEmpty()) {
@@ -290,8 +283,6 @@ public final class MCreatorApplication {
 		LOG.debug("Performing exit tasks");
 		PreferencesManager.storePreferences(PreferencesManager.PREFERENCES); // store any potential preferences changes
 
-		discordClient.close(); // close discord client
-
 		SoundUtils.close();
 
 		// we close all windows and exit fx platform
@@ -329,7 +320,4 @@ public final class MCreatorApplication {
 		return openMCreators;
 	}
 
-	public DiscordClient getDiscordClient() {
-		return discordClient;
-	}
 }

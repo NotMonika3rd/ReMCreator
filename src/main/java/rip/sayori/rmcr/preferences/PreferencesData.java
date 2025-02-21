@@ -78,8 +78,6 @@ public class PreferencesData {
 		@PreferencesEntry public boolean expandSectionsByDefault = false;
 		@PreferencesEntry public boolean use2DAcceleration = false;
 		@PreferencesEntry public boolean autoreloadTabs = true;
-		@PreferencesEntry public boolean discordRichPresenceEnable = true;
-
 	}
 
 	public static class BackupsSettings {

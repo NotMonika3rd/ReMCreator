@@ -374,21 +374,6 @@ public final class MCreator extends JFrame implements IWorkspaceProvider, IGener
 
 	@Override public void setTitle(String title) {
 		super.setTitle(title);
-
-		if (application != null) {
-			String tabAddition = "";
-
-			if (mcreatorTabs.getCurrentTab() != null) {
-				tabAddition = " - " + mcreatorTabs.getCurrentTab().getText();
-			}
-
-			application.getDiscordClient()
-					.updatePresence("Working on " + workspace.getWorkspaceSettings().getModName() + tabAddition,
-							Launcher.version.getMajorString() + " for " + workspace.getGenerator()
-									.getGeneratorMinecraftVersion(),
-							"type-" + workspace.getGeneratorConfiguration().getGeneratorFlavor().name()
-									.toLowerCase(Locale.ENGLISH));
-		}
 	}
 
 	@Override public boolean equals(Object mcreator) {
