@@ -37,7 +37,6 @@
 
 package rip.sayori.rmcr.io;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.plugin.PluginLoader;
@@ -69,7 +68,7 @@ public class BinaryStringIO {
 
 			InputStream inputStream = PluginLoader.INSTANCE.getResourceAsStream(resource);
 			if (inputStream != null)
-				return bytesToString(IOUtils.toByteArray(inputStream));
+				return bytesToString(inputStream.readAllBytes());
 			else
 				throw new IOException("Failed to load resoruce from any plugin. Resource: " + resource);
 		} catch (IOException e) {
