@@ -10,7 +10,7 @@ repositories {
 }
 
 val deps = arrayOf("base","controls","graphics","media","swing","web")
-val platforms = arrayOf("win","linux") //mac dog都不用
+val platforms = arrayOf("win","linux","mac")
 
 dependencies {
     deps.forEach { name ->

@@ -57,7 +57,7 @@ public class FileIcons {
 			return UIRES.get("16px.json.gif");
 		if (file.endsWith(".yaml") || file.endsWith(".yml"))
 			return UIRES.get("16px.yaml.gif");
-		if (file.endsWith(".gradle"))
+		if (file.endsWith(".gradle") || file.endsWith(".gradle.kts"))
 			return UIRES.get("16px.gradle.gif");
 		if (file.endsWith(".txt"))
 			return UIRES.get("laf.text.gif");

@@ -43,6 +43,7 @@ import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.io.tree.FileNode;
 import rip.sayori.rmcr.io.tree.FileTree;
 import rip.sayori.rmcr.io.zip.ZipIO;
+import rip.sayori.rmcr.java.ZipSubSourceLocation;
 import rip.sayori.rmcr.minecraft.MinecraftFolderUtils;
 import rip.sayori.rmcr.ui.FileOpener;
 import rip.sayori.rmcr.ui.MCreator;
@@ -356,7 +357,10 @@ public class WorkspaceFileBrowser extends JPanel {
 					if (libraryInfo.getSourceLocation() != null) {
 						File sourceFile = new File(libraryInfo.getSourceLocation().getLocationAsString());
 						FileTree libsrc = new FileTree(new FileNode(libName, sourceFile.getAbsolutePath() + ":%:"));
-						ZipIO.iterateZip(sourceFile, (entry) -> libsrc.addElement(entry.getName()),false);
+						if(libraryInfo.getSourceLocation() instanceof ZipSubSourceLocation) ZipIO.iterateZip(sourceFile, (entry) -> {
+							if(entry.getName().startsWith(((ZipSubSourceLocation)(libraryInfo.getSourceLocation())).sub))
+                            	libsrc.addElement(entry.getName().substring(((ZipSubSourceLocation)(libraryInfo.getSourceLocation())).sub.length()));
+                        },false);
 						addFileNodeToFilterTreeNode(extDeps, libsrc.root);
 					} else {
 						FileTree lib = new FileTree(new FileNode(libName, libraryFile.getAbsolutePath() + ":%:"));

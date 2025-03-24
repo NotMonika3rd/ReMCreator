@@ -83,7 +83,7 @@ public class ProjectJarManager extends JarManager {
 		File jreHome = new File(System.getProperty("java.home"));
 
 		final File classesArchive = findExistingPath(new File(GradleUtils.getJavaHome()), "lib/rt.jar", "../Classes/classes.jar",
-				"jmods/java.base.jmod", "lib/modules");
+				"jmods/java.base.jmod");
 		if (classesArchive == null) {
 			LOG.warn("Failed to load default JRE JAR info");
 			return null;
@@ -101,7 +101,7 @@ public class ProjectJarManager extends JarManager {
 		final File sourcesArchive = findExistingPath(jreHome, "lib/src.zip", "lib/src.jar", "src.zip", "../src.zip",
 				"src.jar", "../src.jar");
 		if (sourcesArchive != null) {
-			info.setSourceLocation(new ZipSourceLocation(sourcesArchive));
+			info.setSourceLocation(new ZipSubSourceLocation(sourcesArchive, "java.base"));
 		}
 
 		return info;
@@ -144,7 +144,6 @@ public class ProjectJarManager extends JarManager {
 
 			try {
 				EclipseProject project = projectConnection.getModel(EclipseProject.class);
-
 				for (ExternalDependency externalDependency : project.getClasspath()) {
 					if (externalDependency.getFile() != null && externalDependency.getFile().isFile()) {
 						if (externalDependency.getFile().getName().startsWith("scala-"))

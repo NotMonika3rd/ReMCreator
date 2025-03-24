@@ -65,7 +65,7 @@ public class ImportTreeBuilder {
 		List<LibraryInfo> libraryInfos = projectJarManager.getClassFileSources();
 		libraryInfos.parallelStream().forEach(libraryInfo -> {
 			File libraryFile = new File(libraryInfo.getLocationAsString());
-			if (libraryFile.isFile() && ZipIO.checkIfZip(libraryFile)) {
+			if (libraryFile.isFile() && (ZipIO.checkIfZip(libraryFile) || ZipIO.checkIfJMod(libraryFile))) {
 				try (ZipFile zipFile = new ZipFile(libraryFile)) {
 					Enumeration<? extends ZipEntry> entries = zipFile.entries();
 					loop1 : while (entries.hasMoreElements()) {
@@ -85,7 +85,6 @@ public class ImportTreeBuilder {
 							continue;
 
 						// skip from blacklists
-
 						for(var blacklistedFqdn : BLACKLIST){
 							if(entryName.startsWith(blacklistedFqdn.replaceAll("\\Q.\\E","/")+"/")){
 								continue loop1;
@@ -120,6 +119,10 @@ public class ImportTreeBuilder {
 						if (lastIndxDot != -1) {
 							packageName = fqdn.substring(0, lastIndxDot);
 							className = fqdn.substring(lastIndxDot + 1);
+						}
+
+						if(packageName.startsWith("classes.")){
+							packageName = packageName.substring(8);
 						}
 
 						addClassToTree(packageName, className, retval);

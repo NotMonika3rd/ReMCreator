@@ -376,7 +376,7 @@ public class CodeEditorView extends ViewBase {
 
 	public static boolean isFileSupported(String fileName) {
 		return Arrays.asList("java", "info", "txt", "json", "mcmeta", "lang", "gradle", "ini", "conf", "xml",
-						"properties", "toml", "js", "yaml", "yml", "md")
+						"properties", "toml", "js", "yaml", "yml", "md", "kts")
 				.contains(FilenameUtils.getExtension(fileName));
 	}
 
@@ -510,6 +510,8 @@ public class CodeEditorView extends ViewBase {
 			SwingUtilities.invokeLater(() -> te.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PROPERTIES_FILE));
 		} else if (fileName.endsWith(".gradle")) {
 			SwingUtilities.invokeLater(() -> te.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_GROOVY));
+		} else if (fileName.endsWith(".gradle.kts")) {
+			SwingUtilities.invokeLater(() -> te.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_KOTLIN));
 		} else if (fileName.endsWith(".md")) {
 			SwingUtilities.invokeLater(() -> te.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_MARKDOWN));
 		} else if (fileName.endsWith(".js")) {

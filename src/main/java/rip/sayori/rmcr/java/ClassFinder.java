@@ -56,13 +56,14 @@ import java.util.zip.ZipFile;
 
 public class ClassFinder {
 	public static final String[] BLACKLIST = {
-			"org.lwjgl.test"
+			"org.lwjgl.test","org.glassfish"
 	};
 
 	private static final Logger LOG = LogManager.getLogger("Class Finder");
 
 	public static DeclarationFinder.InClassPosition fqdnToInClassPosition(Workspace workspace, String classIn,
 			String packagefqdn, JarManager jarManager) {
+
 		for(var blacklistedFqdn : BLACKLIST){
 			if(packagefqdn.startsWith(blacklistedFqdn)){
 				return null;
