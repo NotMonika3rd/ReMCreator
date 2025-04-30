@@ -56,7 +56,7 @@ import java.util.zip.ZipFile;
 
 public class ClassFinder {
 	public static final String[] BLACKLIST = {
-			"org.lwjgl.test","org.glassfish"
+			"org.lwjgl.test","org.glassfish","org.checkerframework"
 	};
 
 	private static final Logger LOG = LogManager.getLogger("Class Finder");

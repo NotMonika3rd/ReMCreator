@@ -356,11 +356,10 @@ public class WorkspaceFileBrowser extends JPanel {
 						libName = "Gradle: " + libName;
 					if (libraryInfo.getSourceLocation() != null) {
 						File sourceFile = new File(libraryInfo.getSourceLocation().getLocationAsString());
-						FileTree libsrc = new FileTree(new FileNode(libName, sourceFile.getAbsolutePath() + ":%:"));
-						if(libraryInfo.getSourceLocation() instanceof ZipSubSourceLocation) ZipIO.iterateZip(sourceFile, (entry) -> {
-							if(entry.getName().startsWith(((ZipSubSourceLocation)(libraryInfo.getSourceLocation())).sub))
-                            	libsrc.addElement(entry.getName().substring(((ZipSubSourceLocation)(libraryInfo.getSourceLocation())).sub.length()));
-                        },false);
+						//FileTree libsrc = new FileTree(new FileNode(libName, sourceFile.getAbsolutePath() + ":%:"));
+						FileTree libsrc;
+						libsrc = new FileTree(new FileNode(libName, sourceFile.getAbsolutePath() + ":%:"));
+                        ZipIO.iterateZip(sourceFile, (entry) -> libsrc.addElement(entry.getName()),false);
 						addFileNodeToFilterTreeNode(extDeps, libsrc.root);
 					} else {
 						FileTree lib = new FileTree(new FileNode(libName, libraryFile.getAbsolutePath() + ":%:"));
@@ -435,9 +434,8 @@ public class WorkspaceFileBrowser extends JPanel {
 			a.setOpaque(true);
 			ComponentUtils.deriveFont(a, 11);
 
-			if (node.getUserObject() instanceof String) {
-				String tsi = (String) node.getUserObject();
-				a.setText(tsi);
+			if (node.getUserObject() instanceof String tsi) {
+                a.setText(tsi);
 				if (tsi.equals(mcreator.getWorkspaceSettings().getModName()))
 					a.setIcon(UIRES.get("16px.package.gif"));
 				else if (tsi.equals("Source (Gradle)"))
@@ -467,16 +465,15 @@ public class WorkspaceFileBrowser extends JPanel {
 					a.setIcon(UIRES.get("16px.directory.gif"));
 				else
 					a.setIcon(FileIcons.getIconForFile(fileNode.data));
-			} else if (node.getUserObject() instanceof File) {
-				File fil = (File) node.getUserObject();
-				a.setText(fil.getName());
+			} else if (node.getUserObject() instanceof File fil) {
+                a.setText(fil.getName());
 				if (!fil.isDirectory())
 					a.setIcon(FileIcons.getIconForFile(fil));
 				else
 					a.setIcon(UIRES.get("laf.directory.gif"));
 			}
 
-			if (node.getFilter() != null && !node.getFilter().equals("")) {
+			if (node.getFilter() != null && !node.getFilter().isEmpty()) {
 				a.setText("<html>" + getText().replace(node.getFilter(), "<b>" + node.getFilter() + "</b>"));
 			}
 

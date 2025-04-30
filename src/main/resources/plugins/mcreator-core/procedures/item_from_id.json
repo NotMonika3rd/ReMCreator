@@ -1,0 +1,21 @@
+{
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "id",
+      "check": "String"
+    }
+  ],
+  "inputsInline": true,
+  "output": "MCItem",
+  "colour": 350,
+  "mcreator": {
+    "toolbox_id": "itemmanagement",
+    "toolbox_init": [
+      "<value name=\"id\"><block type=\"text\"><field name=\"TEXT\">minecraft:dirt</field></block></value>"
+    ],
+    "inputs": [
+      "id"
+    ]
+  }
+}

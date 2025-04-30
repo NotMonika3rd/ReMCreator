@@ -105,9 +105,6 @@ public class ModElementManager {
 		if (element.getType() == ModElementType.CODE) {
 			return new CustomElement(element);
 		}
-		if (element.getType() == ModElementType.AT) {
-			return new AccessTransformer(element);
-		}
 
 		if (cache.containsKey(element))
 			return cache.get(element);

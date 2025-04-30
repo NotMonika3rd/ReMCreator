@@ -9,6 +9,16 @@
     <#elseif type == "ITEMSTACK">
         ${JavaModName}Variables.${name} =${mappedMCItemToItemStackCode(value, 1)};
     </#if>
+<#elseif scope == "CONFIG">
+    <#if type == "NUMBER">
+        ${JavaModName}Variables.Configs.${name} =(double)${value};
+    <#elseif type == "LOGIC">
+        ${JavaModName}Variables.Configs.${name} =(boolean)${value};
+    <#elseif type == "STRING">
+        ${JavaModName}Variables.Configs.${name} =(String)${value};
+    <#elseif type == "ITEMSTACK">
+        ${JavaModName}Variables.Configs.${name} =${mappedMCItemToItemStackCode(value, 1)};
+    </#if>
 <#elseif scope == "GLOBAL_WORLD">
     <#if type == "NUMBER">
         ${JavaModName}Variables.WorldVariables.get(world).${name} =(double)${value};

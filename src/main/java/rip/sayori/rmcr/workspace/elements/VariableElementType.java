@@ -93,7 +93,12 @@ public enum VariableElementType {
 	}
 
 	public enum Scope {
-		@SerializedName("map") GLOBAL_MAP, @SerializedName("world") GLOBAL_WORLD, @SerializedName("global") GLOBAL_SESSION, @SerializedName("player_lifetime") PLAYER_LIFETIME, @SerializedName("player_persistent") PLAYER_PERSISTENT
+		@SerializedName("map") GLOBAL_MAP,
+		@SerializedName("world") GLOBAL_WORLD,
+		@SerializedName("global") GLOBAL_SESSION,
+		@SerializedName("config") CONFIG,
+		@SerializedName("player_lifetime") PLAYER_LIFETIME,
+		@SerializedName("player_persistent") PLAYER_PERSISTENT
 	}
 
 }

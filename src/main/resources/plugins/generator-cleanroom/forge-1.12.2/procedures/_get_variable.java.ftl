@@ -4,6 +4,12 @@
         <#else>
                     (${JavaModName}Variables.${name})
         </#if>
+<#elseif scope == "CONFIG">
+        <#if type == "ITEMSTACK">
+                    /*@ItemStack*/(${JavaModName}Variables.Configs.${name})
+        <#else>
+                    (${JavaModName}Variables.Configs.${name})
+        </#if>
 <#elseif scope == "GLOBAL_WORLD">
         <#if type == "ITEMSTACK">
                 /*@ItemStack*/(${JavaModName}Variables.WorldVariables.get(world).${name})

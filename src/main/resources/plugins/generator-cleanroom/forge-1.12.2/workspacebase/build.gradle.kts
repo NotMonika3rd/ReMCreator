@@ -24,6 +24,7 @@ configurations{
     all{
         exclude(group = "org.lwjgl.lwjgl")
         exclude(group = "net.java.dev.jna", module = "platform")
+        exclude(group = "com.ibm.icu", module = "icu4j-core-mojang")
     }
 }
 

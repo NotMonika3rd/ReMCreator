@@ -15,6 +15,20 @@ public class ${JavaModName}Variables {
 	    </#if>
 	</#list>
 
+    @Config(modid = ${JavaModName}.MODID)
+    public static class Configs {
+        <#list variables as var>
+        	<#if var.getScope().name() == "CONFIG">
+        	    <#if var.getType().name() == "NUMBER">
+        	    public static double ${var.getName()} = ${var.getValue()};
+        	    <#elseif var.getType().name() == "LOGIC">
+        	    public static boolean ${var.getName()} = ${var.getValue()};
+        	    <#elseif var.getType().name() == "STRING">
+        	    public static String ${var.getName()} ="${JavaConventions.escapeStringForJava(var.getValue())}";
+        	    </#if>
+        	</#if>
+        </#list>
+    }
 	public static class MapVariables extends WorldSavedData {
 
 		public static final String DATA_NAME = "${modid}_mapvars";

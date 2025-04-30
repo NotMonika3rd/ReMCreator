@@ -179,9 +179,8 @@ import java.util.stream.Collectors;
 				super.mouseMoved(e);
 				int idx = list.locationToIndex(e.getPoint());
 				IElement element = list.getModel().getElementAt(idx);
-				if (element instanceof ModElement) {
-					ModElement modElement = (ModElement) element;
-					mcreator.getStatusBar()
+				if (element instanceof ModElement modElement) {
+                    mcreator.getStatusBar()
 							.setMessage(modElement.getType().getReadableName() + ": " + modElement.getName());
 				}
 			}
@@ -196,7 +195,7 @@ import java.util.stream.Collectors;
 					if (selected instanceof FolderElement) {
 						switchFolder((FolderElement) selected);
 					} else {
-						if (((e.getModifiers() & ActionEvent.ALT_MASK) == ActionEvent.ALT_MASK))
+						if (((e.getModifiersEx() & ActionEvent.ALT_MASK) == ActionEvent.ALT_MASK))
 							editCurrentlySelectedModElementAsCode((ModElement) selected, list, e.getX(), e.getY());
 						else
 							editCurrentlySelectedModElement((ModElement) selected, list, e.getX(), e.getY());
@@ -1120,7 +1119,7 @@ import java.util.stream.Collectors;
 	public void reloadElements() {
 		if (mcreator.getWorkspaceSettings() != null) {
 			// first we need to get current folder from the workspace
-			// as current reference to the folder may be out of date (eg. reload from disk)
+			// as current reference to the folder may be out of date (e.g. reload from disk)
 			List<FolderElement> folders = mcreator.getWorkspace().getFoldersRoot().getRecursiveFolderChildren();
 			int folderIdx = folders.indexOf(currentFolder);
 			if (folderIdx == -1) {
