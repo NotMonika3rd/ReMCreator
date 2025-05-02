@@ -4,6 +4,7 @@ plugins {
     id 'application'
     id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
 }
+
 repositories {
     maven{ url 'https://maven.aliyun.com/repository/public'}
     maven{ url 'https://maven.aliyun.com/repository/google'}
@@ -80,3 +81,12 @@ application {
     mainClass = "rip.sayori.rmcr.Launcher"
 }
 
+distributions {
+    main {
+        contents {
+            from("./plugins") {
+                into("lib/plugins/")
+            }
+        }
+    }
+}

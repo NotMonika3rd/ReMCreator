@@ -48,11 +48,12 @@ import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLClassLoader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.*;
 import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -73,7 +74,7 @@ public class PluginLoader extends URLClassLoader {
 
 		List<Plugin> pluginsLoadList = new ArrayList<>();
 		pluginsLoadList.addAll(listPluginsFromFolder(new File("./plugins/"), true));
-        pluginsLoadList.addAll(listPluginsFromFolder(FolderUtils.getFromCL("plugins"),true));
+        pluginsLoadList.addAll(listPluginsFromFolder(new File(getPath(),"plugins/"),true));
         pluginsLoadList.addAll(listPluginsFromFolder(FolderUtils.getFileFromUserFolder("plugins"), false));
 
 		Collections.sort(pluginsLoadList);
@@ -107,6 +108,20 @@ public class PluginLoader extends URLClassLoader {
 		this.reflections = new Reflections(new ResourcesScanner(), this);
 	}
 
+	public static String getPath()
+	{
+		String path = PluginLoader.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		if(System.getProperty("os.name").contains("dows"))
+		{
+			path = path.substring(1);
+		}
+		if(path.contains("jar"))
+		{
+			path = path.substring(0,path.lastIndexOf("."));
+			return path.substring(0,path.lastIndexOf("/"));
+		}
+		return path.replace("target/classes/", "");
+	}
 	public static void initInstance() {
 		INSTANCE = new PluginLoader();
 	}
