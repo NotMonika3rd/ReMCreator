@@ -38,6 +38,8 @@
 package rip.sayori.rmcr.plugin;
 
 import com.google.gson.Gson;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.io.zip.ZipIO;
@@ -105,7 +107,9 @@ public class PluginLoader extends URLClassLoader {
 			}
 		}
 
-		this.reflections = new Reflections(new ResourcesScanner(), this);
+		this.reflections = new Reflections(
+				new ConfigurationBuilder().setClassLoaders(new ClassLoader[] { this }).setUrls(getURLs())
+						.setScanners(Scanners.Resources).setExpandSuperTypes(false));
 	}
 
 	public static String getPath()
@@ -136,7 +140,7 @@ public class PluginLoader extends URLClassLoader {
 
 	public Set<String> getResources(@Nullable String pkg, @Nullable Pattern pattern) {
 		Set<String> reflectionsRetval =
-				pattern != null ? this.reflections.getResources(pattern) : this.reflections.getResources(e -> true);
+				pattern != null ? this.reflections.getResources(pattern) : this.reflections.getResources(Pattern.compile(".*"));
 		if (pkg == null)
 			return reflectionsRetval;
 		return reflectionsRetval.stream().filter(e -> e.replace("/", ".").startsWith(pkg)).collect(Collectors.toSet());

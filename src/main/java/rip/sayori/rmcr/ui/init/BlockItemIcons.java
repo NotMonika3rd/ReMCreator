@@ -37,11 +37,10 @@
 
 package rip.sayori.rmcr.ui.init;
 
-import org.apache.commons.io.FilenameUtils;
 import org.jetbrains.annotations.Nullable;
-import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 import rip.sayori.rmcr.plugin.PluginLoader;
+import rip.sayori.rmcr.util.FilenameUtilsPatched;
+import rip.sayori.rmcr.util.ImageUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -52,11 +51,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.requireNonNull;
+
 public class BlockItemIcons {
 
 	private static final Map<String, ImageIcon> CACHE = new ConcurrentHashMap<>();
 	//@formatter:off
-	private static final HashMap<String, String> TEXTURE_MAPPINGS = new HashMap<String, String>() {{
+	private static final HashMap<String, String> TEXTURE_MAPPINGS = new HashMap<>() {{
 		//NewToolGUI
 		put("Pickaxe", 				"IRON_PICKAXE");
 		put("Axe", 					"IRON_AXE");
@@ -101,20 +102,26 @@ public class BlockItemIcons {
 
 	public static void init() {
 		ImageIO.setUseCache(false); // we use custom image cache for this
-		Map<String, ImageIcon> tmp = new Reflections("datalists.icons", new ResourcesScanner(),
-				PluginLoader.INSTANCE).getResources(Pattern.compile(".*\\.png")).parallelStream().collect(
-				Collectors.toMap(resource -> FilenameUtils.removeExtension(FilenameUtils.getName(resource)),
+		Map<String, ImageIcon> tmp = PluginLoader.INSTANCE.getResources("datalists.icons", Pattern.compile(".*\\.png"))
+				.parallelStream().collect(Collectors.toMap(
+						resource -> FilenameUtilsPatched.removeExtension(FilenameUtilsPatched.getName(resource)),
 						resource -> new ImageIcon(
-								Toolkit.getDefaultToolkit().createImage(PluginLoader.INSTANCE.getResource(resource)))));
+								requireNonNull(PluginLoader.INSTANCE.getResource(resource)))));
 		ImageIO.setUseCache(true);
 		CACHE.putAll(tmp);
 	}
 
 	public static ImageIcon getIconForItem(@Nullable String itemName) {
-		if (itemName != null && CACHE.get(itemName) != null)
+		if (itemName != null && CACHE.get(itemName) != null) {
 			return CACHE.get(itemName);
-		else
+		} else if (itemName != null && itemName.matches("[0-9]+")) {
+			// If itemName is number, consider it color and store it in cache
+			ImageIcon result = ImageUtils.createColorSquare(new Color(Integer.parseInt(itemName)), 32, 32);
+			CACHE.put(itemName, result);
+			return result;
+		} else {
 			return UIRES.get("missingblockicon");
+		}
 	}
 
 	public static ImageIcon getIconFor(String itemName) {

@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.workspace.settings;
 
-import com.google.common.base.CaseFormat;
 import rip.sayori.rmcr.minecraft.api.ModAPIManager;
 import rip.sayori.rmcr.ui.MCreatorApplication;
+import rip.sayori.rmcr.util.CaseFormat;
 import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 

@@ -55,7 +55,7 @@ public class UIRES {
 
 	public static void preloadImages() {
 		ImageIO.setUseCache(false);
-		new Reflections("rip.sayori.rmcr.ui.res", new ResourcesScanner(), ClassLoader.getSystemClassLoader()).getResources(
+		new Reflections("rip.sayori.rmcr.ui.res", new ResourcesScanner()).getResources(
 				pngPattern).parallelStream().forEach(element -> fromResourceID(element.replace("/", ".")));
 		ImageIO.setUseCache(true);
 	}

@@ -37,7 +37,6 @@
 
 package rip.sayori.rmcr.ui.dialogs.tools;
 
-import com.google.common.base.CaseFormat;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.element.types.Tag;
 import rip.sayori.rmcr.generator.GeneratorConfiguration;
@@ -50,6 +49,7 @@ import rip.sayori.rmcr.ui.dialogs.MCreatorDialog;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.TiledImageCache;
 import rip.sayori.rmcr.ui.init.UIRES;
+import rip.sayori.rmcr.util.CaseFormat;
 import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;

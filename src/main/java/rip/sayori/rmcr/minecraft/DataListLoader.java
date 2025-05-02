@@ -39,12 +39,13 @@ package rip.sayori.rmcr.minecraft;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.plugin.PluginLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,8 +61,10 @@ public class DataListLoader {
 	private static final Map<String, LinkedHashMap<String, DataListEntry>> cache = new HashMap<>();
 
 	public static void preloadCache() {
-		Reflections reflections = new Reflections("datalists", new ResourcesScanner(),
-				ClassLoader.getSystemClassLoader());
+
+		Reflections reflections = new Reflections(
+				new ConfigurationBuilder().setClassLoaders(new ClassLoader[]{ClassLoader.getSystemClassLoader()})
+						.setScanners(Scanners.Resources).setExpandSuperTypes(false));
 		Set<String> fileNames = reflections.getResources(Pattern.compile(".*\\.yaml"));
 		for (String res : fileNames) {
 			String datalistname = res.split("datalists/")[1].replace(".yaml", "");
