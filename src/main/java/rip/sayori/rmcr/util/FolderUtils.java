@@ -62,7 +62,7 @@ public class FolderUtils {
 	}
 
 	public static File getGradleHome() {
-		return getFileFromUserFolder("/gradle/");
+		return new File(System.getProperty("user.home") + "/.gradle/");
 	}
 
 	public static File getFromCL(String path){

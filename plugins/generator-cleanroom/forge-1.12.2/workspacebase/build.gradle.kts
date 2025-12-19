@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("eclipse")
-    id("xyz.wagyourtail.unimined") version "1.3.13"
+    id("xyz.wagyourtail.unimined") version "1.4.7-kappa"
 }
 
 group = "com.example.modid"
@@ -15,7 +15,7 @@ unimined.minecraft {
     }
 
     cleanroom {
-        loader("0.3.0-alpha")
+        loader("0.3.27-alpha")
     }
 }
 configurations{

@@ -37,21 +37,15 @@
 
 package rip.sayori.rmcr.ui;
 
-import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.ide.CodeEditorView;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.views.editor.image.ImageMakerView;
 import rip.sayori.rmcr.ui.workspace.selector.RecentWorkspaceEntry;
-import rip.sayori.rmcr.util.DesktopUtils;
 import rip.sayori.rmcr.util.image.ImageUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class MainMenuBar extends JMenuBar {
 
@@ -246,55 +240,9 @@ public class MainMenuBar extends JMenuBar {
 		window.add(mcreator.actionRegistry.showConsoleTab);
 		window.setMnemonic('W');
 		add(window);
-
-		JMenu help = new JMenu(L10N.t("menubar.help"));
-		addHelpSearch(help);
-		help.add(mcreator.actionRegistry.help);
-		help.add(mcreator.actionRegistry.support);
-		help.add(mcreator.actionRegistry.knowledgeBase);
-		help.addSeparator();
-		help.add(mcreator.actionRegistry.showShortcuts);
-		help.addSeparator();
-		help.add(mcreator.actionRegistry.aboutMCreator);
-		help.setMnemonic('H');
-		add(help);
 	}
 
-	private void addHelpSearch(JMenu help) {
-		JTextField searchField = new JTextField(20) {
-			@Override public void paintComponent(Graphics g) {
-				g.setColor(new Color(0.3f, 0.3f, 0.3f, 0.4f));
-				g.fillRect(0, 0, getWidth(), getHeight());
-				super.paintComponent(g);
-				g.setColor(new Color(0x9C9C9C));
-				g.setFont(getFont().deriveFont(11.0f));
-				if (getText().equals(""))
-					g.drawString(L10N.t("menubar.help.search.tooltip"), 28, 14);
-			}
-		};
-		searchField.setOpaque(true);
-		ComponentUtils.deriveFont(searchField, 13);
-		searchField.setBorder(BorderFactory.createEmptyBorder(1, 28, 1, 0));
-		searchField.addKeyListener(new KeyAdapter() {
-			@Override public void keyTyped(KeyEvent e) {
-				if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-					DesktopUtils.browseSafe(MCreatorApplication.WEB_API.getSearchURL(searchField.getText()));
-				}
-			}
-		});
-		searchField.addFocusListener(new FocusAdapter() {
-			@Override public void focusLost(FocusEvent focusEvent) {
-				super.focusLost(focusEvent);
-				searchField.setText("");
-			}
-		});
-
-		help.add(searchField);
-
-		refreshMenuBar();
-	}
-
-	public void refreshMenuBar() {
+    public void refreshMenuBar() {
 		code.setVisible(mcreator.mcreatorTabs.getCurrentTab() != null && mcreator.mcreatorTabs.getCurrentTab()
 				.getContent() instanceof CodeEditorView);
 		imageEditor.setVisible(mcreator.mcreatorTabs.getCurrentTab() != null && mcreator.mcreatorTabs.getCurrentTab()

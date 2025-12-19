@@ -45,8 +45,6 @@ import rip.sayori.rmcr.generator.GeneratorConfiguration;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.io.OS;
 import rip.sayori.rmcr.io.net.analytics.DeviceInfo;
-import rip.sayori.rmcr.io.net.api.D8WebAPI;
-import rip.sayori.rmcr.io.net.api.IWebAPI;
 import rip.sayori.rmcr.minecraft.DataListLoader;
 import rip.sayori.rmcr.minecraft.api.ModAPIManager;
 import rip.sayori.rmcr.plugin.PluginLoader;
@@ -79,8 +77,7 @@ public final class MCreatorApplication {
 
 	public static final String SERVER_DOMAIN = "https://mcreator.net";
 	private static final Logger LOG = LogManager.getLogger("Application");
-	public static IWebAPI WEB_API = new D8WebAPI();
-	public static boolean isInternet = true;
+    public static boolean isInternet = true;
 	private static boolean applicationStarted = false;
 	private final DeviceInfo deviceInfo;
 	private final WorkspaceSelector workspaceSelector;
@@ -158,7 +155,7 @@ public final class MCreatorApplication {
 
 		deviceInfo = new DeviceInfo();
 
-		isInternet = MCreatorApplication.WEB_API.initAPI();
+		isInternet = true;
 
 		splashScreen.setProgress(100, "Loading MCreator windows");
 

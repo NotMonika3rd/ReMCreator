@@ -37,6 +37,6 @@ allprojects{
         maven { url ALIYUN_REPOSITORY_URL }
         maven { url ALIYUN_GRADLE_PLUGIN_URL }
 		maven { url "https://bmclapi2.bangbang93.com/maven" }
-		maven { url "https://repository.hanbings.io/proxy" } // fallback
+		//maven { url "https://repository.hanbings.io/proxy" } // fallback
     }
 }
