@@ -1,0 +1,120 @@
+name: Gradle DistZip & Upload Release
+
+# 触发条件：可根据你的需求调整（这里支持标签推送、手动触发）
+on:
+  push:
+    tags:
+      - 'v*' # 推送形如 v1.0.0、v2.1.0 的标签时触发
+  workflow_dispatch: # 支持手动在 GitHub 页面触发
+
+# 配置作业：并行运行 Windows 和 Ubuntu 环境
+jobs:
+  build-and-package:
+    # 矩阵配置：同时指定两个操作系统
+    strategy:
+      fail-fast: false # 一个环境失败不影响另一个环境执行
+      matrix:
+        os: [ubuntu-latest, windows-latest] # Linux(Ubuntu) 和 Windows 环境
+
+    runs-on: ${{ matrix.os }} # 对应矩阵中的操作系统
+
+    steps:
+      # 步骤1：检出代码仓库
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 # 浅克隆，提升速度
+
+      # 步骤2：配置 JDK（Gradle 运行依赖 Java 环境，按需指定版本，如 8/11/17）
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17' # 可根据你的项目调整 Java 版本
+          distribution: 'temurin' # Eclipse Temurin JDK（稳定可靠）
+          cache: gradle # 缓存 Gradle 依赖，提升后续构建速度
+
+      # 步骤3：赋予 Gradle 执行权限（仅 Ubuntu 环境需要，Windows 无需此步骤）
+      - name: Make Gradle executable (Ubuntu only)
+        if: matrix.os == 'ubuntu-latest' # 条件判断：仅 Ubuntu 执行
+        run: chmod +x ./gradlew
+
+      # 步骤4：执行 Gradle distZip 任务
+      - name: Run Gradle distZip
+        run: ./gradlew distZip # Windows 环境会自动识别 gradlew.bat，无需修改命令
+
+      # 步骤5：获取系统名称（用于文件名后缀，统一格式：linux/windows）
+      - name: Get system suffix
+        id: system-suffix # 步骤ID，用于后续引用输出结果
+        run: |
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+            echo "suffix=linux" >> $GITHUB_OUTPUT
+          else
+            echo "suffix=windows" >> $GITHUB_OUTPUT
+          fi
+        # Windows 环境兼容：使用 PowerShell 备选命令（自动适配）
+        shell: bash
+
+      # 步骤6：查找 build/dist 目录下的 zip 文件并记录路径
+      - name: Locate dist zip file
+        id: find-zip
+        run: |
+          # 递归查找 build/dist 下的所有 .zip 文件（取第一个，适配 Gradle 标准输出）
+          ZIP_FILE=$(find ./build/dist -name "*.zip" -type f | head -n 1)
+          # 输出 zip 文件路径到 GitHub 环境变量
+          echo "zip_path=$ZIP_FILE" >> $GITHUB_OUTPUT
+          # 输出原始文件名（不含路径）
+          echo "zip_name=$(basename $ZIP_FILE)" >> $GITHUB_OUTPUT
+        shell: bash
+
+      # 步骤7：重命名 zip 文件（追加系统名后缀）
+      - name: Rename zip file with system suffix
+        id: rename-zip
+        run: |
+          # 原始文件路径
+          ORIGINAL_ZIP="${{ steps.find-zip.outputs.zip_path }}"
+          # 原始文件名（不含扩展名）
+          ORIGINAL_NAME=$(basename "${{ steps.find-zip.outputs.zip_path }}" .zip)
+          # 新文件名：原始名称-系统后缀.zip
+          NEW_NAME="${ORIGINAL_NAME}-${{ steps.system-suffix.outputs.suffix }}.zip"
+          # 新文件路径（保持在 build/dist 目录下）
+          NEW_PATH="./build/dist/${NEW_NAME}"
+          # 执行重命名
+          mv "$ORIGINAL_ZIP" "$NEW_PATH"
+          # 输出新文件名和路径供后续步骤使用
+          echo "new_zip_name=$NEW_NAME" >> $GITHUB_OUTPUT
+          echo "new_zip_path=$NEW_PATH" >> $GITHUB_OUTPUT
+        shell: bash
+
+      # 步骤8：上传重命名后的 zip 文件作为作业产物（供后续上传 Release 使用）
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-zip-${{ steps.system-suffix.outputs.suffix }} # 产物名称：区分系统
+          path: ${{ steps.rename-zip.outputs.new_zip_path }} # 产物路径：重命名后的 zip 文件
+          retention-days: 1 # 产物保留时间：按需调整
+
+  # 作业2：上传所有产物到 GitHub Release（依赖上述作业完成）
+  upload-to-release:
+    needs: build-and-package # 等待 build-and-package 作业全部完成
+    runs-on: ubuntu-latest # 仅需在 Ubuntu 环境执行（上传 Release 无需跨平台）
+    steps:
+      # 步骤1：下载所有上传的产物（Windows 和 Ubuntu 的 zip 文件）
+      - name: Download all dist zip artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./downloaded-zips # 下载到本地 ./downloaded-zips 目录
+
+      # 步骤2：创建并上传 Release（附带所有 zip 文件）
+      - name: Create and upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # 上传 ./downloaded-zips 目录下所有的 zip 文件（递归查找）
+          files: |
+            ./downloaded-zips/**/*.zip
+          # 可选：是否生成 Release 说明（可根据需求开启）
+          # body: "Automatically generated release with distZip packages for Linux and Windows."
+          draft: false # 是否为草稿 Release（false 表示直接发布）
+          prerelease: false # 是否为预发布版本（false 表示正式版本）
+        env:
+          # 必要环境变量：GitHub 令牌（用于操作 Release）
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 自动注入的令牌，无需手动配置
