@@ -2,8 +2,8 @@ name: Gradle DistZip & Upload Release
 
 on:
   push:
-    tags:
-      - 'v20**' # 推送形如 v1.0.0、v2.1.0 的标签时触发
+    paths:
+      - "src/main/resources/mcreator.conf"
   workflow_dispatch: # 支持手动在 GitHub 页面触发
 
 # 配置作业：并行运行 Windows 和 Ubuntu 环境
