@@ -1,6 +1,5 @@
 name: Gradle DistZip & Upload Release
 
-# 触发条件：可根据你的需求调整（这里支持标签推送、手动触发）
 on:
   push:
     tags:
