@@ -29,8 +29,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '17' # 可根据你的项目调整 Java 版本
-          distribution: 'temurin' # Eclipse Temurin JDK（稳定可靠）
+          java-version: '21' # 可根据你的项目调整 Java 版本
+          distribution: 'microsoft' # Eclipse Temurin JDK（稳定可靠）
           cache: gradle # 缓存 Gradle 依赖，提升后续构建速度
 
       # 步骤3：赋予 Gradle 执行权限（仅 Ubuntu 环境需要，Windows 无需此步骤）
@@ -59,7 +59,7 @@ jobs:
         id: find-zip
         run: |
           # 递归查找 build/dist 下的所有 .zip 文件（取第一个，适配 Gradle 标准输出）
-          ZIP_FILE=$(find ./build/dist -name "*.zip" -type f | head -n 1)
+          ZIP_FILE=$(find ./build/distributions -name "*.zip" -type f | head -n 1)
           # 输出 zip 文件路径到 GitHub 环境变量
           echo "zip_path=$ZIP_FILE" >> $GITHUB_OUTPUT
           # 输出原始文件名（不含路径）
