@@ -76,8 +76,8 @@ jobs:
           ORIGINAL_NAME=$(basename "${{ steps.find-zip.outputs.zip_path }}" .zip)
           # 新文件名：原始名称-系统后缀.zip
           NEW_NAME="${ORIGINAL_NAME}-${{ steps.system-suffix.outputs.suffix }}.zip"
-          # 新文件路径（保持在 build/dist 目录下）
-          NEW_PATH="./build/dist/${NEW_NAME}"
+          # 新文件路径（保持在 build/distributions 目录下）
+          NEW_PATH="./build/distributions/${NEW_NAME}"
           # 执行重命名
           mv "$ORIGINAL_ZIP" "$NEW_PATH"
           # 输出新文件名和路径供后续步骤使用
