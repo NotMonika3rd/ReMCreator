@@ -2,8 +2,6 @@ name: Gradle DistZip & Upload Release
 
 on:
   push:
-    paths:
-      - "src/main/resources/mcreator.conf"
   workflow_dispatch: # 支持手动在 GitHub 页面触发
 
 permissions:
@@ -93,31 +91,4 @@ jobs:
         with:
           name: dist-zip-${{ steps.system-suffix.outputs.suffix }} # 产物名称：区分系统
           path: ${{ steps.rename-zip.outputs.new_zip_path }} # 产物路径：重命名后的 zip 文件
-          retention-days: 1 # 产物保留时间：按需调整
 
-  # 作业2：上传所有产物到 GitHub Release（依赖上述作业完成）
-  upload-to-release:
-    needs: build-and-package # 等待 build-and-package 作业全部完成
-    runs-on: ubuntu-latest # 仅需在 Ubuntu 环境执行（上传 Release 无需跨平台）
-    steps:
-      # 步骤1：下载所有上传的产物（Windows 和 Ubuntu 的 zip 文件）
-      - name: Download all dist zip artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: ./downloaded-zips # 下载到本地 ./downloaded-zips 目录
-
-      # 步骤2：创建并上传 Release（附带所有 zip 文件）
-      - name: Create and upload Release
-        uses: softprops/action-gh-release@v2
-        with:
-          # 上传 ./downloaded-zips 目录下所有的 zip 文件（递归查找）
-          files: |
-            ./downloaded-zips/**/*.zip
-          # 可选：是否生成 Release 说明（可根据需求开启）
-          # body: "Automatically generated release with distZip packages for Linux and Windows."
-          draft: false # 是否为草稿 Release（false 表示直接发布）
-          prerelease: false # 是否为预发布版本（false 表示正式版本）
-          tag_name: ${{ github.ref_name }}
-        env:
-          # 必要环境变量：GitHub 令牌（用于操作 Release）
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub 自动注入的令牌，无需手动配置
