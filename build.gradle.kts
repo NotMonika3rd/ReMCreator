@@ -1,4 +1,7 @@
-import java.util.Properties
+import org.gradle.internal.jvm.Jvm
+import org.gradle.jvm.toolchain.internal.JavaToolchain
+import java.util.*
+
 plugins {
     java
     idea
@@ -29,6 +32,7 @@ version = mcreatorconf.getProperty("mcreator")
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
+        vendor = JvmVendorSpec.MICROSOFT
     }
 }
 
@@ -88,9 +92,21 @@ application {
 distributions {
     main {
         contents {
-            from("./plugins") {
+            from("./plugins"){
                 into("lib/plugins/")
+            }
+            from("src/launcher")
+            from(File(tasks.compileJava.get().javaCompiler.get().executablePath.asFile.parent,"..")){
+                into("jdk/")
+                filePermissions { unix("777") }
+            }
+            exclude { fte ->
+                if(fte.isDirectory && ("legal" in fte.name || "man" in fte.name))return@exclude true
+                if(!fte.isDirectory && ".jmod" in fte.name && "base" !in fte.name) return@exclude true
+                false
             }
         }
     }
 }
+
+
