@@ -54,7 +54,7 @@ idea {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "lib", "include" to listOf("*.jar"))))
-    implementation("commons-io:commons-io:2.17.0")
+    implementation("commons-io:commons-io:2.21.0")
     implementation("foxtrot:foxtrot-core:4.0")
     implementation("org.freemarker:freemarker:2.3.31")
     implementation("com.google.code.gson:gson:2.8.9")
