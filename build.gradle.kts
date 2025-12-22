@@ -64,7 +64,7 @@ dependencies {
     implementation("com.esotericsoftware.yamlbeans:yamlbeans:1.17")
     implementation("com.fifesoft:rsyntaxtextarea:3.5.3")
     implementation("com.fifesoft:autocomplete:3.3.1")
-    implementation("com.fifesoft:languagesupport:3.3.0") {
+    implementation("com.fifesoft:languagesupport:3.4.0") {
         exclude(group = "org.mozilla", module = "rhino")
     }
     implementation("org.reflections:reflections:0.10.2")
