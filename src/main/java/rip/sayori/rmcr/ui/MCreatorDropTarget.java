@@ -51,75 +51,77 @@ import java.awt.dnd.*;
 import java.io.File;
 import java.util.List;
 
-public class MCreatorDropTarget implements DropTargetListener {
+public record MCreatorDropTarget(MCreator mcreator) implements DropTargetListener {
 
-	private static final Logger LOG = LogManager.getLogger("DND");
+    private static final Logger LOG = LogManager.getLogger("DND");
 
-	private final MCreator mcreator;
+    public MCreatorDropTarget {
+        new DropTarget(mcreator, DnDConstants.ACTION_MOVE, this, true, null);
+    }
 
-	MCreatorDropTarget(MCreator mcreator) {
-		new DropTarget(mcreator, DnDConstants.ACTION_MOVE, this, true, null);
-		this.mcreator = mcreator;
-	}
+    @Override
+    public void dragEnter(DropTargetDragEvent dtde) {
+        processDrag(dtde);
+    }
 
-	@Override public void dragEnter(DropTargetDragEvent dtde) {
-		processDrag(dtde);
-	}
+    @Override
+    public void dragOver(DropTargetDragEvent dtde) {
+        processDrag(dtde);
+    }
 
-	@Override public void dragOver(DropTargetDragEvent dtde) {
-		processDrag(dtde);
-	}
+    @Override
+    public void dropActionChanged(DropTargetDragEvent dtde) {
+    }
 
-	@Override public void dropActionChanged(DropTargetDragEvent dtde) {
-	}
+    @Override
+    public void dragExit(DropTargetEvent dtde) {
+    }
 
-	@Override public void dragExit(DropTargetEvent dtde) {
-	}
+    @Override
+    public void drop(DropTargetDropEvent dtde) {
+        Transferable transferable = dtde.getTransferable();
+        if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+            dtde.acceptDrop(dtde.getDropAction());
+            try {
+                List<?> transferData = (List<?>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+                if (transferData.size() > 0) {
+                    Object transfObj = transferData.get(0);
+                    if (transfObj instanceof File) {
+                        File file = (File) transfObj;
+                        if (file.getName().endsWith(".ogg")) {
+                            SoundElementDialog.importSound(mcreator, new File[]{file});
+                        } else if (file.getName().endsWith(".java")) {
+                            ModelImportActions.importJavaModel(mcreator, file);
+                        } else if (file.getName().endsWith(".json")) {
+                            ModelImportActions.importJSONModel(mcreator, file);
+                        } else if (file.getName().endsWith(".obj")) {
+                            ModelImportActions.importOBJModel(mcreator, file, null);
+                        } else if (file.getName().endsWith(".mtl")) {
+                            ModelImportActions.importOBJModel(mcreator, null, file);
+                        } else if (file.getName().endsWith(".png")) {
+                            TextureImportDialogs.importTextureGeneral(mcreator, file,
+                                    "What kind of texture is this file?");
+                        } else if (file.getName().endsWith(".nbt")) {
+                            StructureImportActions.importStructure(mcreator, new File[]{file});
+                        } else {
+                            Toolkit.getDefaultToolkit().beep();
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                LOG.error(ex.getMessage(), ex);
+            }
+        } else {
+            dtde.rejectDrop();
+        }
+    }
 
-	@Override public void drop(DropTargetDropEvent dtde) {
-		Transferable transferable = dtde.getTransferable();
-		if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-			dtde.acceptDrop(dtde.getDropAction());
-			try {
-				List<?> transferData = (List<?>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
-				if (transferData.size() > 0) {
-					Object transfObj = transferData.get(0);
-					if (transfObj instanceof File) {
-						File file = (File) transfObj;
-						if (file.getName().endsWith(".ogg")) {
-							SoundElementDialog.importSound(mcreator, new File[] { file });
-						} else if (file.getName().endsWith(".java")) {
-							ModelImportActions.importJavaModel(mcreator, file);
-						} else if (file.getName().endsWith(".json")) {
-							ModelImportActions.importJSONModel(mcreator, file);
-						} else if (file.getName().endsWith(".obj")) {
-							ModelImportActions.importOBJModel(mcreator, file, null);
-						} else if (file.getName().endsWith(".mtl")) {
-							ModelImportActions.importOBJModel(mcreator, null, file);
-						} else if (file.getName().endsWith(".png")) {
-							TextureImportDialogs.importTextureGeneral(mcreator, file,
-									"What kind of texture is this file?");
-						} else if (file.getName().endsWith(".nbt")) {
-							StructureImportActions.importStructure(mcreator, new File[] { file });
-						} else {
-							Toolkit.getDefaultToolkit().beep();
-						}
-					}
-				}
-			} catch (Exception ex) {
-				LOG.error(ex.getMessage(), ex);
-			}
-		} else {
-			dtde.rejectDrop();
-		}
-	}
-
-	private void processDrag(DropTargetDragEvent dtde) {
-		if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-			dtde.acceptDrag(DnDConstants.ACTION_MOVE);
-		} else {
-			dtde.rejectDrag();
-		}
-	}
+    private void processDrag(DropTargetDragEvent dtde) {
+        if (dtde.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+            dtde.acceptDrag(DnDConstants.ACTION_MOVE);
+        } else {
+            dtde.rejectDrag();
+        }
+    }
 
 }

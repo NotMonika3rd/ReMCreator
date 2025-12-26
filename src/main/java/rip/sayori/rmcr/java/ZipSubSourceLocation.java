@@ -13,14 +13,7 @@ import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class ZipSubSourceLocation implements SourceLocation {
-    private final File archive;
-    public final String sub;
-
-    public ZipSubSourceLocation(File archive, String sub) {
-        this.archive = archive;
-        this.sub = sub;
-    }
+public record ZipSubSourceLocation(File archive, String sub) implements SourceLocation {
 
     public CompilationUnit getCompilationUnit(ClassFile cf) throws IOException {
         CompilationUnit cu = null;

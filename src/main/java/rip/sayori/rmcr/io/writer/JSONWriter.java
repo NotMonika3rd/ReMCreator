@@ -58,7 +58,7 @@ public class JSONWriter {
 			JsonElement json = JsonParser.parseString(srcjson);
 			jsonout = gson.toJson(json);
 		} catch (Exception e) {
-			LOG.error("JSON Prettify failed, error: " + e.getMessage());
+            LOG.error("JSON Prettify failed, error: {}", e.getMessage());
 			jsonout = srcjson;
 		}
 		FileIO.writeStringToFile(jsonout, file);

@@ -44,7 +44,7 @@ import rip.sayori.rmcr.generator.Generator;
 import rip.sayori.rmcr.generator.GeneratorConfiguration;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.io.net.analytics.DeviceInfo;
+import rip.sayori.rmcr.util.DeviceInfo;
 import rip.sayori.rmcr.minecraft.DataListLoader;
 import rip.sayori.rmcr.minecraft.api.ModAPIManager;
 import rip.sayori.rmcr.plugin.PluginLoader;

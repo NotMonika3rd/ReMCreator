@@ -35,20 +35,58 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package rip.sayori.rmcr.io.net.api.update;
+package rip.sayori.rmcr.util;
 
-import java.util.Map;
+import com.sun.management.OperatingSystemMXBean;
+import rip.sayori.rmcr.io.OS;
 
-public class UpdateInfo {
+import java.awt.*;
+import java.lang.management.ManagementFactory;
 
-	private String latestMajor;
-	private Map<String, Release> releases;
+public class DeviceInfo {
+	private final int systemBits;
+	private final int ramAmountMB;
+	private final String osName;
+	private final String jvmVersion;
+	private int screenWidth = 0, screenHeight = 0;
 
-	public String getLatestMajor() {
-		return latestMajor;
+	public DeviceInfo() {
+		try {
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			this.screenWidth = (int) screenSize.getWidth();
+			this.screenHeight = (int) screenSize.getHeight();
+		} catch (Exception ignored) {
+		}
+		this.systemBits = OS.getSystemBits();
+		this.ramAmountMB = (int) (
+				((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalMemorySize()
+						/ 1048576);
+		this.osName = System.getProperty("os.name");
+		this.jvmVersion = System.getProperty("java.version");
 	}
 
-	public Map<String, Release> getReleases() {
-		return releases;
+	int getScreenWidth() {
+		return screenWidth;
 	}
+
+	int getScreenHeight() {
+		return screenHeight;
+	}
+
+	public int getSystemBits() {
+		return systemBits;
+	}
+
+	public int getRamAmountMB() {
+		return ramAmountMB;
+	}
+
+	public String getOsName() {
+		return osName;
+	}
+
+	public String getJvmVersion() {
+		return jvmVersion;
+	}
+
 }

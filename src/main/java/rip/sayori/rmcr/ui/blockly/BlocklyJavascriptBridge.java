@@ -74,9 +74,9 @@ public class BlocklyJavascriptBridge {
 	private static final Logger LOG = LogManager.getLogger("Blockly JS Bridge");
 	private final Runnable blocklyEvent;
 	private final MCreator mcreator;
-	private final Map<String, String> ext_triggers = new LinkedHashMap<String, String>() {{
-		put("no_ext_trigger", L10N.t("trigger.no_ext_trigger"));
-	}};
+	private final Map<String, String> ext_triggers = new LinkedHashMap<>() {{
+        put("no_ext_trigger", L10N.t("trigger.no_ext_trigger"));
+    }};
 	private JavaScriptEventListener listener;
 
 	BlocklyJavascriptBridge(@NotNull MCreator mcreator, @NotNull Runnable blocklyEvent) {
@@ -194,7 +194,7 @@ public class BlocklyJavascriptBridge {
 			retval = new ArrayList<>();
 		}
 
-		if (retval.size() <= 0)
+		if (retval.isEmpty())
 			return new String[] { "" };
 
 		return retval.toArray(new String[0]);
@@ -210,7 +210,7 @@ public class BlocklyJavascriptBridge {
 	@SuppressWarnings("unused") public String getMCItemURI(String name) {
 		ImageIcon base = new ImageIcon(ImageUtils.resize(MinecraftImageGenerator.generateItemSlot(), 36, 36));
 		ImageIcon image;
-		if (name != null && !name.equals("") && !name.equals("null"))
+		if (name != null && !name.isEmpty() && !name.equals("null"))
 			image = ImageUtils.drawOver(base, MCItem.getBlockIconBasedOnName(mcreator.getWorkspace(), name), 2, 2, 32,
 					32);
 		else
