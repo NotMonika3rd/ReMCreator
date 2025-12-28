@@ -1,1 +1,0 @@
-Ce paramètre contrôle combien de temps l'item peut être utilisé en une prise.

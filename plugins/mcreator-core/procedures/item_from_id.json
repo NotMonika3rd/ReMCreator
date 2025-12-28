@@ -4,6 +4,14 @@
       "type": "input_value",
       "name": "id",
       "check": "String"
+    },{
+      "type": "input_value",
+      "name": "amount",
+      "check": "Number"
+    },{
+      "type": "input_value",
+      "name": "meta",
+      "check": "Number"
     }
   ],
   "inputsInline": true,
@@ -12,10 +20,12 @@
   "mcreator": {
     "toolbox_id": "itemmanagement",
     "toolbox_init": [
-      "<value name=\"id\"><block type=\"text\"><field name=\"TEXT\">minecraft:dirt</field></block></value>"
+      "<value name=\"id\"><block type=\"text\"><field name=\"TEXT\">minecraft:dirt</field></block></value>",
+      "<value name=\"amount\"><block type=\"math_number\"><field name=\"NUM\">1</field></block></value>",
+      "<value name=\"meta\"><block type=\"math_number\"><field name=\"NUM\">0</field></block></value>"
     ],
     "inputs": [
-      "id"
+      "id","amount","meta"
     ]
   }
 }

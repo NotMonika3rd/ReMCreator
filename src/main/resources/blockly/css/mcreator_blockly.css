@@ -89,3 +89,12 @@ body {
 .blocklyDropDownContent {
     position: relative;
 }
+
+.blocklyMainBackground {
+    fill: rgb(85, 85, 85) !important;
+    stroke-width: 0;
+}
+
+.blocklyFlyout {
+    background-color: #323232;
+}

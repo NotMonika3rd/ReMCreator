@@ -83,12 +83,8 @@ public class BlocklyPanel extends JFXPanel {
 		ThreadUtil.runOnFxThread(() -> {
 			WebView browser = new WebView();
 			Scene scene = new Scene(browser);
-			if (OS.getOS() == OS.WINDOWS) {
-				scene.setFill(Color.TRANSPARENT);
-			} else {
-				java.awt.Color bg = (java.awt.Color) UIManager.get("MCreatorLAF.LIGHT_ACCENT");
-				scene.setFill(Color.rgb(bg.getRed(), bg.getGreen(), bg.getBlue()));
-			}
+			java.awt.Color bg = (java.awt.Color) UIManager.get("MCreatorLAF.LIGHT_ACCENT");
+			scene.setFill(Color.rgb(bg.getRed(), bg.getGreen(), bg.getBlue()));
 			setScene(scene);
 
 			browser.getChildrenUnmodifiable().addListener(
@@ -101,10 +97,6 @@ public class BlocklyPanel extends JFXPanel {
 					// load CSS from file to select proper style for OS
 					Element styleNode = webEngine.getDocument().createElement("style");
 					String css = FileIO.readResourceToString("/blockly/css/mcreator_blockly.css");
-
-					if (OS.getOS() != OS.WINDOWS) {
-						css += FileIO.readResourceToString("/blockly/css/mcreator_blockly_unixfix.css");
-					}
 
 					css += FileIO.readResourceToString("/blockly/css/" + UIManager.get("MCreatorLAF.BLOCKLY_CSS"));
 

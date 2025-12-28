@@ -1,1 +1,0 @@
-Cette procédure est exécutée quand le joueur fait un clic droit sur un bloc avec cet item dans sa main.
