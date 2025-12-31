@@ -378,15 +378,16 @@ package ${package}.entity;
         </#if>
 
 		<#if hasProcedure(data.onRightClickedOn) || data.ridable>
-		@Override public boolean processInteract(EntityPlayer entity, EnumHand hand) {
-			super.processInteract(entity, hand);
+		@Override public boolean processInteract(EntityPlayer sourceentity, EnumHand hand) {
+			super.processInteract(sourceentity, hand);
 			<#if data.ridable >
-            entity.startRiding(this);
+            sourceentity.startRiding(this);
             </#if>
 			int x = (int) this.posX;
 			int y = (int) this.posY;
 			int z = (int) this.posZ;
-			ItemStack itemstack = entity.getHeldItem(hand);
+			ItemStack itemstack = sourceentity.getHeldItem(hand);
+			Entity entity=this;
 			<@procedureOBJToCode data.onRightClickedOn/>
 			return true;
 		}

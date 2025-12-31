@@ -1,5 +1,3 @@
-import org.gradle.internal.jvm.Jvm
-import org.gradle.jvm.toolchain.internal.JavaToolchain
 import java.util.*
 
 plugins {
@@ -21,11 +19,7 @@ repositories {
 }
 
 // 加载 mcreator.conf 配置文件
-val mcreatorconf = Properties().apply {
-    file("src/main/resources/mcreator.conf").inputStream().use { inputStream ->
-        this.load(inputStream)
-    }
-}
+val mcreatorconf = Properties().apply { load(file("src/main/resources/mcreator.conf").inputStream()) }
 
 group = "rip.sayori.rmcr"
 version = mcreatorconf.getProperty("mcreator")
@@ -69,9 +63,9 @@ dependencies {
     }
     implementation("org.reflections:reflections:0.10.2")
     implementation("de.javagl:obj:0.3.0")
-    implementation("org.apache.logging.log4j:log4j-core:2.24.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.25.3")
     implementation("org.apache.commons:commons-text:1.10.0")
-    implementation("org.eclipse.jgit:org.eclipse.jgit:7.0.0.202409031743-r")
+    implementation("org.eclipse.jgit:org.eclipse.jgit:7.2.1.202505142326-r")
     implementation("org.slf4j:slf4j-nop:1.7.30")
     implementation("org.gradle:gradle-tooling-api:7.1.1")
     implementation("net.java.balloontip:balloontip:1.2.4.1")
