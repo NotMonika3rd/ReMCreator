@@ -56,7 +56,7 @@ dependencies {
     implementation("org.jboss.forge.roaster:roaster-api:2.30.1.Final")
     implementation("org.jboss.forge.roaster:roaster-jdt:2.30.1.Final")
     implementation("com.esotericsoftware.yamlbeans:yamlbeans:1.17")
-    implementation("com.fifesoft:rsyntaxtextarea:3.5.3")
+    implementation("com.fifesoft:rsyntaxtextarea:3.6.0")
     implementation("com.fifesoft:autocomplete:3.3.1")
     implementation("com.fifesoft:languagesupport:3.3.0") {
         exclude(group = "org.mozilla", module = "rhino")
