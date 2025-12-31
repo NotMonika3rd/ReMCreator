@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.element.types;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.parts.Procedure;
 import rip.sayori.rmcr.io.FileIO;
@@ -45,7 +46,6 @@ import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.util.image.InvalidTileSizeException;
 import rip.sayori.rmcr.util.image.TiledImageUtils;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

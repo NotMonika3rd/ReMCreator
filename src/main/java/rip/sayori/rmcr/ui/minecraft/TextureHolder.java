@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.ui.minecraft;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.ui.dialogs.BlockItemTextureSelector;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.validation.component.VButton;
 import rip.sayori.rmcr.util.image.ImageUtils;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.swing.*;
 import java.awt.*;

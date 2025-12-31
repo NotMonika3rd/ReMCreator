@@ -38,13 +38,13 @@
 package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.types.Block;
 import rip.sayori.rmcr.element.types.GUI;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class GUIBindingInverter implements IConverter {
 

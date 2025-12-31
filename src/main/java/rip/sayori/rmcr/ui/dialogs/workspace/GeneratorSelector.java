@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.dialogs.workspace;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.generator.Generator;
 import rip.sayori.rmcr.generator.GeneratorConfiguration;
@@ -47,7 +48,6 @@ import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;

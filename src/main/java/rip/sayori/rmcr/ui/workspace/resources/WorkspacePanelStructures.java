@@ -48,8 +48,8 @@ import rip.sayori.rmcr.ui.workspace.WorkspacePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class WorkspacePanelStructures extends JPanel implements IReloadableFilterable {

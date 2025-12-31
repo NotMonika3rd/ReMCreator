@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.generator.template.base;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.generator.Generator;
 import rip.sayori.rmcr.generator.GeneratorWrapper;
 import rip.sayori.rmcr.generator.template.TemplateHelper;
 import rip.sayori.rmcr.java.JavaConventions;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;

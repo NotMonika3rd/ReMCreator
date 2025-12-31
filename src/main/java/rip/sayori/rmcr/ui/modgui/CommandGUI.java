@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.types.Command;
 import rip.sayori.rmcr.ui.MCreator;
@@ -51,7 +52,6 @@ import rip.sayori.rmcr.ui.validation.ValidationGroup;
 import rip.sayori.rmcr.ui.validation.component.VTextField;
 import rip.sayori.rmcr.ui.validation.validators.TextFieldValidator;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

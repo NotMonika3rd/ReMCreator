@@ -37,16 +37,16 @@
 
 package rip.sayori.rmcr;
 
-import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.util.FolderUtils;
-import rip.sayori.rmcr.preferences.PreferencesManager;
-import rip.sayori.rmcr.ui.MCreatorApplication;
-import rip.sayori.rmcr.util.DefaultExceptionHandler;
-import rip.sayori.rmcr.util.LoggingOutputStream;
-import rip.sayori.rmcr.util.MCreatorVersionNumber;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rip.sayori.rmcr.io.OS;
+import rip.sayori.rmcr.preferences.PreferencesManager;
+import rip.sayori.rmcr.ui.MCreatorApplication;
+import rip.sayori.rmcr.util.DefaultExceptionHandler;
+import rip.sayori.rmcr.util.FolderUtils;
+import rip.sayori.rmcr.util.LoggingOutputStream;
+import rip.sayori.rmcr.util.MCreatorVersionNumber;
 import zone.rong.imaginebreaker.ImagineBreaker;
 
 import javax.swing.*;

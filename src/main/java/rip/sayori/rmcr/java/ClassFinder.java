@@ -37,9 +37,6 @@
 
 package rip.sayori.rmcr.java;
 
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.zip.ZipIO;
-import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fife.rsta.ac.java.JarManager;
@@ -47,6 +44,9 @@ import org.fife.rsta.ac.java.buildpath.SourceLocation;
 import org.fife.rsta.ac.java.buildpath.ZipSourceLocation;
 import org.fife.rsta.ac.java.rjc.ast.CompilationUnit;
 import org.fife.rsta.ac.java.rjc.ast.ImportDeclaration;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.io.zip.ZipIO;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import java.io.File;
 import java.io.IOException;

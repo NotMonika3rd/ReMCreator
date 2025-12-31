@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.ui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.ui.action.impl.workspace.resources.ModelImportActions;
 import rip.sayori.rmcr.ui.action.impl.workspace.resources.StructureImportActions;
 import rip.sayori.rmcr.ui.dialogs.SoundElementDialog;
 import rip.sayori.rmcr.ui.dialogs.TextureImportDialogs;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;

@@ -55,12 +55,12 @@
 
 package rip.sayori.rmcr.generator.template.base;
 
-import rip.sayori.rmcr.generator.Generator;
-import rip.sayori.rmcr.plugin.PluginLoader;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import rip.sayori.rmcr.generator.Generator;
+import rip.sayori.rmcr.plugin.PluginLoader;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;

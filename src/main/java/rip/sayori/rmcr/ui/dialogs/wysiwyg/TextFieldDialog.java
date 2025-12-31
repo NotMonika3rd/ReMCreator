@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.dialogs.wysiwyg;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.parts.gui.GUIComponent;
 import rip.sayori.rmcr.element.parts.gui.TextField;
 import rip.sayori.rmcr.io.Transliteration;
@@ -46,7 +47,6 @@ import rip.sayori.rmcr.ui.validation.Validator;
 import rip.sayori.rmcr.ui.validation.component.VTextField;
 import rip.sayori.rmcr.ui.validation.validators.JavaMemeberNameValidator;
 import rip.sayori.rmcr.ui.wysiwyg.WYSIWYGEditor;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

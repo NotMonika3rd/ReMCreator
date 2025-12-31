@@ -39,12 +39,12 @@ package rip.sayori.rmcr.java;
 
 import javassist.bytecode.AccessFlag;
 import javassist.bytecode.ConstPool;
-import rip.sayori.rmcr.generator.Generator;
-import rip.sayori.rmcr.io.zip.ZipIO;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fife.rsta.ac.java.buildpath.LibraryInfo;
+import rip.sayori.rmcr.generator.Generator;
+import rip.sayori.rmcr.io.zip.ZipIO;
 
 import java.io.DataInputStream;
 import java.io.File;

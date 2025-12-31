@@ -37,7 +37,6 @@
 
 package rip.sayori.rmcr.vcs;
 
-import rip.sayori.rmcr.workspace.TooNewWorkspaceVerisonException;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.diff.DiffEntry;
@@ -50,6 +49,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.treewalk.AbstractTreeIterator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.workspace.TooNewWorkspaceVerisonException;
 
 import java.io.IOException;
 import java.util.ArrayList;

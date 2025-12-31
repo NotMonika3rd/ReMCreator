@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.workspace.resources;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.ui.component.JSelectableList;
 import rip.sayori.rmcr.ui.component.ListGroup;
@@ -54,15 +55,14 @@ import rip.sayori.rmcr.ui.workspace.IReloadableFilterable;
 import rip.sayori.rmcr.ui.workspace.WorkspacePanel;
 import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.util.image.ImageUtils;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 

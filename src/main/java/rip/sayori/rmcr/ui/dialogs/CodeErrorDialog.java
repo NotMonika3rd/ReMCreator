@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.generator.GeneratorTemplate;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.ui.MCreator;
@@ -45,8 +47,6 @@ import rip.sayori.rmcr.ui.action.impl.workspace.RegenerateCodeAction;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.util.DesktopUtils;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

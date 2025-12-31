@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.workspace;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.workspace.elements.ModElementManager;
 import rip.sayori.rmcr.workspace.settings.WorkspaceSettings;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 

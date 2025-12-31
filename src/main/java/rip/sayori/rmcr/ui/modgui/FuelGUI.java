@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.types.Fuel;
 import rip.sayori.rmcr.minecraft.ElementUtil;
 import rip.sayori.rmcr.ui.MCreator;
@@ -48,7 +49,6 @@ import rip.sayori.rmcr.ui.minecraft.FuelRecipeMaker;
 import rip.sayori.rmcr.ui.validation.AggregatedValidationResult;
 import rip.sayori.rmcr.ui.validation.validators.MCItemHolderValidator;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

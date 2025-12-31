@@ -37,13 +37,13 @@
 
 package rip.sayori.rmcr.ui.component;
 
+import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.generator.mapping.MappableElement;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.validation.IValidable;
 import rip.sayori.rmcr.ui.validation.Validator;
-import org.apache.commons.io.FilenameUtils;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

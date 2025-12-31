@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.ui.minecraft;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Locale;

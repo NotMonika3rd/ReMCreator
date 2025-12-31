@@ -39,11 +39,11 @@ package rip.sayori.rmcr.generator;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.plugin.PluginLoader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Locale;

@@ -39,9 +39,9 @@ package rip.sayori.rmcr.blockly.data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.plugin.PluginLoader;
-import org.apache.commons.io.FilenameUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;

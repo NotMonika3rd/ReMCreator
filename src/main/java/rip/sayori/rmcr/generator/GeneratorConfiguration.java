@@ -39,15 +39,15 @@ package rip.sayori.rmcr.generator;
 
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.generator.mapping.MappingLoader;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorConfiguration;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.plugin.PluginLoader;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.util.*;

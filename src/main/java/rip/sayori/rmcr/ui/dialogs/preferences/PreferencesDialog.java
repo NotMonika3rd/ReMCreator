@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.dialogs.preferences;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.preferences.PreferencesData;
 import rip.sayori.rmcr.preferences.PreferencesEntry;
 import rip.sayori.rmcr.preferences.PreferencesManager;
@@ -47,8 +49,6 @@ import rip.sayori.rmcr.ui.component.util.PanelUtils;
 import rip.sayori.rmcr.ui.dialogs.MCreatorDialog;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.util.image.ImageUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -60,8 +60,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.management.ManagementFactory;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class PreferencesDialog extends MCreatorDialog {
 

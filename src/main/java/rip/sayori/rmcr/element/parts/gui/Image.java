@@ -37,10 +37,10 @@
 
 package rip.sayori.rmcr.element.parts.gui;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.element.parts.Procedure;
 import rip.sayori.rmcr.ui.wysiwyg.WYSIWYGEditor;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.swing.*;
 import java.awt.*;

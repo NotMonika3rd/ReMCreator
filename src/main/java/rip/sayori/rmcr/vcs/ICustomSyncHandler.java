@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.vcs;
 
-import rip.sayori.rmcr.workspace.TooNewWorkspaceVerisonException;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import rip.sayori.rmcr.workspace.TooNewWorkspaceVerisonException;
 
 import java.io.IOException;
 import java.util.List;

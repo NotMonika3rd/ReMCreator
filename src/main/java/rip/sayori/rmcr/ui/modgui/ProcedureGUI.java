@@ -72,8 +72,8 @@ import rip.sayori.rmcr.workspace.elements.VariableElementType;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProcedureGUI extends ModElementGUI<rip.sayori.rmcr.element.types.Procedure> {

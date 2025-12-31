@@ -37,13 +37,13 @@
 
 package rip.sayori.rmcr.element.types;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.parts.Procedure;
 import rip.sayori.rmcr.element.parts.gui.GUIComponent;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.Dimension;

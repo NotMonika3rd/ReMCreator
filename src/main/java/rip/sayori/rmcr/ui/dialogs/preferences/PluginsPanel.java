@@ -38,7 +38,6 @@
 package rip.sayori.rmcr.ui.dialogs.preferences;
 
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.plugin.Plugin;
 import rip.sayori.rmcr.plugin.PluginLoader;
 import rip.sayori.rmcr.ui.MCreatorApplication;
@@ -49,6 +48,7 @@ import rip.sayori.rmcr.ui.dialogs.FileDialogs;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.util.DesktopUtils;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import javax.swing.*;
 import java.awt.*;

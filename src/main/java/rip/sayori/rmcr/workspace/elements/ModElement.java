@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.workspace.elements;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.BaseType;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.ModElementType;
@@ -46,8 +48,6 @@ import rip.sayori.rmcr.minecraft.MCItem;
 import rip.sayori.rmcr.minecraft.RegistryNameFixer;
 import rip.sayori.rmcr.workspace.IWorkspaceProvider;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.io.Serializable;

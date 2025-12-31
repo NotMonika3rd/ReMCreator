@@ -56,8 +56,8 @@
 
 package rip.sayori.rmcr.element.types.interfaces;
 
-import rip.sayori.rmcr.element.parts.TabEntry;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.element.parts.TabEntry;
 
 public interface ITabContainedElement {
 

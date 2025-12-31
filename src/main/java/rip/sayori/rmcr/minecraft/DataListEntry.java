@@ -37,10 +37,10 @@
 
 package rip.sayori.rmcr.minecraft;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.generator.GeneratorConfiguration;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.List;

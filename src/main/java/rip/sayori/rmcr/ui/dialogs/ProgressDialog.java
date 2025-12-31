@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
 import rip.sayori.rmcr.ui.init.UIRES;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

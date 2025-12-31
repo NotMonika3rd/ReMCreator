@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.blockly.java.blocks;
 
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.BlocklyCompileNote;
 import rip.sayori.rmcr.blockly.BlocklyToCode;
 import rip.sayori.rmcr.blockly.IBlockGenerator;
@@ -46,7 +47,6 @@ import rip.sayori.rmcr.blockly.java.BlocklyToProcedure;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import rip.sayori.rmcr.util.XMLUtil;
 import rip.sayori.rmcr.workspace.elements.VariableElement;
-import org.w3c.dom.Element;
 
 import java.util.HashMap;
 import java.util.List;

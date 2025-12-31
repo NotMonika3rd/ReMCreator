@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.ui.component;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.ui.FileOpener;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.laf.FileIcons;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

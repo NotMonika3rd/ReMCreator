@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.util;
 
+import org.apache.commons.lang3.StringUtils;
 import rip.sayori.rmcr.Launcher;
 import rip.sayori.rmcr.io.FileIO;
-import org.apache.commons.lang3.StringUtils;
 
 import java.net.URL;
 import java.util.Enumeration;

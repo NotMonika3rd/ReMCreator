@@ -37,13 +37,13 @@
 
 package rip.sayori.rmcr.workspace;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.io.zip.ZipIO;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.dialogs.ProgressDialog;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

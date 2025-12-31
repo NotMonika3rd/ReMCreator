@@ -37,13 +37,6 @@
 
 package rip.sayori.rmcr.ui.workspace;
 
-import rip.sayori.rmcr.ui.action.impl.vcs.SetupVCSAction;
-import rip.sayori.rmcr.ui.component.TransparentToolBar;
-import rip.sayori.rmcr.ui.component.util.ComponentUtils;
-import rip.sayori.rmcr.ui.init.L10N;
-import rip.sayori.rmcr.ui.init.UIRES;
-import rip.sayori.rmcr.ui.laf.SlickDarkScrollBarUI;
-import rip.sayori.rmcr.ui.vcs.BranchesPopup;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jgit.api.Git;
@@ -53,6 +46,13 @@ import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.merge.MergeStrategy;
 import org.eclipse.jgit.revwalk.RevCommit;
+import rip.sayori.rmcr.ui.action.impl.vcs.SetupVCSAction;
+import rip.sayori.rmcr.ui.component.TransparentToolBar;
+import rip.sayori.rmcr.ui.component.util.ComponentUtils;
+import rip.sayori.rmcr.ui.init.L10N;
+import rip.sayori.rmcr.ui.init.UIRES;
+import rip.sayori.rmcr.ui.laf.SlickDarkScrollBarUI;
+import rip.sayori.rmcr.ui.vcs.BranchesPopup;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

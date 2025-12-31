@@ -37,9 +37,6 @@
 
 package rip.sayori.rmcr.vcs;
 
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.plugin.PluginLoader;
-import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jgit.api.Git;
@@ -52,6 +49,9 @@ import org.eclipse.jgit.lib.StoredConfig;
 import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.plugin.PluginLoader;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import java.awt.*;
 import java.io.File;

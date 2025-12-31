@@ -46,6 +46,11 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jboss.forge.roaster.Roaster;
+import org.jboss.forge.roaster.model.source.JavaClassSource;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.parts.TabEntry;
 import rip.sayori.rmcr.element.types.Armor;
@@ -79,11 +84,6 @@ import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.resources.Model;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jboss.forge.roaster.Roaster;
-import org.jboss.forge.roaster.model.source.JavaClassSource;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

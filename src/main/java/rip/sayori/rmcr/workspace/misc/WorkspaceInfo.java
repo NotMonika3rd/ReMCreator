@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.workspace.misc;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.BaseType;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.ModElementType;
@@ -45,8 +47,6 @@ import rip.sayori.rmcr.generator.mapping.MappableElement;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;

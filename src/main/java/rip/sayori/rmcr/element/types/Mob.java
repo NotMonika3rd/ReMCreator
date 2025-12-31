@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.element.types;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.BlocklyToAITasks;
 import rip.sayori.rmcr.blockly.data.BlocklyLoader;
 import rip.sayori.rmcr.element.GeneratableElement;
@@ -52,7 +53,6 @@ import rip.sayori.rmcr.minecraft.MinecraftImageGenerator;
 import rip.sayori.rmcr.ui.modgui.LivingEntityGUI;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.resources.Model;
-import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.workspace.settings;
 
-import rip.sayori.rmcr.util.GSONCompare;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.util.GSONCompare;
 
 public class WorkspaceSettingsChange {
 

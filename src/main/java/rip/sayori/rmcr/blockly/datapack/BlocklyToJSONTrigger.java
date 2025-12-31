@@ -37,6 +37,12 @@
 
 package rip.sayori.rmcr.blockly.datapack;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import rip.sayori.rmcr.blockly.BlocklyBlockUtil;
 import rip.sayori.rmcr.blockly.BlocklyCompileNote;
 import rip.sayori.rmcr.blockly.BlocklyToCode;
@@ -46,12 +52,6 @@ import rip.sayori.rmcr.blockly.datapack.blocks.NumberBlock;
 import rip.sayori.rmcr.generator.template.TemplateGenerator;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

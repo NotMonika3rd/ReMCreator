@@ -38,13 +38,13 @@
 package rip.sayori.rmcr.ui.modgui;
 
 import rip.sayori.rmcr.element.GeneratableElement;
+import rip.sayori.rmcr.element.types.AccessTransformer;
 import rip.sayori.rmcr.generator.GeneratorTemplate;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.ide.CodeEditorView;
 import rip.sayori.rmcr.ui.validation.AggregatedValidationResult;
 import rip.sayori.rmcr.ui.views.ViewBase;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import rip.sayori.rmcr.element.types.AccessTransformer;
 
 import java.io.File;
 import java.util.List;

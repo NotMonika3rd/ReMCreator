@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.types.Structure;
 import rip.sayori.rmcr.io.FileIO;
@@ -60,8 +62,6 @@ import rip.sayori.rmcr.ui.validation.ValidationGroup;
 import rip.sayori.rmcr.ui.validation.validators.ItemListFieldValidator;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.apache.commons.io.FilenameUtils;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

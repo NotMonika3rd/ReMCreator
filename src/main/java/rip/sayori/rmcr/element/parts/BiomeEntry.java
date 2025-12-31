@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.element.parts;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.generator.mapping.MappableElement;
 import rip.sayori.rmcr.generator.mapping.NameMapper;
 import rip.sayori.rmcr.minecraft.DataListEntry;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
 
 public class BiomeEntry extends MappableElement {
 

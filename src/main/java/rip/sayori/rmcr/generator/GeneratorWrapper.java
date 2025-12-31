@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.generator;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.ModElementTypeRegistry;
 import rip.sayori.rmcr.element.NamespacedGeneratableElement;
@@ -46,7 +47,6 @@ import rip.sayori.rmcr.generator.mapping.NameMapper;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.VariableElement;
-import org.apache.commons.io.FilenameUtils;
 
 import java.util.Arrays;
 import java.util.List;

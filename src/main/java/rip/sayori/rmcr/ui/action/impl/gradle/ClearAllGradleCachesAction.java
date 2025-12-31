@@ -39,12 +39,12 @@ package rip.sayori.rmcr.ui.action.impl.gradle;
 
 import rip.sayori.rmcr.gradle.GradleDaemonUtils;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.action.ActionRegistry;
 import rip.sayori.rmcr.ui.action.impl.workspace.RegenerateCodeAction;
 import rip.sayori.rmcr.ui.dialogs.ProgressDialog;
 import rip.sayori.rmcr.ui.init.L10N;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import javax.swing.*;
 import java.io.File;

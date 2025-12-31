@@ -46,18 +46,18 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
-import rip.sayori.rmcr.ui.MCreator;
-import rip.sayori.rmcr.ui.init.L10N;
-import rip.sayori.rmcr.util.StringUtils;
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.FieldSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jboss.forge.roaster.model.source.MethodSource;
+import rip.sayori.rmcr.ui.MCreator;
+import rip.sayori.rmcr.ui.init.L10N;
+import rip.sayori.rmcr.util.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class JavaModelAnimationEditorDialog {
 

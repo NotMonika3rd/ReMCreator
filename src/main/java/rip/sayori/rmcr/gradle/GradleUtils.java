@@ -37,15 +37,15 @@
 
 package rip.sayori.rmcr.gradle;
 
+import org.apache.commons.io.FilenameUtils;
+import org.gradle.tooling.BuildLauncher;
+import org.gradle.tooling.ProjectConnection;
 import rip.sayori.rmcr.Launcher;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.minecraft.api.ModAPI;
 import rip.sayori.rmcr.minecraft.api.ModAPIManager;
 import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.commons.io.FilenameUtils;
-import org.gradle.tooling.BuildLauncher;
-import org.gradle.tooling.ProjectConnection;
 
 import java.io.File;
 import java.io.FileOutputStream;

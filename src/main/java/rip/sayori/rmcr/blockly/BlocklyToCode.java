@@ -37,6 +37,9 @@
 
 package rip.sayori.rmcr.blockly;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.blockly.data.StatementInput;
 import rip.sayori.rmcr.generator.template.TemplateGenerator;
@@ -44,9 +47,6 @@ import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import rip.sayori.rmcr.util.XMLUtil;
 import rip.sayori.rmcr.workspace.IWorkspaceProvider;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Element;
 
 import java.util.*;
 import java.util.function.Predicate;

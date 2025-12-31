@@ -39,9 +39,9 @@ package rip.sayori.rmcr.element.parts.gui;
 
 import com.google.gson.*;
 import com.google.gson.annotations.JsonAdapter;
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.ui.wysiwyg.WYSIWYGEditor;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.lang.reflect.Type;

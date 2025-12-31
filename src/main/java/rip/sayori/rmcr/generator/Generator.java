@@ -38,6 +38,12 @@
 package rip.sayori.rmcr.generator;
 
 import com.google.gson.GsonBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.gradle.tooling.GradleConnector;
+import org.gradle.tooling.ProjectConnection;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.generator.setup.WorkspaceGeneratorSetup;
@@ -47,22 +53,16 @@ import rip.sayori.rmcr.generator.template.TemplateGenerator;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import rip.sayori.rmcr.gradle.GradleCacheImportFailedException;
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.io.writer.ClassWriter;
 import rip.sayori.rmcr.io.writer.JSONWriter;
 import rip.sayori.rmcr.java.ProjectJarManager;
 import rip.sayori.rmcr.ui.init.UIRES;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.resources.Model;
 import rip.sayori.rmcr.workspace.resources.ModelUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.gradle.tooling.GradleConnector;
-import org.gradle.tooling.ProjectConnection;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

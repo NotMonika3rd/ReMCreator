@@ -39,12 +39,12 @@ package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.types.Block;
 import rip.sayori.rmcr.element.types.interfaces.IBlockWithBoundingBox;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class BlockBoundingBoxFixer implements IConverter {
 	private static final Logger LOG = LogManager.getLogger(BlockBoundingBoxFixer.class);

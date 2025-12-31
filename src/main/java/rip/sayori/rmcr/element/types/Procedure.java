@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.element.types;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.BlocklyLoader;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.blockly.data.ExternalTrigger;
@@ -50,7 +51,6 @@ import rip.sayori.rmcr.generator.template.TemplateGenerator;
 import rip.sayori.rmcr.minecraft.MinecraftImageGenerator;
 import rip.sayori.rmcr.workspace.WorkspaceFileManager;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.Nullable;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.minecraft.RegistryNameFixer;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.modgui.ModElementGUI;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.swing.*;
 import java.awt.*;

@@ -37,13 +37,16 @@
 
 package rip.sayori.rmcr.ui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.Launcher;
 import rip.sayori.rmcr.generator.IGeneratorProvider;
 import rip.sayori.rmcr.generator.setup.WorkspaceGeneratorSetup;
 import rip.sayori.rmcr.gradle.GradleStateListener;
 import rip.sayori.rmcr.gradle.GradleTaskResult;
 import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.ui.action.ActionRegistry;
 import rip.sayori.rmcr.ui.action.impl.workspace.RegenerateCodeAction;
@@ -57,6 +60,7 @@ import rip.sayori.rmcr.ui.gradle.GradleConsole;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.workspace.WorkspacePanel;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.util.ListUtils;
 import rip.sayori.rmcr.util.MCreatorVersionNumber;
 import rip.sayori.rmcr.util.image.ImageUtils;
@@ -64,10 +68,6 @@ import rip.sayori.rmcr.vcs.WorkspaceVCS;
 import rip.sayori.rmcr.workspace.IWorkspaceProvider;
 import rip.sayori.rmcr.workspace.ShareableZIPManager;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -76,8 +76,10 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-import java.util.*;
 import java.util.stream.Collectors;
 
 public final class MCreator extends JFrame implements IWorkspaceProvider, IGeneratorProvider {

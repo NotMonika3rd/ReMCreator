@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.generator;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.blockly.data.BlocklyLoader;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.minecraft.DataListEntry;
 import rip.sayori.rmcr.minecraft.DataListLoader;
 import rip.sayori.rmcr.plugin.PluginLoader;
-import org.apache.commons.io.FilenameUtils;
 
 import java.util.*;
 import java.util.regex.Pattern;

@@ -37,8 +37,8 @@
 
 package rip.sayori.rmcr.plugin;
 
-import rip.sayori.rmcr.Launcher;
 import org.jetbrains.annotations.NotNull;
+import rip.sayori.rmcr.Launcher;
 
 import java.io.File;
 

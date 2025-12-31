@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.ui.component;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.workspace.breadcrumb.FolderElementCrumb;
 import rip.sayori.rmcr.workspace.elements.FolderElement;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.ModElementManager;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

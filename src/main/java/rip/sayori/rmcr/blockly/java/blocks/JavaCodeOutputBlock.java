@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.blockly.java.blocks;
 
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.BlocklyCompileNote;
 import rip.sayori.rmcr.blockly.BlocklyToCode;
 import rip.sayori.rmcr.blockly.IBlockGenerator;
 import rip.sayori.rmcr.util.XMLUtil;
-import org.w3c.dom.Element;
 
 public class JavaCodeOutputBlock implements IBlockGenerator {
 

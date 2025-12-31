@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
@@ -44,7 +45,6 @@ import rip.sayori.rmcr.ui.dialogs.imageeditor.NewImageDialog;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.util.image.ImageUtils;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

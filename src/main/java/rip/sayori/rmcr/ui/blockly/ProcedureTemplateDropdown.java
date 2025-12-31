@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.blockly;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.blockly.java.BlocklyVariables;
 import rip.sayori.rmcr.blockly.java.ProcedureTemplateIO;
 import rip.sayori.rmcr.io.ResourcePointer;
@@ -44,8 +46,6 @@ import rip.sayori.rmcr.ui.component.JScrollablePopupMenu;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.modgui.ProcedureGUI;
 import rip.sayori.rmcr.workspace.elements.VariableElement;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.io.File;

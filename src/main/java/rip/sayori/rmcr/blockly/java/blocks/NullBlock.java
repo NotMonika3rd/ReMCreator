@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.blockly.java.blocks;
 
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.BlocklyToCode;
 import rip.sayori.rmcr.blockly.IBlockGenerator;
-import org.w3c.dom.Element;
 
 public class NullBlock implements IBlockGenerator {
 

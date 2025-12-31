@@ -46,11 +46,11 @@
 
 package rip.sayori.rmcr.java;
 
-import rip.sayori.rmcr.workspace.Workspace;
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.Import;
 import org.jboss.forge.roaster.model.source.JavaSource;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import java.util.*;
 import java.util.stream.Collectors;

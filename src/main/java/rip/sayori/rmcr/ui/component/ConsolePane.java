@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.ui.component;
 
-import rip.sayori.rmcr.ui.laf.AbstractMCreatorTheme;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rip.sayori.rmcr.ui.laf.AbstractMCreatorTheme;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;

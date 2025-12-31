@@ -37,6 +37,9 @@
 
 package rip.sayori.rmcr.minecraft;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.blockly.BlocklyBlockUtil;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.parts.MItemBlock;
@@ -47,9 +50,6 @@ import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.util.image.ImageTransformUtil;
 import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

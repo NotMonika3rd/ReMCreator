@@ -37,17 +37,17 @@
 
 package rip.sayori.rmcr.blockly.java;
 
-import rip.sayori.rmcr.blockly.BlocklyBlockUtil;
-import rip.sayori.rmcr.io.BinaryStringIO;
-import rip.sayori.rmcr.util.XMLUtil;
-import rip.sayori.rmcr.workspace.elements.VariableElement;
-import rip.sayori.rmcr.workspace.elements.VariableElementType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import rip.sayori.rmcr.blockly.BlocklyBlockUtil;
+import rip.sayori.rmcr.io.BinaryStringIO;
+import rip.sayori.rmcr.util.XMLUtil;
+import rip.sayori.rmcr.workspace.elements.VariableElement;
+import rip.sayori.rmcr.workspace.elements.VariableElementType;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

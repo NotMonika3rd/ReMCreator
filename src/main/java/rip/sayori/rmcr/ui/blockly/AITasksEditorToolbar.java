@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.blockly;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.blockly.java.ProcedureTemplateIO;
 import rip.sayori.rmcr.io.TemplatesLoader;
 import rip.sayori.rmcr.ui.MCreator;
@@ -45,8 +47,6 @@ import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.dialogs.FileDialogs;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.init.UIRES;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

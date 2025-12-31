@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.element.types;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.minecraft.MinecraftImageGenerator;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.commons.io.FilenameUtils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

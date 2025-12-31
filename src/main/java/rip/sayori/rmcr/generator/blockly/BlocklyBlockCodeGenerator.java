@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.generator.blockly;
 
+import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.BlocklyCompileNote;
 import rip.sayori.rmcr.blockly.BlocklyToCode;
 import rip.sayori.rmcr.blockly.IBlockGenerator;
@@ -47,8 +49,6 @@ import rip.sayori.rmcr.generator.template.TemplateGenerator;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.util.XMLUtil;
-import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Element;
 
 import java.util.HashMap;
 import java.util.List;

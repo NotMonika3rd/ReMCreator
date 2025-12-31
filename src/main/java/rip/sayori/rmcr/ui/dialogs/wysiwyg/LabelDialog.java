@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.dialogs.wysiwyg;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.parts.gui.Label;
 import rip.sayori.rmcr.ui.component.JColor;
@@ -48,7 +49,6 @@ import rip.sayori.rmcr.ui.wysiwyg.WYSIWYG;
 import rip.sayori.rmcr.ui.wysiwyg.WYSIWYGEditor;
 import rip.sayori.rmcr.workspace.elements.VariableElement;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

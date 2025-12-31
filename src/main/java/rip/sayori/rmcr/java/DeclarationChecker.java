@@ -37,14 +37,14 @@
 
 package rip.sayori.rmcr.java;
 
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.workspace.Workspace;
 import org.fife.rsta.ac.java.JarManager;
 import org.fife.rsta.ac.java.rjc.ast.CompilationUnit;
 import org.fife.rsta.ac.java.rjc.ast.ImportDeclaration;
 import org.fife.rsta.ac.java.rjc.ast.NormalClassDeclaration;
 import org.fife.rsta.ac.java.rjc.ast.TypeDeclaration;
 import org.fife.rsta.ac.java.rjc.lang.Type;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import java.util.List;
 

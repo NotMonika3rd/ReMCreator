@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.element.types;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.parts.*;
 import rip.sayori.rmcr.element.parts.Fluid;
@@ -50,7 +51,6 @@ import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.resources.Model;
 import rip.sayori.rmcr.workspace.resources.TexturedModel;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;

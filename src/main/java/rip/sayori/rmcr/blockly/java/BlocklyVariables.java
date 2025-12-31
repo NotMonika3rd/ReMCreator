@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.blockly.java;
 
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.BlocklyCompileNote;
 import rip.sayori.rmcr.util.XMLUtil;
 import rip.sayori.rmcr.workspace.elements.VariableElement;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.w3c.dom.Element;
 
 import java.util.ArrayList;
 import java.util.List;

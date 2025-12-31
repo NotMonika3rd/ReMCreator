@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.dialogs.workspace;
 
+import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.generator.Generator;
 import rip.sayori.rmcr.generator.GeneratorConfiguration;
 import rip.sayori.rmcr.generator.GeneratorFlavor;
@@ -61,8 +63,6 @@ import rip.sayori.rmcr.util.DesktopUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.settings.WorkspaceSettings;
 import rip.sayori.rmcr.workspace.settings.WorkspaceSettingsChange;
-import org.apache.commons.io.FilenameUtils;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -73,8 +73,8 @@ import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class WorkspaceDialogs {

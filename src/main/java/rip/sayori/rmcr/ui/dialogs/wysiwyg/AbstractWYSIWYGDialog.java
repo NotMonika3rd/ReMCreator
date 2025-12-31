@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.ui.dialogs.wysiwyg;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.parts.gui.GUIComponent;
 import rip.sayori.rmcr.ui.dialogs.MCreatorDialog;
-import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 

@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.browser.action;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.io.writer.ClassWriter;
 import rip.sayori.rmcr.java.JavaConventions;
 import rip.sayori.rmcr.ui.action.ActionRegistry;
@@ -47,8 +49,6 @@ import rip.sayori.rmcr.ui.validation.component.VTextField;
 import rip.sayori.rmcr.ui.validation.optionpane.OptionPaneValidatior;
 import rip.sayori.rmcr.ui.validation.optionpane.VOptionPane;
 import rip.sayori.rmcr.ui.validation.validators.JavaMemeberNameValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.parts.MItemBlock;
 import rip.sayori.rmcr.element.types.Recipe;
 import rip.sayori.rmcr.minecraft.ElementUtil;
@@ -55,7 +56,6 @@ import rip.sayori.rmcr.ui.validation.component.VComboBox;
 import rip.sayori.rmcr.ui.validation.component.VTextField;
 import rip.sayori.rmcr.ui.validation.validators.RegistryNameValidator;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

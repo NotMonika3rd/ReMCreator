@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.ui.workspace.selector;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.generator.GeneratorFlavor;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 

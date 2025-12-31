@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.ui.validation.validators;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.java.JavaConventions;
 import rip.sayori.rmcr.ui.validation.Validator;
 import rip.sayori.rmcr.ui.validation.component.VTextField;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.NotNull;
 
 public class ModElementNameValidator extends JavaMemeberNameValidator {
 

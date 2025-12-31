@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.generator;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.settings.WorkspaceSettings;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -37,14 +37,14 @@
 
 package rip.sayori.rmcr.ui.browser;
 
+import org.apache.commons.io.FilenameUtils;
+import org.fife.rsta.ac.java.buildpath.LibraryInfo;
 import rip.sayori.rmcr.generator.GeneratorFlavor;
 import rip.sayori.rmcr.generator.GeneratorStats;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.io.tree.FileNode;
 import rip.sayori.rmcr.io.tree.FileTree;
 import rip.sayori.rmcr.io.zip.ZipIO;
-import rip.sayori.rmcr.java.ZipSubSourceLocation;
-import rip.sayori.rmcr.minecraft.MinecraftFolderUtils;
 import rip.sayori.rmcr.ui.FileOpener;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.component.tree.FilterTreeNode;
@@ -58,8 +58,6 @@ import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.laf.FileIcons;
 import rip.sayori.rmcr.ui.laf.SlickDarkScrollBarUI;
 import rip.sayori.rmcr.ui.laf.SlickTreeUI;
-import org.apache.commons.io.FilenameUtils;
-import org.fife.rsta.ac.java.buildpath.LibraryInfo;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

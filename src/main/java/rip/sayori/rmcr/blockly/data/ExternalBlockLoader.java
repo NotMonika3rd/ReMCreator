@@ -38,15 +38,15 @@
 package rip.sayori.rmcr.blockly.data;
 
 import com.google.gson.*;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.blockly.IBlockGenerator;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.plugin.PluginLoader;
 import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.ui.blockly.BlocklyPanel;
 import rip.sayori.rmcr.ui.init.L10N;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.util.StringUtils;
 
 import java.util.*;

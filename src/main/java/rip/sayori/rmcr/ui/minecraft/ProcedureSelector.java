@@ -39,6 +39,7 @@ package rip.sayori.rmcr.ui.minecraft;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.element.ModElementTypeRegistry;
@@ -64,15 +65,14 @@ import rip.sayori.rmcr.ui.validation.validators.ModElementNameValidator;
 import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class ProcedureSelector extends JPanel {
 

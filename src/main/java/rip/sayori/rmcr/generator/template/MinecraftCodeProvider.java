@@ -46,9 +46,6 @@
 
 package rip.sayori.rmcr.generator.template;
 
-import rip.sayori.rmcr.io.zip.ZipIO;
-import rip.sayori.rmcr.java.ProjectJarManager;
-import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fife.rsta.ac.java.buildpath.SourceLocation;
@@ -59,6 +56,9 @@ import org.fife.rsta.ac.java.rjc.parser.ASTFactory;
 import org.jboss.forge.roaster.Roaster;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 import org.jetbrains.annotations.NotNull;
+import rip.sayori.rmcr.io.zip.ZipIO;
+import rip.sayori.rmcr.java.ProjectJarManager;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import java.io.File;
 import java.io.StringReader;

@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.dialogs.imageeditor;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.io.ResourcePointer;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.component.JColor;
@@ -52,8 +54,6 @@ import rip.sayori.rmcr.ui.views.editor.image.versioning.VersionManager;
 import rip.sayori.rmcr.util.ListUtils;
 import rip.sayori.rmcr.util.image.EmptyIcon;
 import rip.sayori.rmcr.util.image.ImageUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -62,9 +62,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.*;
 import java.util.List;
 import java.util.Timer;
-import java.util.*;
 import java.util.stream.Collectors;
 
 public class FromTemplateDialog extends MCreatorDialog {

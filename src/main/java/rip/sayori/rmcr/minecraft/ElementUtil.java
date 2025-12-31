@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.minecraft;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.element.BaseType;
 import rip.sayori.rmcr.element.ModElementType;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.SoundElement;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;

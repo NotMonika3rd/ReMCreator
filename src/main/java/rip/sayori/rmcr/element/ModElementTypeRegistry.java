@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.element;
 
+import rip.sayori.rmcr.element.parts.Procedure;
 import rip.sayori.rmcr.element.types.*;
 import rip.sayori.rmcr.ui.MCreator;
-import rip.sayori.rmcr.element.parts.Procedure;
 import rip.sayori.rmcr.ui.modgui.*;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 

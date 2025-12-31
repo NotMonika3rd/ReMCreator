@@ -38,7 +38,6 @@
 package rip.sayori.rmcr.ui.workspace.resources;
 
 import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.ui.component.JSelectableList;
 import rip.sayori.rmcr.ui.component.TransparentToolBar;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
@@ -49,6 +48,7 @@ import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.laf.SlickDarkScrollBarUI;
 import rip.sayori.rmcr.ui.workspace.IReloadableFilterable;
 import rip.sayori.rmcr.ui.workspace.WorkspacePanel;
+import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.util.image.ImageUtils;
 
 import javax.swing.*;
@@ -56,8 +56,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 class WorkspacePanelScreenshots extends JPanel implements IReloadableFilterable {

@@ -37,12 +37,12 @@
 
 package rip.sayori.rmcr.ui.validation.optionpane;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.ui.component.util.ComponentUtils;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.validation.Validator;
 import rip.sayori.rmcr.ui.validation.component.VTextField;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;

@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.blockly.data;
 
-import rip.sayori.rmcr.ui.init.L10N;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.ui.init.L10N;
 
 import java.util.List;
 

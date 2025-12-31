@@ -38,15 +38,15 @@
 package rip.sayori.rmcr.vcs;
 
 import com.google.gson.Gson;
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.PasswordVault;
-import rip.sayori.rmcr.ui.init.L10N;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LsRemoteCommand;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.jetbrains.annotations.NotNull;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.io.PasswordVault;
+import rip.sayori.rmcr.ui.init.L10N;
 
 import javax.swing.*;
 import java.awt.*;

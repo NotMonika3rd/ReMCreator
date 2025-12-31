@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.BlocklyCompileNote;
 import rip.sayori.rmcr.blockly.data.BlocklyLoader;
 import rip.sayori.rmcr.blockly.data.ExternalBlockLoader;
@@ -70,7 +71,6 @@ import rip.sayori.rmcr.ui.validation.validators.TextFieldValidator;
 import rip.sayori.rmcr.util.ListUtils;
 import rip.sayori.rmcr.util.StringUtils;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

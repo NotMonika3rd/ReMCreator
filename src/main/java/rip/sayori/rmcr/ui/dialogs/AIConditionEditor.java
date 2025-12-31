@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.ui.MCreator;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
@@ -44,7 +45,6 @@ import rip.sayori.rmcr.ui.help.IHelpContext;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.ui.minecraft.ProcedureSelector;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.util.Arrays;

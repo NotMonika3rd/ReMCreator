@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.dialogs.wysiwyg;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.blockly.data.Dependency;
 import rip.sayori.rmcr.element.parts.gui.Button;
 import rip.sayori.rmcr.ui.component.util.PanelUtils;
@@ -46,7 +47,6 @@ import rip.sayori.rmcr.ui.minecraft.ProcedureSelector;
 import rip.sayori.rmcr.ui.wysiwyg.WYSIWYG;
 import rip.sayori.rmcr.ui.wysiwyg.WYSIWYGEditor;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

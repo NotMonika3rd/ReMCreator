@@ -37,10 +37,10 @@
 
 package rip.sayori.rmcr.blockly;
 
-import rip.sayori.rmcr.util.XMLUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import rip.sayori.rmcr.util.XMLUtil;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;

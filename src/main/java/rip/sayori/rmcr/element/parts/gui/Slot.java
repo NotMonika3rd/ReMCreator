@@ -44,8 +44,8 @@ import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 
 import javax.swing.*;
-import java.awt.Image;
 import java.awt.*;
+import java.awt.Image;
 
 public abstract class Slot extends GUIComponent {
 

@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.minecraft;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.generator.mapping.MappableElement;
 import rip.sayori.rmcr.minecraft.DataListEntry;
 import rip.sayori.rmcr.minecraft.MCItem;
@@ -45,7 +46,6 @@ import rip.sayori.rmcr.ui.init.BlockItemIcons;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.util.image.EmptyIcon;
 import rip.sayori.rmcr.util.image.ImageUtils;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.awt.*;

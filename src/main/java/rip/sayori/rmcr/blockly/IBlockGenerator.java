@@ -37,8 +37,8 @@
 
 package rip.sayori.rmcr.blockly;
 
-import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 import org.w3c.dom.Element;
+import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
 
 public interface IBlockGenerator {
 

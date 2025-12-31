@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.generator;
 
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.gradle.GradleCacheImportFailedException;
-import rip.sayori.rmcr.util.FolderUtils;
 import rip.sayori.rmcr.java.ImportTreeBuilder;
 import rip.sayori.rmcr.java.ProjectJarManager;
-import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import java.util.List;
 import java.util.Map;

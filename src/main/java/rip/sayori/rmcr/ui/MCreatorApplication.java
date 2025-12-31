@@ -38,13 +38,14 @@
 package rip.sayori.rmcr.ui;
 
 import javafx.application.Platform;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.Launcher;
 import rip.sayori.rmcr.blockly.data.BlocklyLoader;
 import rip.sayori.rmcr.generator.Generator;
 import rip.sayori.rmcr.generator.GeneratorConfiguration;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.io.OS;
-import rip.sayori.rmcr.util.DeviceInfo;
 import rip.sayori.rmcr.minecraft.DataListLoader;
 import rip.sayori.rmcr.minecraft.api.ModAPIManager;
 import rip.sayori.rmcr.plugin.PluginLoader;
@@ -57,20 +58,19 @@ import rip.sayori.rmcr.ui.init.*;
 import rip.sayori.rmcr.ui.laf.MCreatorLookAndFeel;
 import rip.sayori.rmcr.ui.workspace.selector.RecentWorkspaceEntry;
 import rip.sayori.rmcr.ui.workspace.selector.WorkspaceSelector;
+import rip.sayori.rmcr.util.DeviceInfo;
 import rip.sayori.rmcr.util.MCreatorVersionNumber;
 import rip.sayori.rmcr.util.SoundUtils;
 import rip.sayori.rmcr.workspace.CorruptedWorkspaceFileException;
 import rip.sayori.rmcr.workspace.UnsupportedGeneratorException;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public final class MCreatorApplication {

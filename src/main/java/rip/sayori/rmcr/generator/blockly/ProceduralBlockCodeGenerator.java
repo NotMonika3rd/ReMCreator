@@ -37,10 +37,10 @@
 
 package rip.sayori.rmcr.generator.blockly;
 
+import org.w3c.dom.Element;
 import rip.sayori.rmcr.blockly.BlocklyToCode;
 import rip.sayori.rmcr.blockly.IBlockGenerator;
 import rip.sayori.rmcr.generator.template.TemplateGeneratorException;
-import org.w3c.dom.Element;
 
 public class ProceduralBlockCodeGenerator implements IBlockGenerator {
 

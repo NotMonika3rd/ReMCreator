@@ -38,24 +38,21 @@
 package rip.sayori.rmcr.plugin;
 
 import com.google.gson.Gson;
-import org.reflections.scanners.Scanners;
-import org.reflections.util.ConfigurationBuilder;
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.util.FolderUtils;
-import rip.sayori.rmcr.io.zip.ZipIO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ConfigurationBuilder;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.io.zip.ZipIO;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 

@@ -37,6 +37,10 @@
 
 package rip.sayori.rmcr.ui.modgui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.minecraft.MCItem;
 import rip.sayori.rmcr.preferences.PreferencesManager;
@@ -54,16 +58,12 @@ import rip.sayori.rmcr.ui.validation.AggregatedValidationResult;
 import rip.sayori.rmcr.ui.validation.ValidationGroup;
 import rip.sayori.rmcr.ui.views.ViewBase;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public abstract class ModElementGUI<GE extends GeneratableElement> extends ViewBase implements IHelpContext {
 

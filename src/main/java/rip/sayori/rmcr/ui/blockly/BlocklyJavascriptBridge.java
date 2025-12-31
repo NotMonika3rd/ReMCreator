@@ -38,6 +38,11 @@
 package rip.sayori.rmcr.ui.blockly;
 
 import com.google.gson.Gson;
+import netscape.javascript.JSObject;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.blockly.data.ExternalTrigger;
 import rip.sayori.rmcr.element.BaseType;
 import rip.sayori.rmcr.element.ModElementType;
@@ -55,11 +60,6 @@ import rip.sayori.rmcr.util.image.ImageUtils;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
 import rip.sayori.rmcr.workspace.elements.VariableElementType;
-import netscape.javascript.JSObject;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

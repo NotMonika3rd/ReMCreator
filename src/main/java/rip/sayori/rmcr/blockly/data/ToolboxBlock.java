@@ -38,9 +38,9 @@
 package rip.sayori.rmcr.blockly.data;
 
 import com.google.gson.JsonElement;
-import rip.sayori.rmcr.blockly.IBlockGenerator;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.blockly.IBlockGenerator;
 
 import java.util.List;
 

@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.vcs;
 
+import org.eclipse.jgit.diff.DiffEntry;
 import org.jspecify.annotations.Nullable;
 import rip.sayori.rmcr.vcs.diff.MergeHandle;
 import rip.sayori.rmcr.vcs.diff.ResultSide;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.eclipse.jgit.diff.DiffEntry;
 
 import java.io.File;
 

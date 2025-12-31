@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.dialogs.workspace;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.generator.setup.WorkspaceGeneratorSetup;
 import rip.sayori.rmcr.gradle.GradleDaemonUtils;
 import rip.sayori.rmcr.gradle.GradleErrorCodes;
@@ -46,8 +48,6 @@ import rip.sayori.rmcr.ui.dialogs.ProgressDialog;
 import rip.sayori.rmcr.ui.dialogs.preferences.PreferencesDialog;
 import rip.sayori.rmcr.ui.init.L10N;
 import rip.sayori.rmcr.util.DesktopUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;

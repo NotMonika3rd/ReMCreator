@@ -46,11 +46,11 @@
 
 package rip.sayori.rmcr.java;
 
-import rip.sayori.rmcr.workspace.Workspace;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jboss.forge.roaster.Roaster;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import java.util.Properties;
 

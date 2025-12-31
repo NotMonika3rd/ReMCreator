@@ -42,11 +42,11 @@ import com.google.gson.JsonParser;
 import de.javagl.obj.Mtl;
 import de.javagl.obj.MtlReader;
 import de.javagl.obj.MtlWriter;
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.io.writer.JSONWriter;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.io.writer.JSONWriter;
 
 import java.io.File;
 import java.io.FileInputStream;

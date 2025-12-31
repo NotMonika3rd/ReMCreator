@@ -38,11 +38,11 @@
 package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.element.types.Plant;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class PlantLuminanceFixer implements IConverter {
 	private static final Logger LOG = LogManager.getLogger(PlantLuminanceFixer.class);

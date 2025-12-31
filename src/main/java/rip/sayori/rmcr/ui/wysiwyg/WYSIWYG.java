@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.ui.wysiwyg;
 
+import org.apache.commons.io.FilenameUtils;
 import rip.sayori.rmcr.element.parts.gui.GUIComponent;
 import rip.sayori.rmcr.element.parts.gui.SizedComponent;
 import rip.sayori.rmcr.minecraft.MinecraftImageGenerator;
@@ -45,7 +46,6 @@ import rip.sayori.rmcr.ui.component.zoompane.JZoomPane;
 import rip.sayori.rmcr.ui.component.zoompane.JZoomport;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.ui.laf.AbstractMCreatorTheme;
-import org.apache.commons.io.FilenameUtils;
 
 import javax.annotation.Nullable;
 import javax.swing.*;

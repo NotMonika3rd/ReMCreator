@@ -37,13 +37,13 @@
 
 package rip.sayori.rmcr.workspace;
 
-import rip.sayori.rmcr.generator.GeneratorUtils;
-import rip.sayori.rmcr.io.OS;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import rip.sayori.rmcr.generator.GeneratorUtils;
+import rip.sayori.rmcr.io.OS;
 
 import javax.swing.*;
 import java.io.File;

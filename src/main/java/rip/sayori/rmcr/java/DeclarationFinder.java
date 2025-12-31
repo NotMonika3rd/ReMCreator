@@ -37,11 +37,11 @@
 
 package rip.sayori.rmcr.java;
 
-import rip.sayori.rmcr.workspace.Workspace;
 import org.fife.rsta.ac.java.JarManager;
 import org.fife.rsta.ac.java.JavaParser;
 import org.fife.rsta.ac.java.rjc.ast.TypeDeclaration;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import rip.sayori.rmcr.workspace.Workspace;
 
 import javax.swing.text.BadLocationException;
 import java.io.File;

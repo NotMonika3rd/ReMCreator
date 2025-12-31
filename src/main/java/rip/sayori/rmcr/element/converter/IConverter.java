@@ -38,9 +38,9 @@
 package rip.sayori.rmcr.element.converter;
 
 import com.google.gson.JsonElement;
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.element.GeneratableElement;
 import rip.sayori.rmcr.workspace.Workspace;
-import org.jetbrains.annotations.NotNull;
 
 public interface IConverter extends Comparable<IConverter> {
 

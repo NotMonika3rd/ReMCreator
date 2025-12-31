@@ -37,21 +37,21 @@
 
 package rip.sayori.rmcr.java;
 
-import org.fife.rsta.ac.java.buildpath.LibraryInfo;
-import rip.sayori.rmcr.generator.Generator;
-import rip.sayori.rmcr.generator.GeneratorFlavor;
-import rip.sayori.rmcr.generator.GeneratorGradleCache;
-import rip.sayori.rmcr.gradle.GradleCacheImportFailedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fife.rsta.ac.java.JarManager;
 import org.fife.rsta.ac.java.buildpath.DirSourceLocation;
 import org.fife.rsta.ac.java.buildpath.JarLibraryInfo;
+import org.fife.rsta.ac.java.buildpath.LibraryInfo;
 import org.fife.rsta.ac.java.buildpath.ZipSourceLocation;
 import org.gradle.tooling.BuildException;
 import org.gradle.tooling.ProjectConnection;
 import org.gradle.tooling.model.ExternalDependency;
 import org.gradle.tooling.model.eclipse.EclipseProject;
+import rip.sayori.rmcr.generator.Generator;
+import rip.sayori.rmcr.generator.GeneratorFlavor;
+import rip.sayori.rmcr.generator.GeneratorGradleCache;
+import rip.sayori.rmcr.gradle.GradleCacheImportFailedException;
 import rip.sayori.rmcr.gradle.GradleUtils;
 
 import java.io.File;

@@ -39,10 +39,10 @@ package rip.sayori.rmcr.preferences;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import rip.sayori.rmcr.io.FileIO;
-import rip.sayori.rmcr.util.FolderUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import rip.sayori.rmcr.io.FileIO;
+import rip.sayori.rmcr.util.FolderUtils;
 
 import java.io.File;
 

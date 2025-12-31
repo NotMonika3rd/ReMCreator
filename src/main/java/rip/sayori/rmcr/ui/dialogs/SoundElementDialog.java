@@ -37,6 +37,8 @@
 
 package rip.sayori.rmcr.ui.dialogs;
 
+import org.apache.commons.io.FilenameUtils;
+import org.jetbrains.annotations.Nullable;
 import rip.sayori.rmcr.io.FileIO;
 import rip.sayori.rmcr.minecraft.RegistryNameFixer;
 import rip.sayori.rmcr.ui.MCreator;
@@ -46,8 +48,6 @@ import rip.sayori.rmcr.ui.validation.Validator;
 import rip.sayori.rmcr.ui.validation.component.VTextField;
 import rip.sayori.rmcr.ui.validation.validators.ResourceNameValidator;
 import rip.sayori.rmcr.workspace.elements.SoundElement;
-import org.apache.commons.io.FilenameUtils;
-import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;

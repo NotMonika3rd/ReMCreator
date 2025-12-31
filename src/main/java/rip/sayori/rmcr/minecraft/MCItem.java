@@ -37,13 +37,13 @@
 
 package rip.sayori.rmcr.minecraft;
 
+import org.jetbrains.annotations.NotNull;
 import rip.sayori.rmcr.element.types.Armor;
 import rip.sayori.rmcr.ui.init.BlockItemIcons;
 import rip.sayori.rmcr.ui.init.UIRES;
 import rip.sayori.rmcr.util.image.EmptyIcon;
 import rip.sayori.rmcr.workspace.Workspace;
 import rip.sayori.rmcr.workspace.elements.ModElement;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import java.io.File;

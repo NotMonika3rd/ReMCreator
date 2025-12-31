@@ -37,9 +37,9 @@
 
 package rip.sayori.rmcr.java;
 
+import org.apache.commons.text.StringEscapeUtils;
 import rip.sayori.rmcr.io.Transliteration;
 import rip.sayori.rmcr.util.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
