@@ -91,12 +91,9 @@ public class ProjectJarManager extends JarManager {
 
 		final LibraryInfo info;
 
-		if (classesArchive.getName().endsWith(".jmod") || classesArchive.getName().equals("modules")) {
-            //info = new JarLibraryInfo(prepareModule(classesArchive));
+		if (classesArchive.getName().endsWith(".jmod") || classesArchive.getName().equals("modules"))
             info = new JModLibraryInfo(classesArchive);
-        } else {
-			info = new JarLibraryInfo(classesArchive);
-		}
+        else info = new JarLibraryInfo(classesArchive);
 
 		final File sourcesArchive = findExistingPath(jreHome, "lib/src.zip", "lib/src.jar", "src.zip", "../src.zip",
 				"src.jar", "../src.jar");

@@ -37,6 +37,7 @@
 
 package rip.sayori.rmcr.vcs;
 
+import org.jspecify.annotations.Nullable;
 import rip.sayori.rmcr.vcs.diff.MergeHandle;
 import rip.sayori.rmcr.vcs.diff.ResultSide;
 import rip.sayori.rmcr.workspace.Workspace;
@@ -101,39 +102,34 @@ public class FileSyncHandle {
 	}
 
 	public String getPath(ResultSide resultSide) {
-		switch (resultSide) {
-		case LOCAL:
-			return localPath;
-		case REMOTE:
-			return remotePath;
-		default:
-			return basePath;
-		}
+        return switch (resultSide) {
+            case LOCAL -> localPath;
+            case REMOTE -> remotePath;
+            default -> basePath;
+        };
 	}
 
 	public byte[] getBytes(ResultSide resultSide) {
-		switch (resultSide) {
-		case LOCAL:
-			return localBytes;
-		case REMOTE:
-			return remoteBytes;
-		default:
-			return baseBytes;
-		}
+        return switch (resultSide) {
+            case LOCAL -> localBytes;
+            case REMOTE -> remoteBytes;
+            default -> baseBytes;
+        };
 	}
 
 	public DiffEntry.ChangeType getChangeTypeRelativeTo(ResultSide resultSide) {
-		switch (resultSide) {
-		case LOCAL:
-			return getChangeTypeRelativeToLocal();
-		case REMOTE:
-			return getChangeTypeRelativeToRemote();
-		default:
-			return null;
-		}
+        return switch (resultSide) {
+            case LOCAL -> getChangeTypeRelativeToLocal();
+            case REMOTE -> getChangeTypeRelativeToRemote();
+            default -> null;
+        };
 	}
 
 	public DiffEntry.ChangeType getChangeTypeRelativeToLocal() {
+		return getChangeType();
+	}
+
+	private DiffEntry.@Nullable ChangeType getChangeType() {
 		if (baseBytes == null)
 			if (localBytes != null)
 				return DiffEntry.ChangeType.ADD;
@@ -149,18 +145,7 @@ public class FileSyncHandle {
 	}
 
 	public DiffEntry.ChangeType getChangeTypeRelativeToRemote() {
-		if (baseBytes == null)
-			if (localBytes != null)
-				return DiffEntry.ChangeType.ADD;
-
-		if (baseBytes != null)
-			if (localBytes == null)
-				return DiffEntry.ChangeType.DELETE;
-
-		if (baseBytes != null)
-			return DiffEntry.ChangeType.MODIFY;
-
-		return null;
+		return getChangeType();
 	}
 
 	public boolean isUnmerged() {
