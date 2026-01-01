@@ -64,7 +64,7 @@ dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("de.javagl:obj:0.3.0")
     implementation("org.apache.logging.log4j:log4j-core:2.25.3")
-    implementation("org.apache.commons:commons-text:1.10.0")
+    implementation("org.apache.commons:commons-text:1.15.0")
     implementation("org.eclipse.jgit:org.eclipse.jgit:7.2.1.202505142326-r")
     implementation("org.slf4j:slf4j-nop:1.7.30")
     implementation("org.gradle:gradle-tooling-api:7.1.1")
