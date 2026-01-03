@@ -15,7 +15,7 @@ unimined.minecraft {
     }
 
     cleanroom {
-        loader("0.3.27-alpha")
+        loader("${generator.getGeneratorBuildFileVersion()}")
     }
 }
 configurations{

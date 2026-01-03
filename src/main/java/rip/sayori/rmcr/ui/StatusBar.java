@@ -149,9 +149,8 @@ public class StatusBar extends JPanel {
 
 	private void addToolTipReader() {
 		Toolkit.getDefaultToolkit().addAWTEventListener(e -> {
-			if (e.getID() == 504 && e.getSource() instanceof JComponent) {
-				JComponent component = (JComponent) e.getSource();
-				if (component.getToolTipText() != null) {
+			if (e.getID() == 504 && e.getSource() instanceof JComponent component) {
+                if (component.getToolTipText() != null) {
 					setMessage(component.getToolTipText().replace("<br>", " ").replace("<br/>", " ")
 							.replaceAll("<[^>]*>", ""));
 				}

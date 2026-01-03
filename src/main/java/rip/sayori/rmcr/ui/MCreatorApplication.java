@@ -94,7 +94,7 @@ public final class MCreatorApplication {
 		try {
 			UIManager.setLookAndFeel(new MCreatorLookAndFeel());
 		} catch (UnsupportedLookAndFeelException e) {
-			LOG.error("Failed to set look and feel: " + e.getMessage());
+            LOG.error("Failed to set look and feel: {}", e.getMessage());
 		}
 
 		SoundUtils.initSoundSystem();
@@ -141,12 +141,12 @@ public final class MCreatorApplication {
 		for (String generator : fileNames) {
 			splashScreen.setProgress(55 + i * ((85 - 55) / fileNames.size()),
 					"Loading generators: " + generator.split("/")[0]);
-			LOG.info("Loading generator: " + generator);
+            LOG.info("Loading generator: {}", generator);
 			generator = generator.replace("/generator.yaml", "");
 			try {
 				Generator.GENERATOR_CACHE.put(generator, new GeneratorConfiguration(generator));
 			} catch (Exception e) {
-				LOG.error("Failed to load generator: " + generator, e);
+                LOG.error("Failed to load generator: {}", generator, e);
 			}
 			i++;
 		}
@@ -169,7 +169,7 @@ public final class MCreatorApplication {
 
 		boolean directLaunch = false;
 		if (!launchArguments.isEmpty()) {
-			String lastArg = launchArguments.get(launchArguments.size() - 1);
+			String lastArg = launchArguments.getLast();
 			if (lastArg.length() >= 2 && lastArg.charAt(0) == '"' && lastArg.charAt(lastArg.length() - 1) == '"')
 				lastArg = lastArg.substring(1, lastArg.length() - 1);
 			File passedFile = new File(lastArg);
@@ -267,12 +267,12 @@ public final class MCreatorApplication {
 				L10N.t("dialog.workspace.is_not_valid_title"), JOptionPane.ERROR_MESSAGE);
 	}
 
-	public final void closeApplication() {
+	public void closeApplication() {
 		LOG.debug("Closing any potentially open MCreator windows");
 		List<MCreator> mcreatorsTmp = new ArrayList<>(
 				openMCreators); // create list copy so we don't modify the list we iterate
 		for (MCreator mcreator : mcreatorsTmp) {
-			LOG.info("Attempting to close MCreator window with workspace: " + mcreator.getWorkspace());
+            LOG.info("Attempting to close MCreator window with workspace: {}", mcreator.getWorkspace());
 			if (!mcreator.closeThisMCreator(false))
 				return; // if we fail to close all windows, we cancel the application close
 		}
@@ -305,7 +305,7 @@ public final class MCreatorApplication {
 		System.exit(0); // actually exit MCreator
 	}
 
-	final void showWorkspaceSelector() {
+	void showWorkspaceSelector() {
 		workspaceSelector.setVisible(true);
 	}
 

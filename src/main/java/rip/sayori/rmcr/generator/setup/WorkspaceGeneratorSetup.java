@@ -145,7 +145,7 @@ public class WorkspaceGeneratorSetup {
 				if (stream != null) {
 					File outFile = new File(workspace.getWorkspaceFolder(),
 							file.replace(workspace.getGenerator().getGeneratorName() + "/workspacebase", ""));
-					if (file.endsWith(".gradle") || file.endsWith(".properties") || file.endsWith(".txt")) {
+					if (file.endsWith(".gradle") || file.endsWith(".properties") || file.endsWith(".txt") || file.contains(".gradle.kts")) {
 						String contents = IOUtils.toString(stream, StandardCharsets.UTF_8);
 						Template freemarkerTemplate = new Template("", contents, configuration);
 						StringWriter stringWriter = new StringWriter();

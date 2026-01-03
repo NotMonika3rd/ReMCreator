@@ -49,8 +49,8 @@ public class WindowTitleHelper {
 		String appendix = "";
 		if (mcreator.mcreatorTabs.getCurrentTab() != null && mcreator.mcreatorTabs.getCurrentTab()
 				.getContent() instanceof ModElementGUI) {
-			appendix = "- " + ((ModElementGUI) mcreator.mcreatorTabs.getCurrentTab().getContent()).getModElement()
-					.getName() + " (" + ((ModElementGUI) mcreator.mcreatorTabs.getCurrentTab()
+			appendix = "- " + ((ModElementGUI<?>) mcreator.mcreatorTabs.getCurrentTab().getContent()).getModElement()
+					.getName() + " (" + ((ModElementGUI<?>) mcreator.mcreatorTabs.getCurrentTab()
 					.getContent()).getModElement().getType().getReadableName() + ")";
 		} else if (mcreator.mcreatorTabs.getCurrentTab() != null && mcreator.mcreatorTabs.getCurrentTab()
 				.getContent() instanceof CodeEditorView) {

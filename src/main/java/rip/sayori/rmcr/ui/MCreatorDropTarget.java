@@ -84,10 +84,9 @@ public record MCreatorDropTarget(MCreator mcreator) implements DropTargetListene
             dtde.acceptDrop(dtde.getDropAction());
             try {
                 List<?> transferData = (List<?>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
-                if (transferData.size() > 0) {
-                    Object transfObj = transferData.get(0);
-                    if (transfObj instanceof File) {
-                        File file = (File) transfObj;
+                if (!transferData.isEmpty()) {
+                    Object transfObj = transferData.getFirst();
+                    if (transfObj instanceof File file) {
                         if (file.getName().endsWith(".ogg")) {
                             SoundElementDialog.importSound(mcreator, new File[]{file});
                         } else if (file.getName().endsWith(".java")) {

@@ -57,9 +57,9 @@ public class CustomElementGUI extends ModElementGUI<CustomElement> {
 	public CustomElementGUI(MCreator mcreator, ModElement modElement, boolean editingMode) {
 		super(mcreator, modElement, editingMode);
 		List<File> modElementFiles = mcreator.getGenerator().getModElementGeneratorTemplatesList(modElement).stream()
-				.map(GeneratorTemplate::getFile).collect(Collectors.toList());
+				.map(GeneratorTemplate::getFile).toList();
 
-		File modElementFile = modElementFiles.get(0);
+		File modElementFile = modElementFiles.getFirst();
 
 		// this element was just created, generate its file
 		if (!editingMode) {

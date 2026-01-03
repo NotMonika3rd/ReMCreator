@@ -104,9 +104,6 @@ public class Launcher {
 		System.setProperty("sun.java2d.opengl", Boolean.toString(PreferencesManager.PREFERENCES.ui.use2DAcceleration));
 		System.setProperty("sun.java2d.d3d", "false");
 		System.setProperty("prism.lcdtext", "false");
-
-		Launcher.class.getClassLoader().loadClass("javafx.embed.swing.JFXPanel");
-		// if we manage to load JavaFX, we set the listener to print to the sout js messages
 		com.sun.javafx.webkit.WebConsoleListener.setDefaultListener((webView, message, lineNumber, sourceId) -> {
 			String[] sidparsed = sourceId.split("/");
 			LOG.info("[JFX JS bridge] [{}: {}] {}", sidparsed[sidparsed.length - 1], lineNumber, message);
