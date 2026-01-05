@@ -50,7 +50,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "lib", "include" to listOf("*.jar"))))
     implementation("commons-io:commons-io:2.21.0")
     implementation("foxtrot:foxtrot-core:4.0")
-    implementation("org.freemarker:freemarker:2.3.31")
+    implementation("org.freemarker:freemarker:2.3.34")
     implementation("com.google.code.gson:gson:2.8.9")
     implementation("com.github.sps.junidecode:junidecode:0.3")
     implementation("org.jboss.forge.roaster:roaster-api:2.30.3.Final")
