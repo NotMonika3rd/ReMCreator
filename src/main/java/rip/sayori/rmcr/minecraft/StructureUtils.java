@@ -69,19 +69,16 @@ public class StructureUtils {
 	}
 
 	private static Tag replaceAllStringTags(Tag tag, String from, String to) {
-		if (tag instanceof CompoundTag) {
-			CompoundTag compoundTag = (CompoundTag) tag;
-			Map<String, Tag> map = new HashMap<>(compoundTag.getValue());
+		if (tag instanceof CompoundTag compoundTag) {
+            Map<String, Tag> map = new HashMap<>(compoundTag.getValue());
 			map.replaceAll((key, value) -> replaceAllStringTags(value, from, to));
 			return new CompoundTag(compoundTag.getName(), map);
-		} else if (tag instanceof ListTag) {
-			ListTag listTag = (ListTag) tag;
-			List<Tag> list = new ArrayList<>(listTag.getValue());
+		} else if (tag instanceof ListTag listTag) {
+            List<Tag> list = new ArrayList<>(listTag.getValue());
 			list.replaceAll(value -> replaceAllStringTags(value, from, to));
 			return new ListTag(listTag.getName(), listTag.getType(), list);
-		} else if (tag instanceof StringTag) {
-			StringTag stringTag = (StringTag) tag;
-			return new StringTag(stringTag.getName(), stringTag.getValue().replace(from, to));
+		} else if (tag instanceof StringTag stringTag) {
+            return new StringTag(stringTag.getName(), stringTag.getValue().replace(from, to));
 		}
 		return tag;
 	}

@@ -48,22 +48,9 @@ import rip.sayori.rmcr.preferences.PreferencesManager;
 import rip.sayori.rmcr.workspace.Workspace;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static rip.sayori.rmcr.util.FolderUtils.getGradleHome;
-
 public class GradleUtils {
-
-	public static void setupInitGradleFile() throws IOException {
-		try(var fos = new FileOutputStream(new File(getGradleHome(),"init.gradle"))){
-			try(var igjif=Launcher.class.getResourceAsStream("sbthings/init.gradle")) {
-                if (igjif != null) {
-                    fos.write(igjif.readAllBytes());
-                }
-            }
-		}
-	}
 
 	private static ProjectConnection getGradleProjectConnection(Workspace workspace) {
 		updateMCreatorBuildFile(workspace);
