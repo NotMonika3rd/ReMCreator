@@ -18,7 +18,7 @@ basefeatures:
   - gamerule
 partial_support: []
 status: stable
-buildfileversion: 0.4.14-alpha
+buildfileversion: 0.4.4-alpha
 subversion: 4.0
 
 start_id_map:
